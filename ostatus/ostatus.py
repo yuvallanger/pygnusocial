@@ -56,3 +56,7 @@ def get_request(server_url: str, resource_path: str) -> dict:
     _check_connection(server_url)
     return requests.get(_api_path(server_url) +
                         resource_path + '.json').json()
+
+
+def statusnet_config(server_url: str) -> dict:
+    return get_request(server_url, 'statusnet/config')
