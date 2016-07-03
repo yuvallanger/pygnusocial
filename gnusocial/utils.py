@@ -80,6 +80,18 @@ def _get_request(server_url: str,
         return requests.get(resource_url).json()
 
 
+def _post_request(server_url: str,
+                  resource_path: str,
+                  username: str,
+                  password: str,
+                  data: dict = {}):
+    return requests.post(
+        _api_path(server_url) + resource_path + '.json',
+        data=data,
+        auth=HTTPBasicAuth(username, password)
+    ).json()
+
+
 def statusnet_config(server_url: str) -> dict:
     return _get_request(server_url, 'statusnet/config')
 
