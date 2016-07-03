@@ -84,6 +84,6 @@ def statusnet_config(server_url: str) -> dict:
     return _get_request(server_url, 'statusnet/config')
 
 
-def login(server_url: str, username: str, password: str):
+def login(server_url: str, username: str, password: str) -> None:
     _check_connection(server_url)
     _validate_credentials(server_url, username, password)
