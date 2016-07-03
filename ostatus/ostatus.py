@@ -1,5 +1,6 @@
 import re
 import requests
+from requests.auth import HTTPBasicAuth
 
 domain_regex = re.compile("http(s|)://(www\.|)(.+?)(/.*|)$")
 
@@ -73,3 +74,8 @@ def statusnet_config(server_url: str) -> dict:
 
 def public_timeline(server_url: str) -> dict:
     return get_request(server_url, 'statuses/public_timeline')
+
+
+def login(server_url: str, username: str, password: str):
+    _check_connection(server_url)
+    _validate_credentials(server_url, username, password)
