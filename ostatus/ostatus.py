@@ -1,4 +1,5 @@
 import re
+import requests
 
 domain_regex = re.compile("http(s|)://(www\.|)(.+?)(/.*|)$")
 
@@ -31,3 +32,27 @@ class AuthenticationError(Exception):
     def __str__(self):
         return 'Invalid credentials %s:%s for %s' % (*self.credentials,
                                                      self.server_url)
+
+
+def _api_path(server_url: str) -> str:
+    if server_url[-1] != '/':
+        server_url += '/'
+    return server_url + 'api/'
+
+
+def _validate_server_url(server_url: str):
+    if not domain_regex.match(server_url):
+        raise ServerURLError(server_url)
+
+
+def _check_connection(server_url: str):
+    _validate_server_url(server_url)
+    response = requests.get(_api_path(server_url) + 'help/test.json')
+    if not response.json() == 'ok':
+        raise requests.ConnectionError(server_url)
+
+
+def get_request(server_url: str, resource_path: str) -> dict:
+    _check_connection(server_url)
+    return requests.get(_api_path(server_url) +
+                        resource_path + '.json').json()
