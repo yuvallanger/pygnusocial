@@ -52,6 +52,15 @@ def _check_connection(server_url: str):
         raise requests.ConnectionError(server_url)
 
 
+def _validate_credentials(server_url: str, username: str, password: str):
+    are_valid = requests.get(
+        _api_path(server_url) + 'account/verify_credentials.json',
+        auth=HTTPBasicAuth(username, password)
+    ).ok
+    if not are_valid:
+        raise AuthenticationError(server_url, username, password)
+
+
 def get_request(server_url: str, resource_path: str) -> dict:
     _check_connection(server_url)
     return requests.get(_api_path(server_url) +
