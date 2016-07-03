@@ -62,18 +62,18 @@ def _validate_credentials(server_url: str, username: str, password: str):
         raise AuthenticationError(server_url, username, password)
 
 
-def get_request(server_url: str, resource_path: str) -> dict:
+def _get_request(server_url: str, resource_path: str):
     _check_connection(server_url)
     return requests.get(_api_path(server_url) +
                         resource_path + '.json').json()
 
 
 def statusnet_config(server_url: str) -> dict:
-    return get_request(server_url, 'statusnet/config')
+    return _get_request(server_url, 'statusnet/config')
 
 
-def public_timeline(server_url: str) -> dict:
-    return get_request(server_url, 'statuses/public_timeline')
+def public_timeline(server_url: str) -> list:
+    return _get_request(server_url, 'statuses/public_timeline')
 
 
 def login(server_url: str, username: str, password: str):
