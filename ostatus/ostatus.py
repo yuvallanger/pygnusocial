@@ -60,3 +60,7 @@ def get_request(server_url: str, resource_path: str) -> dict:
 
 def statusnet_config(server_url: str) -> dict:
     return get_request(server_url, 'statusnet/config')
+
+
+def public_timeline(server_url: str) -> dict:
+    return get_request(server_url, 'statuses/public_timeline')
