@@ -5,7 +5,7 @@ domain_regex = re.compile("http(s|)://(www\.|)(.+?)(/.*|)$")
 
 
 class ServerURLError(Exception):
-    def __init__(self, server_url: str):
+    def __init__(self, server_url: str) -> None:
         self.server_url = server_url
 
     def __repr__(self):
@@ -16,7 +16,7 @@ class ServerURLError(Exception):
 
 
 class AuthenticationError(Exception):
-    def __init__(self, server_url: str, username: str, password: str):
+    def __init__(self, server_url: str, username: str, password: str) -> None:
         self.server_url = server_url
         self.username = username
         self.password = password
