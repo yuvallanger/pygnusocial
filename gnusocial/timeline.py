@@ -1,9 +1,7 @@
 from .utils import _get_request
 
 
-def public_timeline(server_url: str,
-                    username: str = '',
-                    password: str = '') -> list:
+def public(server_url: str, username: str='', password: str='') -> dict:
     if username:
         return _get_request(server_url,
                             'statuses/public_timeline',
@@ -12,7 +10,13 @@ def public_timeline(server_url: str,
         return _get_request(server_url, 'statuses/public_timeline')
 
 
-def home_timeline(server_url: str, username: str, password: str) -> list:
+def home(server_url: str, username: str, password: str) -> dict:
     return _get_request(server_url,
                         'statuses/home_timeline',
+                        (username, password))
+
+
+def friends(server_url: str, username: str, password: str) -> dict:
+    return _get_request(server_url,
+                        'statuses/friends_timeline',
                         (username, password))
