@@ -69,10 +69,14 @@ def _validate_credentials(server_url: str,
         raise AuthenticationError(server_url, username, password)
 
 
+def _resource_url(server_url: str, resource_path: str) -> str:
+    return _api_path(server_url) + resource_path + '.as'
+
+
 def _get_request(server_url: str,
                  resource_path: str,
                  credentials: Tuple[str, str]=None):
-    resource_url = _api_path(server_url) + resource_path + '.json'
+    resource_url = _resource_url(server_url, resource_path)
     if credentials:
         return requests.get(resource_url,
                             auth=HTTPBasicAuth(*credentials)).json()
@@ -84,9 +88,9 @@ def _post_request(server_url: str,
                   resource_path: str,
                   username: str,
                   password: str,
-                  data: dict = {}):
+                  data: dict):
     return requests.post(
-        _api_path(server_url) + resource_path + '.json',
+        _resource_url(server_url, resource_path),
         data=data,
         auth=HTTPBasicAuth(username, password)
     ).json()
