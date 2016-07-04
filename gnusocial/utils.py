@@ -69,13 +69,15 @@ def _validate_credentials(server_url: str,
         raise AuthenticationError(server_url, username, password)
 
 
-def _resource_url(server_url: str, resource_path: str) -> str:
-    return _api_path(server_url) + resource_path + '.as'
+def _resource_url(server_url: str,
+                  resource_path: str,
+                  extension: str='.as') -> str:
+    return _api_path(server_url) + resource_path + extension
 
 
 def _get_request(server_url: str,
                  resource_path: str,
-                 credentials: Tuple[str, str]=None):
+                 credentials: Tuple[str, str]=None) -> dict:
     resource_url = _resource_url(server_url, resource_path)
     if credentials:
         return requests.get(resource_url,
@@ -88,9 +90,9 @@ def _post_request(server_url: str,
                   resource_path: str,
                   username: str,
                   password: str,
-                  data: dict):
+                  data: dict) -> dict:
     return requests.post(
-        _resource_url(server_url, resource_path),
+        _resource_url(server_url, resource_path, '.json'),
         data=data,
         auth=HTTPBasicAuth(username, password)
     ).json()
