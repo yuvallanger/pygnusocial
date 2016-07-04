@@ -1,5 +1,6 @@
 import re
 from typing import Tuple
+from functools import partial
 import requests
 from requests.auth import HTTPBasicAuth
 
@@ -58,14 +59,16 @@ def _check_connection(server_url: str) -> None:
         raise requests.ConnectionError(server_url)
 
 
-def _validate_credentials(server_url: str,
-                          username: str,
-                          password: str) -> None:
-    are_valid = requests.get(
-        _api_path(server_url) + 'account/verify_credentials.json',
-        auth=HTTPBasicAuth(username, password)
-    ).ok
-    if not are_valid:
+def _verify_credentials(server_url: str,
+                        username: str,
+                        password: str) -> None:
+    response = _get_request(
+        server_url=server_url,
+        resource_path='account/verify_credentials',
+        credentials=(username, password),
+        extension='.json'
+    )
+    if 'error' in response:
         raise AuthenticationError(server_url, username, password)
 
 
@@ -77,13 +80,14 @@ def _resource_url(server_url: str,
 
 def _get_request(server_url: str,
                  resource_path: str,
-                 credentials: Tuple[str, str]=None) -> dict:
-    resource_url = _resource_url(server_url, resource_path)
+                 credentials: Tuple[str, str]=None,
+                 **kwargs) -> dict:
+    get = partial(requests.get,
+                  _resource_url(server_url, resource_path, **kwargs))
     if credentials:
-        return requests.get(resource_url,
-                            auth=HTTPBasicAuth(*credentials)).json()
+        return get(auth=HTTPBasicAuth(*credentials)).json()
     else:
-        return requests.get(resource_url).json()
+        return get().json()
 
 
 def _post_request(server_url: str,
@@ -104,4 +108,4 @@ def statusnet_config(server_url: str) -> dict:
 
 def login(server_url: str, username: str, password: str) -> None:
     _check_connection(server_url)
-    _validate_credentials(server_url, username, password)
+    _verify_credentials(server_url, username, password)

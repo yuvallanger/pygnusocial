@@ -28,7 +28,7 @@ def user(server_url: str,
          password: str='') -> dict:
     get = partial(_get_request,
                   server_url,
-                  'statuses/friends_timeline/' + target_user)
+                  'statuses/user_timeline/' + target_user)
     if username:
         return get(credentials=(username, password))
     else:
@@ -45,9 +45,12 @@ def replies(server_url: str,
             username: str='',
             password: str='',
             target_user: str='') -> dict:
+    resource_path = 'statuses/replies'
+    if target_user:
+        resource_path += '/' + target_user
     get = partial(_get_request,
-                  server_url,
-                  resource_path='statuses/replies/' + target_user)
+                  server_url=server_url,
+                  resource_path=resource_path)
     if username:
         return get(credentials=(username, password))
     elif not target_user:
