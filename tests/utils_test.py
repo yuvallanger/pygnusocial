@@ -1,6 +1,6 @@
 import pytest
-from .utils import _api_path, _validate_server_url, ServerURLError
-from .utils import _resource_url
+from gnusocial.utils import _api_path, _validate_server_url, ServerURLError
+from gnusocial.utils import _resource_url
 
 
 SERVER_URL = 'https://gs.smuglo.li'
