@@ -1,13 +1,13 @@
+from functools import partial
 from .utils import _get_request
 
 
 def public(server_url: str, username: str='', password: str='') -> dict:
+    get = partial(_get_request, server_url, 'statuses/public_timeline')
     if username:
-        return _get_request(server_url,
-                            'statuses/public_timeline',
-                            (username, password))
+        return get(credentials=(username, password))
     else:
-        return _get_request(server_url, 'statuses/public_timeline')
+        return get()
 
 
 def home(server_url: str, username: str, password: str) -> dict:
@@ -26,13 +26,13 @@ def user(server_url: str,
          username: str,
          password: str,
          target_user: str) -> dict:
+    get = partial(_get_request,
+                  server_url,
+                  'statuses/friends_timeline/' + target_user)
     if username:
-        return _get_request(server_url,
-                            'statuses/friends_timeline' + target_user,
-                            (username, password))
+        return get(credentials=(username, password))
     else:
-        return _get_request(server_url,
-                            'statuses/friends_timeline/' + target_user)
+        return get()
 
 
 def mentions(server_url: str, username: str, password: str) -> dict:
