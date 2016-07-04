@@ -33,3 +33,9 @@ def user(server_url: str,
     else:
         return _get_request(server_url,
                             'statuses/friends_timeline/' + target_user)
+
+
+def mentions(server_url: str, username: str, password: str) -> dict:
+    return _get_request(server_url,
+                        'statuses/mentions',
+                        (username, password))
