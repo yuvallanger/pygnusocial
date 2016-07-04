@@ -3,7 +3,7 @@ from typing import Tuple
 import requests
 from requests.auth import HTTPBasicAuth
 
-DOMAIN_REGEX = re.compile("http(s|)://(www\.|)(.+?)(/.*|)$")
+DOMAIN_REGEX = re.compile(r"http(s|)://(www\.|)(.+?)(/.*|)$")
 
 
 class ServerURLError(Exception):
