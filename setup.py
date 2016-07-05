@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import codecs
-from setuptools import setup, find_packages
+from setuptools import setup
 try:
     codecs.lookup('mbcs')
 except LookupError:
@@ -20,13 +20,13 @@ setup(name='gnusocial',
       maintainer_email='dtluna@openmailbox.org',
       license='GPLv3',
       classifiers=[
-        'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
-        'Natural Language :: English',
-        'Operating System :: OS Independent',
-        'Programming Language :: Python :: 3',
+          'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
+          'Natural Language :: English',
+          'Operating System :: OS Independent',
+          'Programming Language :: Python :: 3',
       ],
       url='https://gitgud.io/dtluna/pygnusocial',
       platforms=['any'],
-      packages=find_packages(),
+      packages=['gnusocial'],
       requires=['requests'],
       )
