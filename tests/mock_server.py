@@ -1,6 +1,6 @@
 from functools import wraps
 from flask import Flask, jsonify
-from flask import request, Response
+from flask import request
 APP = Flask(__name__)
 
 
@@ -11,21 +11,12 @@ def check_auth(username, password):
     return username == 'admin' and password == 'secret'
 
 
-def authenticate():
-    """Sends a 401 response that enables basic auth"""
-    return Response(
-        'Could not verify your access level for that URL.\n'
-        'You have to login with proper credentials', 401,
-        {'WWW-Authenticate': 'Basic realm="Login Required"'}
-    )
-
-
 def requires_auth(func):
     @wraps(func)
     def decorated(*args, **kwargs):
         auth = request.authorization
         if not auth or not check_auth(auth.username, auth.password):
-            return authenticate()
+            return jsonify({'error': 'Invalid credentials.'})
         return func(*args, **kwargs)
     return decorated
 
@@ -38,6 +29,12 @@ def help_test():
 @APP.route('/api/get<ext>')
 def get(ext: str):
     return jsonify('Hello world!')
+
+
+@APP.route('/api/account/verify_credentials.json')
+@requires_auth
+def verify_credentials():
+    return jsonify('ok')
 
 
 APP.run()
