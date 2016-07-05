@@ -1,8 +1,10 @@
 """Unit tests for gnusocial.utils module."""
+from functools import partial
 import pytest
+import requests
 from gnusocial.utils import _api_path, _validate_server_url, ServerURLError
 from gnusocial.utils import _resource_url, _check_connection
-import requests
+from gnusocial.utils import _get_request
 from conftest import SERVER_URL
 
 
@@ -42,9 +44,22 @@ def test_resource_url():
         resource_path=resource_path) == valid_resource_url_as
 
 
+def test_get_request():
+    """Test function for gnusocial.utils._get_request function.
+    The test server is configured that way, that
+    _get_request(SERVER_URL, 'get') should return 'Hello world!'
+    and _get_request(SERVER_URL, 'get', extension='.json')
+    should return {'Hello': 'world'}.
+    """
+    get = partial(_get_request, server_url=SERVER_URL, resource_path='get')
+    assert get() == 'Hello world!'
+    assert get(extension='.json') == {'Hello': 'world'}
+
+
 def test_check_connection():
     """Test function for gnusocial.utils._check_connection function.
-    It should raise requests.ConnectionError if connection to server is not established.
+    It should raise requests.ConnectionError if
+    connection to server is not established.
     It should return None is everything is fine."""
     with pytest.raises(requests.ConnectionError):
         _check_connection(SERVER_URL[:-1])
