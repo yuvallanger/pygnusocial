@@ -43,6 +43,9 @@ def test_resource_url():
 
 
 def test_check_connection():
+    """Test function for gnusocial.utils._check_connection function.
+    It should raise requests.ConnectionError if connection to server is not established.
+    It should return None is everything is fine."""
     with pytest.raises(requests.ConnectionError):
         _check_connection(SERVER_URL[:-1])
     assert _check_connection(SERVER_URL) is None
