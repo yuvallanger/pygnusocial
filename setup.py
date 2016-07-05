@@ -28,5 +28,4 @@ setup(name='gnusocial',
       url='https://gitgud.io/dtluna/pygnusocial',
       platforms=['any'],
       packages=['gnusocial'],
-      requires=['requests'],
-      )
+      requires=['requests'])
