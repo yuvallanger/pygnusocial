@@ -46,14 +46,15 @@ def test_resource_url():
 
 def test_get_request():
     """Test function for gnusocial.utils._get_request function.
-    The test server is configured that way, that
-    _get_request(SERVER_URL, 'get') should return 'Hello world!'
-    and _get_request(SERVER_URL, 'get', extension='.json')
-    should return {'Hello': 'world'}.
+    Any request to '/get' resource path should return 'Hello world!'
     """
+    response = 'Hello world!'
+    credentials = ('test', 'test')
     get = partial(_get_request, server_url=SERVER_URL, resource_path='get')
-    assert get() == 'Hello world!'
-    assert get(extension='.json') == {'Hello': 'world'}
+    assert get() == response
+    assert get(extension='.json') == response
+    assert get(credentials=credentials) == response
+    assert get(extension='.json', credentials=credentials) == response
 
 
 def test_check_connection():
