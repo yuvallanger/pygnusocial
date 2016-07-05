@@ -1,10 +1,9 @@
 """Unit tests for gnusocial.utils module."""
 import pytest
+from conftest import SERVER_URL, needs_server
 from gnusocial.utils import _api_path, _validate_server_url, ServerURLError
-from gnusocial.utils import _resource_url
-
-
-SERVER_URL = 'https://gs.smuglo.li'
+from gnusocial.utils import _resource_url, _check_connection
+import requests
 
 
 def test_api_path():
@@ -41,3 +40,10 @@ def test_resource_url():
     assert _resource_url(
         server_url=SERVER_URL,
         resource_path=resource_path) == valid_resource_url_as
+
+
+@needs_server
+def test_check_connection():
+    with pytest.raises(requests.ConnectionError):
+        _check_connection(SERVER_URL[:-1])
+    assert _check_connection(SERVER_URL) is None
