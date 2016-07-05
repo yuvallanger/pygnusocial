@@ -1,12 +1,9 @@
 """Unit tests for gnusocial.utils module."""
 import pytest
-from conftest import SERVER_URL, run_server
 from gnusocial.utils import _api_path, _validate_server_url, ServerURLError
 from gnusocial.utils import _resource_url, _check_connection
 import requests
-
-
-server = run_server()
+from conftest import SERVER_URL
 
 
 def test_api_path():
@@ -49,5 +46,3 @@ def test_check_connection():
     with pytest.raises(requests.ConnectionError):
         _check_connection(SERVER_URL[:-1])
     assert _check_connection(SERVER_URL) is None
-
-server.terminate()
