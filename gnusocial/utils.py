@@ -54,8 +54,8 @@ def _validate_server_url(server_url: str) -> None:
 
 def _check_connection(server_url: str) -> None:
     _validate_server_url(server_url)
-    response = requests.get(_api_path(server_url) + 'help/test.json')
-    if not response.json() == 'ok':
+    response = _get_request(server_url, 'help/test', extension='.json')
+    if response != 'ok':
         raise requests.ConnectionError(server_url)
 
 
