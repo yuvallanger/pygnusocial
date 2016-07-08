@@ -1,6 +1,9 @@
+#!/usr/bin/env python3
+'Dummy server for pygnusocial tests.'
 from functools import wraps
 from flask import Flask, jsonify
 from flask import request
+from conftest import RESPONSE_STRING, USERNAME, PASSWORD
 APP = Flask(__name__)
 
 
@@ -8,7 +11,7 @@ def check_auth(username, password):
     """This function is called to check if a username /
     password combination is valid.
     """
-    return username == 'admin' and password == 'secret'
+    return username == USERNAME and password == PASSWORD
 
 
 def requires_auth(func):
@@ -28,7 +31,7 @@ def help_test():
 
 @APP.route('/api/get<ext>')
 def get(ext: str):
-    return jsonify('Hello world!')
+    return jsonify(RESPONSE_STRING)
 
 
 @APP.route('/api/account/verify_credentials.json')
@@ -36,5 +39,10 @@ def get(ext: str):
 def verify_credentials():
     return jsonify('ok')
 
+
+@APP.route('/api/post.json', methods=['POST'])
+@requires_auth
+def post():
+    return jsonify(RESPONSE_STRING)
 
 APP.run()

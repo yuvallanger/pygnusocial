@@ -6,7 +6,7 @@ from gnusocial.utils import _api_path, _validate_server_url, ServerURLError
 from gnusocial.utils import _resource_url, _check_connection
 from gnusocial.utils import _get_request, _verify_credentials
 from gnusocial.utils import AuthenticationError
-from conftest import SERVER_URL
+from conftest import SERVER_URL, RESPONSE_STRING, USERNAME, PASSWORD
 
 
 def test_api_path():
@@ -53,13 +53,12 @@ def test_get_request():
     """Test function for gnusocial.utils._get_request function.
     Any request to '/get' resource path should return 'Hello world!'
     """
-    response = 'Hello world!'
     credentials = ('test', 'test')
     get = partial(_get_request, server_url=SERVER_URL, resource_path='get')
-    assert get() == response
-    assert get(extension='.json') == response
-    assert get(credentials=credentials) == response
-    assert get(extension='.json', credentials=credentials) == response
+    assert get() == RESPONSE_STRING
+    assert get(extension='.json') == RESPONSE_STRING
+    assert get(credentials=credentials) == RESPONSE_STRING
+    assert get(extension='.json', credentials=credentials) == RESPONSE_STRING
 
 
 def test_check_connection():
@@ -79,8 +78,7 @@ def test_verify_credentials():
     credentials are invalid.
     It should return None if everything is fine.
     """
-    username = 'admin'
-    password = 'secret'
-    assert _verify_credentials(SERVER_URL, username, password) is None
+    verify = partial(_verify_credentials, SERVER_URL, USERNAME)
+    assert verify(PASSWORD) is None
     with pytest.raises(AuthenticationError):
-        _verify_credentials(SERVER_URL, username, password[:-1])
+        verify(PASSWORD[:-1])
