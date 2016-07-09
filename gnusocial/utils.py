@@ -41,6 +41,14 @@ class AuthenticationError(Exception):
                                                      self.server_url)
 
 
+def _check_auth_error(response: requests.models.Response,
+                      server_url: str,
+                      username: str,
+                      password: str):
+    if response.status_code == 401:
+        raise AuthenticationError(server_url, username, password)
+
+
 def _api_path(server_url: str) -> str:
     if server_url[-1] != '/':
         server_url += '/'
@@ -62,14 +70,12 @@ def _check_connection(server_url: str) -> None:
 def _verify_credentials(server_url: str,
                         username: str,
                         password: str) -> None:
-    response = _get_request(
+    _get_request(
         server_url=server_url,
         resource_path='account/verify_credentials',
         credentials=(username, password),
         extension='.json'
     )
-    if 'error' in response:
-        raise AuthenticationError(server_url, username, password)
 
 
 def _resource_url(server_url: str,
@@ -85,7 +91,9 @@ def _get_request(server_url: str,
     get = partial(requests.get,
                   _resource_url(server_url, resource_path, **kwargs))
     if credentials:
-        return get(auth=HTTPBasicAuth(*credentials)).json()
+        response = get(auth=HTTPBasicAuth(*credentials))
+        _check_auth_error(response, server_url, *credentials)
+        return response.json()
     else:
         return get().json()
 
@@ -95,11 +103,13 @@ def _post_request(server_url: str,
                   username: str,
                   password: str,
                   data: dict) -> dict:
-    return requests.post(
+    response = requests.post(
         _resource_url(server_url, resource_path, '.json'),
         data=data,
         auth=HTTPBasicAuth(username, password)
-    ).json()
+    )
+    _check_auth_error(response, server_url, username, password)
+    return response.json()
 
 
 def statusnet_config(server_url: str) -> dict:
