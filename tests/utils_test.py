@@ -7,7 +7,7 @@ from gnusocial.utils import _api_path, _validate_server_url, ServerURLError
 from gnusocial.utils import _resource_url, _check_connection
 from gnusocial.utils import _get_request, _verify_credentials
 from gnusocial.utils import AuthenticationError, _post_request
-from gnusocial.utils import _check_auth_error
+from gnusocial.utils import _check_auth_error, login
 from conftest import SERVER_URL, RESPONSE_STRING, USERNAME, PASSWORD
 
 
@@ -119,3 +119,15 @@ def test_check_auth_error():
     assert check_auth(ok_response) is None
     with pytest.raises(AuthenticationError):
         check_auth(auth_error)
+
+
+def test_login():
+    """Test function for gnusocial.utils._check_auth_error function.
+    It should raise an AuthenticationError if credentials are invalid.
+    It should raise requests.ConnectionError if
+    connection to server is not established."""
+    assert login(SERVER_URL, USERNAME, PASSWORD) is None
+    with pytest.raises(requests.ConnectionError):
+        login(SERVER_URL[:-1], USERNAME, PASSWORD)
+    with pytest.raises(AuthenticationError):
+        login(SERVER_URL, USERNAME, PASSWORD+'3')
