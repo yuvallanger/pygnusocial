@@ -44,7 +44,7 @@ class AuthenticationError(Exception):
 def _check_auth_error(response: requests.models.Response,
                       server_url: str,
                       username: str,
-                      password: str):
+                      password: str) -> None:
     if response.status_code == 401:
         raise AuthenticationError(server_url, username, password)
 
