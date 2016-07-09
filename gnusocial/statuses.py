@@ -37,5 +37,5 @@ def show(server_url: str,
                   'statuses/show/%d' % notice_id,
                   extension='.json')
     if username:
-        return get(credentials=(username, password))
+        return get(username=username, password=password)
     return get()

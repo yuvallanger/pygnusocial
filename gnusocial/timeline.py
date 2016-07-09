@@ -5,7 +5,7 @@ from .utils import _get_request
 def public(server_url: str, username: str='', password: str='') -> dict:
     get = partial(_get_request, server_url, 'statuses/public_timeline')
     if username:
-        return get(credentials=(username, password))
+        return get(username=username, password=password)
     else:
         return get()
 
@@ -13,13 +13,15 @@ def public(server_url: str, username: str='', password: str='') -> dict:
 def home(server_url: str, username: str, password: str) -> dict:
     return _get_request(server_url,
                         'statuses/home_timeline',
-                        (username, password))
+                        username,
+                        password)
 
 
 def friends(server_url: str, username: str, password: str) -> dict:
     return _get_request(server_url,
                         'statuses/friends_timeline',
-                        (username, password))
+                        username,
+                        password)
 
 
 def user(server_url: str,
@@ -30,7 +32,7 @@ def user(server_url: str,
                   server_url,
                   'statuses/user_timeline/' + target_user)
     if username:
-        return get(credentials=(username, password))
+        return get(username=username, password=password)
     else:
         return get()
 
@@ -38,7 +40,8 @@ def user(server_url: str,
 def mentions(server_url: str, username: str, password: str) -> dict:
     return _get_request(server_url,
                         'statuses/mentions',
-                        (username, password))
+                        username,
+                        password)
 
 
 def replies(server_url: str,
@@ -52,7 +55,7 @@ def replies(server_url: str,
                   server_url=server_url,
                   resource_path=resource_path)
     if username:
-        return get(credentials=(username, password))
+        return get(username=username, password=password)
     elif not target_user:
         raise Exception(
             "You must either specify the user or supply the credentials."

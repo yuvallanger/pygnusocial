@@ -73,7 +73,8 @@ def _verify_credentials(server_url: str,
     _get_request(
         server_url=server_url,
         resource_path='account/verify_credentials',
-        credentials=(username, password),
+        username=username,
+        password=password,
         extension='.json'
     )
 
@@ -86,13 +87,14 @@ def _resource_url(server_url: str,
 
 def _get_request(server_url: str,
                  resource_path: str,
-                 credentials: Tuple[str, str]=None,
+                 username: str='',
+                 password: str='',
                  **kwargs) -> dict:
     get = partial(requests.get,
                   _resource_url(server_url, resource_path, **kwargs))
-    if credentials:
-        response = get(auth=HTTPBasicAuth(*credentials))
-        _check_auth_error(response, server_url, *credentials)
+    if username:
+        response = get(auth=HTTPBasicAuth(username, password))
+        _check_auth_error(response, server_url, username, password)
         return response.json()
     else:
         return get().json()

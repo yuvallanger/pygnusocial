@@ -55,20 +55,20 @@ def test_get_request():
     """Test function for gnusocial.utils._get_request function.
     Any request to '/get' resource path should return 'Hello world!'
     """
-    credentials = (USERNAME, PASSWORD)
-    invalid_credentials = ('test', 'test')
+    credentials = {'username': USERNAME, 'password': PASSWORD}
+    invalid_credentials = {'username': 'test', 'password': 'test'}
     get = partial(_get_request, server_url=SERVER_URL, resource_path='get')
     get_auth = partial(_get_request,
                        server_url=SERVER_URL,
                        resource_path='get_auth')
     assert get() == RESPONSE_STRING
     assert get(extension='.json') == RESPONSE_STRING
-    assert get_auth(credentials=credentials) == RESPONSE_STRING
-    assert get_auth(extension='.json', credentials=credentials) == \
+    assert get_auth(**credentials) == RESPONSE_STRING
+    assert get_auth(extension='.json', **credentials) == \
         RESPONSE_STRING
     with pytest.raises(AuthenticationError):
-        get_auth(credentials=invalid_credentials)
-        get_auth(extension='.json', credentials=invalid_credentials)
+        get_auth(**invalid_credentials)
+        get_auth(extension='.json', **invalid_credentials)
 
 
 def test_check_connection():
