@@ -89,7 +89,7 @@ def _get_request(server_url: str,
                  resource_path: str,
                  username: str='',
                  password: str='',
-                 **kwargs) -> dict:
+                 **kwargs):
     get = partial(requests.get,
                   _resource_url(server_url, resource_path, **kwargs))
     if username:
