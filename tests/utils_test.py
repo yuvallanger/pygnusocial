@@ -1,5 +1,6 @@
 """Unit tests for gnusocial.utils module."""
 from functools import partial
+import json
 import pytest
 import requests
 from requests.models import Response
@@ -7,8 +8,8 @@ from gnusocial.utils import _api_path, _validate_server_url, ServerURLError
 from gnusocial.utils import _resource_url, _check_connection
 from gnusocial.utils import _get_request, _verify_credentials
 from gnusocial.utils import AuthenticationError, _post_request
-from gnusocial.utils import _check_auth_error, login
-from conftest import SERVER_URL, RESPONSE_STRING, USERNAME, PASSWORD
+from gnusocial.utils import _check_auth_error, login, config
+from conftest import SERVER_URL, RESPONSE_STRING, USERNAME, PASSWORD, CURDIR
 
 
 def test_api_path():
@@ -131,3 +132,11 @@ def test_login():
         login(SERVER_URL[:-1], USERNAME, PASSWORD)
     with pytest.raises(AuthenticationError):
         login(SERVER_URL, USERNAME, PASSWORD+'3')
+
+
+def test_config():
+    """Test function for gnusocial.utils.config function.
+    It should return a dict with the same contents as in config.json file.
+    """
+    conf = json.load(open(CURDIR + 'config.json'))
+    assert conf == config(SERVER_URL)

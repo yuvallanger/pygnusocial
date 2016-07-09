@@ -3,7 +3,7 @@
 from functools import wraps
 from flask import Flask, jsonify
 from flask import request, Response
-from conftest import RESPONSE_STRING, USERNAME, PASSWORD
+from conftest import RESPONSE_STRING, USERNAME, PASSWORD, CURDIR
 APP = Flask(__name__)
 
 
@@ -58,5 +58,13 @@ def verify_credentials():
 @requires_auth
 def post():
     return jsonify(RESPONSE_STRING)
+
+
+@APP.route('/api/statusnet/config.json')
+def config():
+    with open(CURDIR + 'config.json') as f:
+        data = f.readline()
+        return data
+
 
 APP.run()

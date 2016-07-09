@@ -114,8 +114,8 @@ def _post_request(server_url: str,
     return response.json()
 
 
-def statusnet_config(server_url: str) -> dict:
-    return _get_request(server_url, 'statusnet/config')
+def config(server_url: str) -> dict:
+    return _get_request(server_url, 'statusnet/config', extension='.json')
 
 
 def login(server_url: str, username: str, password: str) -> None:
