@@ -2,10 +2,12 @@
 from functools import partial
 import pytest
 import requests
+from requests.models import Response
 from gnusocial.utils import _api_path, _validate_server_url, ServerURLError
 from gnusocial.utils import _resource_url, _check_connection
 from gnusocial.utils import _get_request, _verify_credentials
 from gnusocial.utils import AuthenticationError, _post_request
+from gnusocial.utils import _check_auth_error
 from conftest import SERVER_URL, RESPONSE_STRING, USERNAME, PASSWORD
 
 
@@ -100,3 +102,20 @@ def test_post_request():
     assert post(password=PASSWORD) == RESPONSE_STRING
     with pytest.raises(AuthenticationError):
         post(password=PASSWORD[:-1])
+
+
+def test_check_auth_error():
+    """Test function for gnusocial.utils._check_auth_error function.
+    It should raise an AuthenticationError if response.status_code equals 401.
+    """
+    check_auth = partial(_check_auth_error,
+                         server_url=SERVER_URL,
+                         username=USERNAME,
+                         password=PASSWORD)
+    ok_response = Response()
+    ok_response.status_code = 200
+    auth_error = Response()
+    auth_error.status_code = 401
+    assert check_auth(ok_response) is None
+    with pytest.raises(AuthenticationError):
+        check_auth(auth_error)
