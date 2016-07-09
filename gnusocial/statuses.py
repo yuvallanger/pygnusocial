@@ -39,3 +39,14 @@ def show(server_url: str,
     if username:
         return get(username=username, password=password)
     return get()
+
+
+def destroy(server_url: str,
+            notice_id: int,
+            username: str,
+            password: str) -> dict:
+    return _post_request(server_url,
+                         'statuses/destroy/%d' % notice_id,
+                         username,
+                         password,
+                         data=None)
