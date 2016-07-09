@@ -1,3 +1,4 @@
+from functools import partial
 from .utils import _get_request
 
 
@@ -19,3 +20,17 @@ def followers(server_url: str,
                         username,
                         password,
                         extension='.json')
+
+
+def show(server_url: str,
+         target_user: str,
+         username: str='',
+         password: str=''):
+    get = partial(_get_request,
+                  server_url,
+                  'users/show/' + target_user,
+                  extension='.json')
+    if username:
+        return get(username=username, password=password)
+    else:
+        return get()
