@@ -1,17 +1,17 @@
-from .utils import _post_request
+from functools import partial
+from .utils import _post_request, _get_request
 
 
 def update(server_url: str,
            username: str,
            password: str,
            status: str,
-           source: str = '',
-           in_reply_to_status_id: int = 0,
-           latitude: int = -200,
-           longitude: int = -200,
-           place_id: str = '',
-           display_coordinates: bool = False,
-           ) -> dict:
+           source: str='',
+           in_reply_to_status_id: int=0,
+           latitude: int=-200,
+           longitude: int=-200,
+           place_id: str='',
+           display_coordinates: bool=False) -> dict:
     data = {
         'status': status,
         'source': source,
@@ -26,3 +26,16 @@ def update(server_url: str,
                          username,
                          password,
                          data)
+
+
+def show(server_url: str,
+         notice_id: int,
+         username: str='',
+         password: str='') -> dict:
+    get = partial(_get_request,
+                  server_url,
+                  'statuses/show/%d' % notice_id,
+                  extension='.json')
+    if username:
+        return get(credentials=(username, password))
+    return get()
