@@ -42,11 +42,20 @@ def show(server_url: str,
 
 
 def destroy(server_url: str,
-            notice_id: int,
             username: str,
-            password: str) -> dict:
+            password: str,
+            notice_id: int) -> dict:
     return _post_request(server_url,
                          'statuses/destroy/%d' % notice_id,
                          username,
-                         password,
-                         data=None)
+                         password)
+
+
+def repeat(server_url: str,
+           username: str,
+           password: str,
+           notice_id: int) -> dict:
+    return _post_request(server_url,
+                         'statuses/retweet/%d' % notice_id,
+                         username,
+                         password)

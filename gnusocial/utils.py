@@ -104,7 +104,7 @@ def _post_request(server_url: str,
                   resource_path: str,
                   username: str,
                   password: str,
-                  data: dict) -> dict:
+                  data: dict={}) -> dict:
     response = requests.post(
         _resource_url(server_url, resource_path, '.json'),
         data=data,
