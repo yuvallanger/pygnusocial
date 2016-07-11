@@ -41,24 +41,6 @@ class AuthenticationError(Exception):
                                                      self.server_url)
 
 
-class InternalServerError(Exception):
-    def __init__(self, server_url: str) -> None:
-        self.server_url = server_url
-        super().__init__(self)
-
-    def __repr__(self) -> str:
-        return 'InternalServerError(%r)' % self.server_url
-
-    def __str__(self) -> str:
-        return '%s has encountered an internal error' % self.server_url
-
-
-def _check_internal_error(response: requests.models.Response,
-                          server_url: str) -> None:
-    if response.status_code == 500:
-        raise InternalServerError(server_url)
-
-
 def _check_auth_error(response: requests.models.Response,
                       server_url: str,
                       username: str,
@@ -98,18 +80,18 @@ def _request(request_func: Callable,
              password: str='',
              extension: str='.json',
              data: dict=None,
-             files: list=None) -> requests.models.Response:
+             media: dict=None) -> requests.models.Response:
     req = partial(request_func,
                   url=_resource_url(server_url, resource_path, extension),
                   data=data,
-                  files=files)
+                  files=media)
     response = None
     if username:
         response = req(auth=HTTPBasicAuth(username, password))
         _check_auth_error(response, server_url, username, password)
     else:
         response = req()
-    _check_internal_error(response, server_url)
+    response.raise_for_status()
     return response
 
 
@@ -130,15 +112,13 @@ def _post_request(server_url: str,
                   resource_path: str,
                   username: str='',
                   password: str='',
-                  data: dict=None,
-                  files: list=None) -> requests.models.Response:
+                  **kwargs) -> requests.models.Response:
     return _request(request_func=requests.post,
                     server_url=server_url,
                     resource_path=resource_path,
                     username=username,
                     password=password,
-                    data=data,
-                    files=files)
+                    **kwargs)
 
 
 def config(server_url: str) -> dict:
