@@ -40,16 +40,16 @@ def test_resource_url():
     Extenstion defaults to '.as'.
     """
     resource_path = 'help/test'
-    extension = '.json'
-    valid_resource_url = _api_path(SERVER_URL) + resource_path + extension
-    valid_resource_url_as = _api_path(SERVER_URL) + resource_path + '.as'
+    extension = '.as'
+    valid_resource_url = _api_path(SERVER_URL) + resource_path + '.json'
+    valid_resource_url_as = _api_path(SERVER_URL) + resource_path + extension
+    assert _resource_url(
+        server_url=SERVER_URL,
+        resource_path=resource_path) == valid_resource_url
     assert _resource_url(
         server_url=SERVER_URL,
         resource_path=resource_path,
-        extension=extension) == valid_resource_url
-    assert _resource_url(
-        server_url=SERVER_URL,
-        resource_path=resource_path) == valid_resource_url_as
+        extension=extension) == valid_resource_url_as
 
 
 def test_get_request():

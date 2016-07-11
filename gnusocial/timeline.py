@@ -3,7 +3,10 @@ from .utils import _get_request
 
 
 def public(server_url: str, username: str='', password: str='') -> dict:
-    get = partial(_get_request, server_url, 'statuses/public_timeline')
+    get = partial(_get_request,
+                  server_url,
+                  'statuses/public_timeline',
+                  extension='.as')
     if username:
         return get(username=username, password=password)
     else:
@@ -14,14 +17,16 @@ def home(server_url: str, username: str, password: str) -> dict:
     return _get_request(server_url,
                         'statuses/home_timeline',
                         username,
-                        password)
+                        password,
+                        extension='.as')
 
 
 def friends(server_url: str, username: str, password: str) -> dict:
     return _get_request(server_url,
                         'statuses/friends_timeline',
                         username,
-                        password)
+                        password,
+                        extension='.as')
 
 
 def user(server_url: str,
@@ -30,7 +35,8 @@ def user(server_url: str,
          password: str='') -> dict:
     get = partial(_get_request,
                   server_url,
-                  'statuses/user_timeline/' + target_user)
+                  'statuses/user_timeline/' + target_user,
+                  extension='.as')
     if username:
         return get(username=username, password=password)
     else:
@@ -41,7 +47,8 @@ def mentions(server_url: str, username: str, password: str) -> dict:
     return _get_request(server_url,
                         'statuses/mentions',
                         username,
-                        password)
+                        password,
+                        extension='.as')
 
 
 def replies(server_url: str,
@@ -53,7 +60,8 @@ def replies(server_url: str,
         resource_path += '/' + target_user
     get = partial(_get_request,
                   server_url=server_url,
-                  resource_path=resource_path)
+                  resource_path=resource_path,
+                  extension='.as')
     if username:
         return get(username=username, password=password)
     elif not target_user:

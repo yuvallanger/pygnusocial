@@ -34,8 +34,7 @@ def show(server_url: str,
          password: str='') -> dict:
     get = partial(_get_request,
                   server_url,
-                  'statuses/show/%d' % notice_id,
-                  extension='.json')
+                  'statuses/show/%d' % notice_id)
     if username:
         return get(username=username, password=password)
     return get()

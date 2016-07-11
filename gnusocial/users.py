@@ -8,8 +8,7 @@ def following(server_url: str,
     return _get_request(server_url,
                         'statuses/friends',
                         username,
-                        password,
-                        extension='.json')
+                        password)
 
 
 def followers(server_url: str,
@@ -18,8 +17,7 @@ def followers(server_url: str,
     return _get_request(server_url,
                         'statuses/followers',
                         username,
-                        password,
-                        extension='.json')
+                        password)
 
 
 def show(server_url: str,
@@ -28,8 +26,7 @@ def show(server_url: str,
          password: str=''):
     get = partial(_get_request,
                   server_url,
-                  'users/show/' + target_user,
-                  extension='.json')
+                  'users/show/' + target_user)
     if username:
         return get(username=username, password=password)
     else:

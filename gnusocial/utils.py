@@ -62,7 +62,7 @@ def _validate_server_url(server_url: str) -> None:
 
 def _check_connection(server_url: str) -> None:
     _validate_server_url(server_url)
-    response = _get_request(server_url, 'help/test', extension='.json')
+    response = _get_request(server_url, 'help/test')
     if response != 'ok':
         raise requests.ConnectionError(server_url)
 
@@ -74,14 +74,13 @@ def _verify_credentials(server_url: str,
         server_url=server_url,
         resource_path='account/verify_credentials',
         username=username,
-        password=password,
-        extension='.json'
+        password=password
     )
 
 
 def _resource_url(server_url: str,
                   resource_path: str,
-                  extension: str='.as') -> str:
+                  extension: str='.json') -> str:
     return _api_path(server_url) + resource_path + extension
 
 
@@ -104,9 +103,9 @@ def _post_request(server_url: str,
                   resource_path: str,
                   username: str,
                   password: str,
-                  data: dict={}) -> dict:
+                  data: dict=None) -> dict:
     response = requests.post(
-        _resource_url(server_url, resource_path, '.json'),
+        _resource_url(server_url, resource_path),
         data=data,
         auth=HTTPBasicAuth(username, password)
     )
@@ -115,7 +114,7 @@ def _post_request(server_url: str,
 
 
 def config(server_url: str) -> dict:
-    return _get_request(server_url, 'statusnet/config', extension='.json')
+    return _get_request(server_url, 'statusnet/config')
 
 
 def login(server_url: str, username: str, password: str) -> None:
