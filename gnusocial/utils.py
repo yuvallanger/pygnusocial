@@ -111,7 +111,7 @@ def _request(request_func: Callable,
              data: dict=None):
     req = partial(request_func,
                   _resource_url(server_url, resource_path, extension),
-                  data=None)
+                  data=data)
     response = None
     if username:
         response = req(auth=HTTPBasicAuth(username, password))
@@ -127,11 +127,11 @@ def _get_request(server_url: str,
                  username: str='',
                  password: str='',
                  **kwargs):
-    return _request(requests.get,
-                    server_url,
-                    resource_path,
-                    username,
-                    password,
+    return _request(request_func=requests.get,
+                    server_url=server_url,
+                    resource_path=resource_path,
+                    username=username,
+                    password=password,
                     **kwargs)
 
 
@@ -140,11 +140,11 @@ def _post_request(server_url: str,
                   username: str='',
                   password: str='',
                   data: dict=None):
-    return _request(requests.post,
-                    server_url,
-                    resource_path,
-                    username,
-                    password,
+    return _request(request_func=requests.post,
+                    server_url=server_url,
+                    resource_path=resource_path,
+                    username=username,
+                    password=password,
                     data=data)
 
 
