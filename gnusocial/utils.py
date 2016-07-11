@@ -1,5 +1,5 @@
 import re
-from typing import Tuple
+from typing import Tuple, Callable
 from functools import partial
 import requests
 from requests.auth import HTTPBasicAuth
@@ -102,36 +102,50 @@ def _resource_url(server_url: str,
     return _api_path(server_url) + resource_path + extension
 
 
+def _request(request_func: Callable,
+             server_url: str,
+             resource_path: str,
+             username: str='',
+             password: str='',
+             extension: str='.json',
+             data: dict=None):
+    req = partial(request_func,
+                  _resource_url(server_url, resource_path, extension),
+                  data=None)
+    response = None
+    if username:
+        response = req(auth=HTTPBasicAuth(username, password))
+        _check_auth_error(response, server_url, username, password)
+    else:
+        response = req()
+    _check_internal_error(response, server_url)
+    return response.json()
+
+
 def _get_request(server_url: str,
                  resource_path: str,
                  username: str='',
                  password: str='',
                  **kwargs):
-    get = partial(requests.get,
-                  _resource_url(server_url, resource_path, **kwargs))
-    response = None
-    if username:
-        response = get(auth=HTTPBasicAuth(username, password))
-        _check_auth_error(response, server_url, username, password)
-    else:
-        response = get()
-    _check_internal_error(response, server_url)
-    return response.json()
+    return _request(requests.get,
+                    server_url,
+                    resource_path,
+                    username,
+                    password,
+                    **kwargs)
 
 
 def _post_request(server_url: str,
                   resource_path: str,
-                  username: str,
-                  password: str,
-                  data: dict=None) -> dict:
-    response = requests.post(
-        _resource_url(server_url, resource_path),
-        data=data,
-        auth=HTTPBasicAuth(username, password)
-    )
-    _check_auth_error(response, server_url, username, password)
-    _check_internal_error(response, server_url)
-    return response.json()
+                  username: str='',
+                  password: str='',
+                  data: dict=None):
+    return _request(requests.post,
+                    server_url,
+                    resource_path,
+                    username,
+                    password,
+                    data=data)
 
 
 def config(server_url: str) -> dict:
