@@ -1,15 +1,11 @@
-from .utils import _post_request
+from .utils import _post_request, _check_user_id_and_screen_name
 
 
 def favorites(server_url: str,
               username: str,
               password: str,
               **kwargs) -> list:
-    both_targets = 'user_id' in kwargs and 'screen_name' in kwargs
-    if both_targets:
-        raise Exception(
-            "You must either specify the user_id or screen_name."
-        )
+    _check_user_id_and_screen_name(**kwargs)
     return _post_request(server_url=server_url,
                          resource_path='favorites',
                          username=username,

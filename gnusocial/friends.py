@@ -1,7 +1,7 @@
 from .utils import _post_request
 
 
-def _check_args(username: str='', **kwargs):
+def _check_args(username: str='', **kwargs) -> None:
     both_targets = 'user_id' in kwargs and 'screen_name' in kwargs
     no_targets = 'user_id' not in kwargs and 'screen_name' not in kwargs
     if both_targets:

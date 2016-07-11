@@ -139,3 +139,11 @@ def _post_request(server_url: str,
 
 def config(server_url: str) -> dict:
     return _get_request(server_url, 'statusnet/config')
+
+
+def _check_user_id_and_screen_name(**kwargs):
+    both_targets = 'user_id' in kwargs and 'screen_name' in kwargs
+    if both_targets:
+        raise Exception(
+            "You must either specify the user_id or screen_name."
+        )
