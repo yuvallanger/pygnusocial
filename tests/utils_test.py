@@ -1,4 +1,4 @@
-"""Unit tests for gnusocial.utils module."""
+"Unit tests for gnusocial.utils module."
 from functools import partial
 import json
 import pytest
@@ -6,9 +6,9 @@ import requests
 from requests.models import Response
 from gnusocial.utils import _api_path, _validate_server_url, ServerURLError
 from gnusocial.utils import _resource_url, _check_connection
-from gnusocial.utils import _get_request, _verify_credentials
+from gnusocial.utils import _get_request
 from gnusocial.utils import AuthenticationError, _post_request
-from gnusocial.utils import _check_auth_error, login, config
+from gnusocial.utils import _check_auth_error, config
 from conftest import SERVER_URL, RESPONSE_STRING, USERNAME, PASSWORD, CURDIR
 
 
@@ -83,18 +83,6 @@ def test_check_connection():
     assert _check_connection(SERVER_URL) is None
 
 
-def test_verify_credentials():
-    """Test function for gnusocial.utils._verify_credentials function.
-    It should raise gnusocial.utils.AuthenticationError if
-    credentials are invalid.
-    It should return None if everything is fine.
-    """
-    verify = partial(_verify_credentials, SERVER_URL, USERNAME)
-    assert verify(PASSWORD) is None
-    with pytest.raises(AuthenticationError):
-        verify(PASSWORD[:-1])
-
-
 def test_post_request():
     """Test function for gnusocial.utils._post_request function.
     Any request to '/post' resource path should return 'Hello world!'
@@ -120,18 +108,6 @@ def test_check_auth_error():
     assert check_auth(ok_response) is None
     with pytest.raises(AuthenticationError):
         check_auth(auth_error)
-
-
-def test_login():
-    """Test function for gnusocial.utils._check_auth_error function.
-    It should raise an AuthenticationError if credentials are invalid.
-    It should raise requests.ConnectionError if
-    connection to server is not established."""
-    assert login(SERVER_URL, USERNAME, PASSWORD) is None
-    with pytest.raises(requests.ConnectionError):
-        login(SERVER_URL[:-1], USERNAME, PASSWORD)
-    with pytest.raises(AuthenticationError):
-        login(SERVER_URL, USERNAME, PASSWORD+'3')
 
 
 def test_config():

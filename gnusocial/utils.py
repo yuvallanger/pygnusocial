@@ -85,17 +85,6 @@ def _check_connection(server_url: str) -> None:
         raise requests.ConnectionError(server_url)
 
 
-def _verify_credentials(server_url: str,
-                        username: str,
-                        password: str) -> None:
-    _get_request(
-        server_url=server_url,
-        resource_path='account/verify_credentials',
-        username=username,
-        password=password
-    )
-
-
 def _resource_url(server_url: str,
                   resource_path: str,
                   extension: str='.json') -> str:
@@ -150,8 +139,3 @@ def _post_request(server_url: str,
 
 def config(server_url: str) -> dict:
     return _get_request(server_url, 'statusnet/config')
-
-
-def login(server_url: str, username: str, password: str) -> None:
-    _check_connection(server_url)
-    _verify_credentials(server_url, username, password)
