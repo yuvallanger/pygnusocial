@@ -15,7 +15,7 @@ def create(server_url: str,
 
 def destroy(server_url: str,
             username: str,
-            password,
+            password: str,
             **kwargs) -> dict:
     _check_user_id_and_screen_name(**kwargs)
     return _post_request(server_url=server_url,
