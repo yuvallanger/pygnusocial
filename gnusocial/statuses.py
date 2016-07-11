@@ -6,12 +6,16 @@ def update(server_url: str,
            password: str,
            status: str,
            **kwargs) -> dict:
+    media = None
+    if 'media' in kwargs:
+        media = {'media': open(kwargs['media'], 'rb')}
     kwargs['status'] = status
     return _post_request(server_url=server_url,
                          resource_path='statuses/update',
                          username=username,
                          password=password,
-                         data=kwargs).json()
+                         data=kwargs,
+                         media=media).json()
 
 
 def show(server_url: str,
