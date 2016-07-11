@@ -1,26 +1,26 @@
-from .utils import _post_request, _get_request
+from .utils import _post_request
 
 
 def create(server_url: str,
            username: str,
            password: str,
            target_user: str) -> dict:
-    return _post_request(server_url,
-                         'friendships/create',
-                         username,
-                         password,
-                         {'id': target_user})
+    return _post_request(server_url=server_url,
+                         resource_path='friendships/create',
+                         username=username,
+                         password=password,
+                         data={'id': target_user})
 
 
 def destroy(server_url: str,
             username: str,
             password: str,
             target_user: str) -> dict:
-    return _post_request(server_url,
-                         'friendships/destroy',
-                         username,
-                         password,
-                         {'id': target_user})
+    return _post_request(server_url=server_url,
+                         resource_path='friendships/destroy',
+                         username=username,
+                         password=password,
+                         data={'id': target_user})
 
 
 def exists(server_url: str,

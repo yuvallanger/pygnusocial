@@ -110,7 +110,7 @@ def _request(request_func: Callable,
              extension: str='.json',
              data: dict=None):
     req = partial(request_func,
-                  _resource_url(server_url, resource_path, extension),
+                  url=_resource_url(server_url, resource_path, extension),
                   data=data)
     response = None
     if username:

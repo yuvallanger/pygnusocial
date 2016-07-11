@@ -15,8 +15,8 @@ def new(server_url: str,
         target_user: str,
         text: str) -> list:
     data = {'user': target_user, 'text': text}
-    return _post_request(server_url,
-                         'direct_messages/new',
-                         username,
-                         password,
+    return _post_request(server_url=server_url,
+                         resource_path='direct_messages/new',
+                         username=username,
+                         password=password,
                          data=data)

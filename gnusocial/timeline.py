@@ -4,8 +4,8 @@ from .utils import _get_request
 
 def public(server_url: str, username: str='', password: str='') -> dict:
     get = partial(_get_request,
-                  server_url,
-                  'statuses/public_timeline',
+                  server_url=server_url,
+                  resource_path='statuses/public_timeline',
                   extension='.as')
     if username:
         return get(username=username, password=password)
@@ -14,18 +14,18 @@ def public(server_url: str, username: str='', password: str='') -> dict:
 
 
 def home(server_url: str, username: str, password: str) -> dict:
-    return _get_request(server_url,
-                        'statuses/home_timeline',
-                        username,
-                        password,
+    return _get_request(server_url=server_url,
+                        resource_path='statuses/home_timeline',
+                        username=username,
+                        password=password,
                         extension='.as')
 
 
 def friends(server_url: str, username: str, password: str) -> dict:
-    return _get_request(server_url,
-                        'statuses/friends_timeline',
-                        username,
-                        password,
+    return _get_request(server_url=server_url,
+                        resource_path='statuses/friends_timeline',
+                        username=username,
+                        password=password,
                         extension='.as')
 
 
@@ -34,8 +34,8 @@ def user(server_url: str,
          username: str='',
          password: str='') -> dict:
     get = partial(_get_request,
-                  server_url,
-                  'statuses/user_timeline/' + target_user,
+                  server_url=server_url,
+                  resource_path='statuses/user_timeline/' + target_user,
                   extension='.as')
     if username:
         return get(username=username, password=password)
@@ -44,10 +44,10 @@ def user(server_url: str,
 
 
 def mentions(server_url: str, username: str, password: str) -> dict:
-    return _get_request(server_url,
-                        'statuses/mentions',
-                        username,
-                        password,
+    return _get_request(server_url=server_url,
+                        resource_path='statuses/mentions',
+                        username=username,
+                        password=password,
                         extension='.as')
 
 
