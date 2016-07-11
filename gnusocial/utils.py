@@ -41,6 +41,24 @@ class AuthenticationError(Exception):
                                                      self.server_url)
 
 
+class InternalServerError(Exception):
+    def __init__(self, server_url: str) -> None:
+        self.server_url = server_url
+        super().__init__(self)
+
+    def __repr__(self) -> str:
+        return 'InternalServerError(%r)' % self.server_url
+
+    def __str__(self) -> str:
+        return '%s has encountered an internal error' % self.server_url
+
+
+def _check_internal_error(response: requests.models.Response,
+                          server_url: str) -> None:
+    if response.status_code == 500:
+        raise InternalServerError(server_url)
+
+
 def _check_auth_error(response: requests.models.Response,
                       server_url: str,
                       username: str,
@@ -50,6 +68,7 @@ def _check_auth_error(response: requests.models.Response,
 
 
 def _api_path(server_url: str) -> str:
+    _validate_server_url(server_url)
     if server_url[-1] != '/':
         server_url += '/'
     return server_url + 'api/'
@@ -61,7 +80,6 @@ def _validate_server_url(server_url: str) -> None:
 
 
 def _check_connection(server_url: str) -> None:
-    _validate_server_url(server_url)
     response = _get_request(server_url, 'help/test')
     if response != 'ok':
         raise requests.ConnectionError(server_url)
@@ -91,12 +109,14 @@ def _get_request(server_url: str,
                  **kwargs):
     get = partial(requests.get,
                   _resource_url(server_url, resource_path, **kwargs))
+    response = None
     if username:
         response = get(auth=HTTPBasicAuth(username, password))
         _check_auth_error(response, server_url, username, password)
-        return response.json()
     else:
-        return get().json()
+        response = get()
+    _check_internal_error(response, server_url)
+    return response.json()
 
 
 def _post_request(server_url: str,
@@ -110,6 +130,7 @@ def _post_request(server_url: str,
         auth=HTTPBasicAuth(username, password)
     )
     _check_auth_error(response, server_url, username, password)
+    _check_internal_error(response, server_url)
     return response.json()
 
 
