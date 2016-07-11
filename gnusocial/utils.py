@@ -131,3 +131,11 @@ def _check_user_id_and_screen_name(**kwargs):
         raise Exception(
             "You must either specify the user_id or screen_name."
         )
+
+
+def _check_id_and_nickname(**kwargs):
+    both_targets = 'id' in kwargs and 'nickname' in kwargs
+    if both_targets:
+        raise Exception(
+            "You must either specify the id or nickname."
+        )
