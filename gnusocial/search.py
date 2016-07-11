@@ -9,4 +9,4 @@ def search(server_url: str,
                         resource_path='search.json?q=%s' % query,
                         username=username,
                         password=password,
-                        extension='')
+                        extension='').json()

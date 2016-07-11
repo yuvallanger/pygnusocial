@@ -80,7 +80,7 @@ def _validate_server_url(server_url: str) -> None:
 
 
 def _check_connection(server_url: str) -> None:
-    response = _get_request(server_url, 'help/test')
+    response = _get_request(server_url, 'help/test').json()
     if response != 'ok':
         raise requests.ConnectionError(server_url)
 
@@ -97,10 +97,12 @@ def _request(request_func: Callable,
              username: str='',
              password: str='',
              extension: str='.json',
-             data: dict=None):
+             data: dict=None,
+             files: list=None) -> requests.models.Response:
     req = partial(request_func,
                   url=_resource_url(server_url, resource_path, extension),
-                  data=data)
+                  data=data,
+                  files=files)
     response = None
     if username:
         response = req(auth=HTTPBasicAuth(username, password))
@@ -108,14 +110,14 @@ def _request(request_func: Callable,
     else:
         response = req()
     _check_internal_error(response, server_url)
-    return response.json()
+    return response
 
 
 def _get_request(server_url: str,
                  resource_path: str,
                  username: str='',
                  password: str='',
-                 **kwargs):
+                 **kwargs) -> requests.models.Response:
     return _request(request_func=requests.get,
                     server_url=server_url,
                     resource_path=resource_path,
@@ -128,17 +130,19 @@ def _post_request(server_url: str,
                   resource_path: str,
                   username: str='',
                   password: str='',
-                  data: dict=None):
+                  data: dict=None,
+                  files: list=None) -> requests.models.Response:
     return _request(request_func=requests.post,
                     server_url=server_url,
                     resource_path=resource_path,
                     username=username,
                     password=password,
-                    data=data)
+                    data=data,
+                    files=files)
 
 
 def config(server_url: str) -> dict:
-    return _get_request(server_url, 'statusnet/config')
+    return _get_request(server_url, 'statusnet/config').json()
 
 
 def _check_user_id_and_screen_name(**kwargs):

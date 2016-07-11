@@ -10,7 +10,7 @@ def create(server_url: str,
                          resource_path='blocks/create',
                          username=username,
                          password=password,
-                         data=kwargs)
+                         data=kwargs).json()
 
 
 def destroy(server_url: str,
@@ -22,4 +22,4 @@ def destroy(server_url: str,
                          resource_path='blocks/destroy',
                          username=username,
                          password=password,
-                         data=kwargs)
+                         data=kwargs).json()

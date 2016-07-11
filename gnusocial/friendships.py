@@ -9,7 +9,7 @@ def create(server_url: str,
                          resource_path='friendships/create',
                          username=username,
                          password=password,
-                         data={'id': target_user})
+                         data={'id': target_user}).json()
 
 
 def destroy(server_url: str,
@@ -20,7 +20,7 @@ def destroy(server_url: str,
                          resource_path='friendships/destroy',
                          username=username,
                          password=password,
-                         data={'id': target_user})
+                         data={'id': target_user}).json()
 
 
 def exists(server_url: str,
@@ -32,7 +32,7 @@ def exists(server_url: str,
                          resource_path='friendships/exists',
                          username=username,
                          password=password,
-                         data={'user_a': user_a, 'user_b': user_b})
+                         data={'user_a': user_a, 'user_b': user_b}).json()
 
 
 def show(server_url: str,
@@ -61,4 +61,4 @@ def show(server_url: str,
                          resource_path='friendships/show',
                          username=username,
                          password=password,
-                         data=kwargs)
+                         data=kwargs).json()

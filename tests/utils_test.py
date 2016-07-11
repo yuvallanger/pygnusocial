@@ -62,14 +62,14 @@ def test_get_request():
     get_auth = partial(_get_request,
                        server_url=SERVER_URL,
                        resource_path='get_auth')
-    assert get() == RESPONSE_STRING
-    assert get(extension='.json') == RESPONSE_STRING
-    assert get_auth(**credentials) == RESPONSE_STRING
-    assert get_auth(extension='.json', **credentials) == \
+    assert get().json() == RESPONSE_STRING
+    assert get(extension='.json').json() == RESPONSE_STRING
+    assert get_auth(**credentials).json() == RESPONSE_STRING
+    assert get_auth(extension='.json', **credentials).json() == \
         RESPONSE_STRING
     with pytest.raises(AuthenticationError):
-        get_auth(**invalid_credentials)
-        get_auth(extension='.json', **invalid_credentials)
+        get_auth(**invalid_credentials).json()
+        get_auth(extension='.json', **invalid_credentials).json()
 
 
 def test_check_connection():
@@ -88,7 +88,7 @@ def test_post_request():
     Any request to '/post' resource path should return 'Hello world!'
     """
     post = partial(_post_request, SERVER_URL, 'post', USERNAME, data={})
-    assert post(password=PASSWORD) == RESPONSE_STRING
+    assert post(password=PASSWORD).json() == RESPONSE_STRING
     with pytest.raises(AuthenticationError):
         post(password=PASSWORD[:-1])
 

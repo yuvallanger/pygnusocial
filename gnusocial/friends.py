@@ -24,7 +24,7 @@ def friends(server_url: str,
                          resource_path='friends/ids',
                          username=username,
                          password=password,
-                         data=kwargs)
+                         data=kwargs).json()
 
 
 def followers(server_url: str,
@@ -36,4 +36,4 @@ def followers(server_url: str,
                          resource_path='followers/ids',
                          username=username,
                          password=password,
-                         data=kwargs)
+                         data=kwargs).json()

@@ -2,11 +2,17 @@ from .utils import _get_request, _post_request
 
 
 def received(server_url: str, username: str, password: str) -> list:
-    return _get_request(server_url, 'direct_messages', username, password)
+    return _get_request(server_url=server_url,
+                        resource_path='direct_messages',
+                        username=username,
+                        password=password).json()
 
 
 def sent(server_url: str, username: str, password: str) -> list:
-    return _get_request(server_url, 'direct_messages/sent', username, password)
+    return _get_request(server_url=server_url,
+                        resource_path='direct_messages/sent',
+                        username=username,
+                        password=password).json()
 
 
 def new(server_url: str,
@@ -19,4 +25,4 @@ def new(server_url: str,
                          resource_path='direct_messages/new',
                          username=username,
                          password=password,
-                         data=data)
+                         data=data).json()

@@ -10,7 +10,7 @@ def favorites(server_url: str,
                          resource_path='favorites',
                          username=username,
                          password=password,
-                         data=kwargs)
+                         data=kwargs).json()
 
 
 def create(server_url: str,
@@ -20,7 +20,7 @@ def create(server_url: str,
     return _post_request(server_url=server_url,
                          resource_path='favorites/create/%d' % post_id,
                          username=username,
-                         password=password)
+                         password=password).json()
 
 
 def destroy(server_url: str,
@@ -30,4 +30,4 @@ def destroy(server_url: str,
     return _post_request(server_url=server_url,
                          resource_path='favorites/destroy/%d' % post_id,
                          username=username,
-                         password=password)
+                         password=password).json()
