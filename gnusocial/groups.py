@@ -71,3 +71,12 @@ def leave(server_url: str,
                          username=username,
                          password=password,
                          data=kwargs).json()
+
+
+def list_all(server_url: str,
+             username: str='',
+             password: str='') -> list:
+    return _get_request(server_url=server_url,
+                        resource_path='statusnet/groups/list_all',
+                        username=username,
+                        password=password).json()
