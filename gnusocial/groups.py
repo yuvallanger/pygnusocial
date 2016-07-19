@@ -24,7 +24,7 @@ def timeline(server_url: str,
                          resource_path=resource_path,
                          username=username,
                          password=password,
-                         data=kwargs)
+                         data=kwargs).json()
 
 
 def show(server_url: str,
@@ -35,4 +35,15 @@ def show(server_url: str,
     return _get_request(server_url=server_url,
                         resource_path=resource_path,
                         username=username,
-                        password=password)
+                        password=password).json()
+
+
+def create(server_url: str,
+           username: str,
+           password: str,
+           group_name: str) -> dict:
+    return _post_request(server_url=server_url,
+                         resource_path='statusnet/groups/create',
+                         username=username,
+                         password=password,
+                         data={'nickname': group_name}).json()
