@@ -139,3 +139,12 @@ def _check_id_and_nickname(**kwargs):
         raise Exception(
             "You must either specify the id or nickname."
         )
+
+
+def _check_group_id_and_name(**kwargs):
+    has_group_id = 'group_id' in kwargs
+    has_group_name = 'group_name' in kwargs
+    if has_group_id == has_group_name:
+        raise Exception(
+            "You must either specify the group_id or group_name."
+        )
