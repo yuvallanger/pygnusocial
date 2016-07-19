@@ -59,3 +59,15 @@ def join(server_url: str,
                          username=username,
                          password=password,
                          data=kwargs).json()
+
+
+def leave(server_url: str,
+          username: str,
+          password: str,
+          **kwargs) -> dict:
+    resource_path = _resource_path('statusnet/groups/leave', **kwargs)
+    return _post_request(server_url=server_url,
+                         resource_path=resource_path,
+                         username=username,
+                         password=password,
+                         data=kwargs).json()
