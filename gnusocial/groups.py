@@ -1,4 +1,4 @@
-from .utils import _post_request, _get_request
+from .utils import _post_request, _get_request, _check_user_id_and_screen_name
 
 
 def _resource_path(resource_path: str, **kwargs):
@@ -80,3 +80,15 @@ def list_all(server_url: str,
                         resource_path='statusnet/groups/list_all',
                         username=username,
                         password=password).json()
+
+
+def user_groups(server_url: str,
+                username: str='',
+                password: str='',
+                **kwargs) -> list:
+    _check_user_id_and_screen_name(**kwargs)
+    return _post_request(server_url=server_url,
+                         resource_path='statusnet/groups/list',
+                         username=username,
+                         password=password,
+                         data=kwargs).json()
