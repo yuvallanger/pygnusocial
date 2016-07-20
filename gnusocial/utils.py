@@ -1,10 +1,20 @@
 import re
 from typing import Tuple, Callable
-from functools import partial
+from functools import partial, wraps
 import requests
 from requests.auth import HTTPBasicAuth
 
 DOMAIN_REGEX = re.compile(r"http(s|)://(www\.|)(.+?)(/.*|)$")
+
+
+def docstring(docstr: str):
+    def wrap(func):
+        @wraps(func)
+        def wrapped_func(*args, **kwargs):
+            func(*args, **kwargs)
+        wrapped_func.__doc__ = docstr
+        return wrapped_func
+    return wrap
 
 
 class ServerURLError(Exception):
