@@ -27,7 +27,7 @@ def received(server_url: str, username: str, password: str, **kwargs) -> list:
     :param skip_status: (optional) When set to either True or 1 statuses
         will not be included in the returned user objects.
     :return: list of dicts with following structure:
-        created_at: - date of message creation
+        created_at - date of message creation
         id
         recipient - user info dict
         recipient_id
@@ -64,7 +64,7 @@ def sent(server_url: str, username: str, password: str, **kwargs) -> list:
     :param skip_status: (optional) When set to either True or 1 statuses
         will not be included in the returned user objects.
     :return: list of dicts with following structure:
-        created_at: - date of message creation
+        created_at - date of message creation
         id
         recipient - user info dict
         recipient_id
@@ -98,7 +98,7 @@ def new(server_url: str,
     :param screen_name: (optional) The screen name of the user who should
         receive the direct message.
     :return: dict with following structure:
-        created_at: - date of message creation
+        created_at - date of message creation
         id
         recipient - user info dict
         recipient_id
