@@ -20,3 +20,14 @@ def update_profile_image(server_url: str,
                          username=username,
                          password=password,
                          media=image).json()
+
+
+def update_profile(server_url: str,
+                   username: str,
+                   password: str,
+                   **kwargs) -> dict:
+    return _post_request(server_url=server_url,
+                         resource_path='account/update_profile',
+                         username=username,
+                         password=password,
+                         data=kwargs).json()
