@@ -6,37 +6,18 @@ Module with various utility functions and exception classes.
 """
 import re
 from typing import Callable
-from inspect import isclass, isfunction
-from functools import partial, wraps
+from functools import partial
 import requests
 from requests.auth import HTTPBasicAuth
-from .docs import SERVER_URL_DOC, USERNAME_DOC, PASSWORD_DOC
 
 DOMAIN_REGEX = re.compile(r"http(s|)://(www\.|)(.+?)(/.*|)$")
 
 
-def docstring(docstr: str):
-    """Decorator function to add docstrings."""
-    def _wrap(obj):
-        @wraps(obj)
-        def _wrapped_obj(*args, **kwargs):
-            if isclass(obj):
-                return obj(*args, **kwargs)
-            elif isfunction(obj):
-                obj(*args, **kwargs)
-        _wrapped_obj.__doc__ = docstr
-        return _wrapped_obj
-    return _wrap
-
-
-@docstring(
-    """
-    Exception class for errors in server URL.
-
-    {0}
-    """.format(SERVER_URL_DOC)
-)
 class ServerURLError(Exception):
+    """Exception class for errors in server URL.
+
+    :param server_url: URL of the server
+    """
     def __init__(self, server_url: str) -> None:
         self.server_url = server_url
         super().__init__(Exception)
@@ -48,16 +29,13 @@ class ServerURLError(Exception):
         return 'Invalid server URL %s' % self.server_url
 
 
-@docstring(
-    """
-    Exception class for authentication errors.
-
-    {0}
-    {1}
-    {2}
-    """.format(SERVER_URL_DOC, USERNAME_DOC, PASSWORD_DOC)
-)
 class AuthenticationError(Exception):
+    """Exception class for authentication errors.
+
+    :param server_url: URL of the server
+    :param username: name of the authenticating user
+    :param password: password of the authenticating user
+    """
     def __init__(self, server_url: str, username: str, password: str) -> None:
         self.server_url = server_url
         self.username = username
