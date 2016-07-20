@@ -8,7 +8,7 @@ from .utils import _get_request, _post_request
 
 
 def verify_credentials(server_url: str, username: str, password: str) -> None:
-    """Verify the given credentials.
+    """Tests if supplied user credentials are valid.
     If the credentials were valid, return None.
     If the credentials were invalid, raise gnusocial.utils.AuthenticationError.
 
@@ -28,7 +28,7 @@ def update_profile_image(server_url: str,
                          username: str,
                          password: str,
                          filename: str) -> dict:
-    """Updates profile picture of the authenticating user.
+    """Updates the authenticating user's profile image.
 
     :param server_url: URL of the server
     :param username: name of the authenticating user
@@ -89,7 +89,8 @@ def update_profile(server_url: str,
                    username: str,
                    password: str,
                    **kwargs) -> dict:
-    """Updates profile picture of the authenticating user.
+    """Sets some values that users are able to set under the "Account" tab of
+    their settings page. Only the parameters specified will be updated.
 
     :param server_url: URL of the server
     :param username: name of the authenticating user
