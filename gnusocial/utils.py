@@ -10,6 +10,7 @@ from inspect import isclass, isfunction
 from functools import partial, wraps
 import requests
 from requests.auth import HTTPBasicAuth
+from .docs import SERVER_URL_DOC, USERNAME_DOC, PASSWORD_DOC
 
 DOMAIN_REGEX = re.compile(r"http(s|)://(www\.|)(.+?)(/.*|)$")
 
@@ -28,6 +29,13 @@ def docstring(docstr: str):
     return _wrap
 
 
+@docstring(
+    """
+    Exception class for errors in server URL.
+
+    {0}
+    """.format(SERVER_URL_DOC)
+)
 class ServerURLError(Exception):
     def __init__(self, server_url: str) -> None:
         self.server_url = server_url
@@ -40,6 +48,15 @@ class ServerURLError(Exception):
         return 'Invalid server URL %s' % self.server_url
 
 
+@docstring(
+    """
+    Exception class for authentication errors.
+
+    {0}
+    {1}
+    {2}
+    """.format(SERVER_URL_DOC, USERNAME_DOC, PASSWORD_DOC)
+)
 class AuthenticationError(Exception):
     def __init__(self, server_url: str, username: str, password: str) -> None:
         self.server_url = server_url
