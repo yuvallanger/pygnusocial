@@ -1,3 +1,9 @@
+"""
+gnusocial.utils
+~~~~~~~~~~~~~~~
+
+Module with various utility functions and exception classes.
+"""
 import re
 from typing import Tuple, Callable
 from functools import partial, wraps
@@ -8,9 +14,12 @@ DOMAIN_REGEX = re.compile(r"http(s|)://(www\.|)(.+?)(/.*|)$")
 
 
 def docstring(docstr: str):
+    """Decorator function to add docstrings."""
     def wrap(func):
+        """Add docstr to func"""
         @wraps(func)
         def wrapped_func(*args, **kwargs):
+            """Call func"""
             func(*args, **kwargs)
         wrapped_func.__doc__ = docstr
         return wrapped_func
