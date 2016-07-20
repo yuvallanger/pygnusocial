@@ -2,7 +2,7 @@
 gnusocial.accounts
 ~~~~~~~~~~~~~~~~~~
 
-This module implements account resources.
+Module with account resources.
 """
 from .utils import _get_request, _post_request
 
