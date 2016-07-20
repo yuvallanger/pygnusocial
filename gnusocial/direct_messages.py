@@ -1,11 +1,12 @@
 from .utils import _get_request, _post_request
 
 
-def received(server_url: str, username: str, password: str) -> list:
+def received(server_url: str, username: str, password: str, **kwargs) -> list:
     return _get_request(server_url=server_url,
                         resource_path='direct_messages',
                         username=username,
-                        password=password).json()
+                        password=password,
+                        params=kwargs).json()
 
 
 def sent(server_url: str, username: str, password: str) -> list:

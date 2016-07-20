@@ -92,11 +92,13 @@ def _request(request_func: Callable,
              password: str='',
              extension: str='.json',
              data: dict=None,
-             media: dict=None) -> requests.models.Response:
+             media: dict=None,
+             params: dict=None) -> requests.models.Response:
     req = partial(request_func,
                   url=_resource_url(server_url, resource_path, extension),
                   data=data,
-                  files=media)
+                  files=media,
+                  params=params)
     response = None
     if username:
         response = req(auth=HTTPBasicAuth(username, password))
