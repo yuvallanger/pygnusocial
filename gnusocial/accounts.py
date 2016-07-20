@@ -19,4 +19,4 @@ def update_profile_image(server_url: str,
                          resource_path='account/update_profile_image',
                          username=username,
                          password=password,
-                         media=image)
+                         media=image).json()
