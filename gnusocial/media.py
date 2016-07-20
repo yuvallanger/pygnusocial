@@ -11,4 +11,4 @@ def upload(server_url: str,
                          extension='',
                          username=username,
                          password=password,
-                         media=media).text()
+                         media=media).text
