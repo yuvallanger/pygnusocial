@@ -5,7 +5,7 @@ gnusocial.utils
 Module with various utility functions and exception classes.
 """
 import re
-from typing import Tuple, Callable
+from typing import Callable
 from inspect import isclass, isfunction
 from functools import partial, wraps
 import requests
@@ -16,19 +16,16 @@ DOMAIN_REGEX = re.compile(r"http(s|)://(www\.|)(.+?)(/.*|)$")
 
 def docstring(docstr: str):
     """Decorator function to add docstrings."""
-    def wrap(obj):
-        """Add docstr to obj"""
+    def _wrap(obj):
         @wraps(obj)
-        def wrapped_obj(*args, **kwargs):
-            """Call obj, if obj is a function.
-            Return obj if obj is a class."""
+        def _wrapped_obj(*args, **kwargs):
             if isclass(obj):
                 return obj(*args, **kwargs)
             elif isfunction(obj):
                 obj(*args, **kwargs)
-        wrapped_obj.__doc__ = docstr
-        return wrapped_obj
-    return wrap
+        _wrapped_obj.__doc__ = docstr
+        return _wrapped_obj
+    return _wrap
 
 
 class ServerURLError(Exception):
@@ -49,10 +46,6 @@ class AuthenticationError(Exception):
         self.username = username
         self.password = password
         super().__init__(self)
-
-    @property
-    def credentials(self) -> Tuple[str, str]:
-        return (self.username, self.password)
 
     def __repr__(self) -> str:
         return 'AuthenticationError(%r, %r, %r)' % (self.server_url,
