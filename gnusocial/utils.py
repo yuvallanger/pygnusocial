@@ -6,6 +6,7 @@ Module with various utility functions and exception classes.
 """
 import re
 from typing import Tuple, Callable
+from inspect import isclass, isfunction
 from functools import partial, wraps
 import requests
 from requests.auth import HTTPBasicAuth
@@ -15,14 +16,18 @@ DOMAIN_REGEX = re.compile(r"http(s|)://(www\.|)(.+?)(/.*|)$")
 
 def docstring(docstr: str):
     """Decorator function to add docstrings."""
-    def wrap(func):
-        """Add docstr to func"""
-        @wraps(func)
-        def wrapped_func(*args, **kwargs):
-            """Call func"""
-            func(*args, **kwargs)
-        wrapped_func.__doc__ = docstr
-        return wrapped_func
+    def wrap(obj):
+        """Add docstr to obj"""
+        @wraps(obj)
+        def wrapped_obj(*args, **kwargs):
+            """Call obj, if obj is a function.
+            Return obj if obj is a class."""
+            if isclass(obj):
+                return obj(*args, **kwargs)
+            elif isfunction(obj):
+                obj(*args, **kwargs)
+        wrapped_obj.__doc__ = docstr
+        return wrapped_obj
     return wrap
 
 
