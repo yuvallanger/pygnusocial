@@ -136,6 +136,60 @@ def _post_request(server_url: str,
 
 
 def config(server_url: str) -> dict:
+    """Returns server configuration.
+
+    :param server_url: URL of the server
+    :return: dict with following structure:
+        attachments
+            file_quota - maximum size of attachment in bytes
+            uploads - True if users are allowed to upload files
+        group
+            desclimit
+        integration
+            source
+        license
+            image
+            owner
+            title
+            type
+            url
+        nickname
+            featured
+        notice
+            contentlimit
+        profile
+            biolimit
+        site
+            broughtby
+            broughtbyurl
+            closed
+            email
+            fancy
+            inviteonly
+            language
+            logo
+            name
+            path
+            private
+            server
+            ssl
+            sslserver
+            textlimit
+            theme
+            timezone
+        throttle
+            count
+            enabled
+            timespan
+        url
+            maxnoticelength
+            maxurllength
+        xmpp
+            enabled
+            port
+            server
+            user
+    """
     return _get_request(server_url, 'statusnet/config').json()
 
 
