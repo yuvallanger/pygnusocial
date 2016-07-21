@@ -1,3 +1,4 @@
+from typing import Tuple
 from xml.etree import ElementTree as ET
 from .utils import _post_request
 
@@ -5,7 +6,7 @@ from .utils import _post_request
 def upload(server_url: str,
            username: str,
            password: str,
-           filename: str) -> str:
+           filename: str) -> Tuple[str, str]:
     media = {'media': open(filename, 'rb')}
     response_xml = _post_request(server_url=server_url,
                                  resource_path='statusnet/media/upload',
@@ -14,4 +15,6 @@ def upload(server_url: str,
                                  password=password,
                                  media=media).text
     tree = ET.fromstring(response_xml)
-    return tree.find('{http://www.w3.org/2005/Atom}link').get('href')
+    file_url = tree.find('{http://www.w3.org/2005/Atom}link').get('href', '')
+    attachment_url = tree.findtext('mediaurl')
+    return (attachment_url, file_url)
