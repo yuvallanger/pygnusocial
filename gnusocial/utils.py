@@ -90,15 +90,13 @@ def _request(request_func: Callable,
              resource_path: str,
              username: str='',
              password: str='',
-             extension: str='.json',
-             data: dict=None,
-             media: dict=None,
-             params: dict=None) -> requests.models.Response:
+             **kwargs) -> requests.models.Response:
+    extension = kwargs.get('extension') or '.json'
     req = partial(request_func,
                   url=_resource_url(server_url, resource_path, extension),
-                  data=data,
-                  files=media,
-                  params=params)
+                  data=kwargs.get('data'),
+                  files=kwargs.get('media'),
+                  params=kwargs.get('params'))
     response = None
     if username:
         response = req(auth=HTTPBasicAuth(username, password))
