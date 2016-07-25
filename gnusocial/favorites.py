@@ -4,7 +4,7 @@ gnusocial.favorites
 
 Module with favorite resources.
 """
-from .utils import _post_request, _check_user_id_and_screen_name
+from .utils import _post_request, _check_user_target
 
 
 def favorites(server_url: str,
@@ -72,7 +72,7 @@ def favorites(server_url: str,
         uri
         user - user info dict
     """
-    _check_user_id_and_screen_name(**kwargs)
+    _check_user_target(**kwargs)
     return _post_request(server_url=server_url,
                          resource_path='favorites',
                          username=username,

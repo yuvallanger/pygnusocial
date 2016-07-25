@@ -4,7 +4,7 @@ gnusocial.direct_messages
 
 Module with direct messages resources.
 """
-from .utils import _get_request, _post_request, _check_user_id_and_screen_name
+from .utils import _get_request, _post_request, _check_user_target
 
 
 def received(server_url: str, username: str, password: str, **kwargs) -> list:
@@ -108,7 +108,7 @@ def new(server_url: str,
         sender_screen_name
         text
     """
-    _check_user_id_and_screen_name(**kwargs)
+    _check_user_target(**kwargs)
     kwargs['text'] = text
     return _post_request(server_url=server_url,
                          resource_path='direct_messages/new',

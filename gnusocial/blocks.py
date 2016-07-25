@@ -4,7 +4,7 @@ gnusocial.blocks
 
 Module with block resources.
 """
-from .utils import _post_request, _check_user_id_and_screen_name
+from .utils import _post_request, _check_user_target
 
 
 def create(server_url: str,
@@ -69,7 +69,7 @@ def create(server_url: str,
         url - URL associated with the profile or False if none
         utc_offset
     """
-    _check_user_id_and_screen_name(**kwargs)
+    _check_user_target(**kwargs)
     return _post_request(server_url=server_url,
                          resource_path='blocks/create',
                          username=username,
@@ -138,7 +138,7 @@ def destroy(server_url: str,
         url - URL associated with the profile or False if none
         utc_offset
     """
-    _check_user_id_and_screen_name(**kwargs)
+    _check_user_target(**kwargs)
     return _post_request(server_url=server_url,
                          resource_path='blocks/destroy',
                          username=username,

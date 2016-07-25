@@ -191,15 +191,21 @@ def config(server_url: str) -> dict:
     return _get_request(server_url, 'statusnet/config').json()
 
 
-def _check_user_id_and_screen_name(**kwargs):
+def _check_user_target(username: str='', **kwargs) -> None:
     both_targets = 'user_id' in kwargs and 'screen_name' in kwargs
+    no_targets = 'user_id' not in kwargs and 'screen_name' not in kwargs
     if both_targets:
         raise Exception(
             "You must either specify the user_id or screen_name."
         )
+    if no_targets and not username:
+        raise Exception(
+            "You must either specify the user_id or screen_name or " +
+            "username."
+        )
 
 
-def _check_id_and_nickname(**kwargs):
+def _check_id_and_nickname(**kwargs) -> None:
     both_targets = 'id' in kwargs and 'nickname' in kwargs
     if both_targets:
         raise Exception(

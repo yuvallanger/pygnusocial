@@ -1,5 +1,5 @@
 from .utils import _post_request, _get_request
-from .utils import _check_user_id_and_screen_name, _check_group_id_and_name
+from .utils import _check_user_target, _check_group_id_and_name
 
 
 def _resource_path(resource_path: str, **kwargs):
@@ -87,7 +87,7 @@ def user_groups(server_url: str,
                 username: str='',
                 password: str='',
                 **kwargs) -> list:
-    _check_user_id_and_screen_name(**kwargs)
+    _check_user_target(**kwargs)
     return _post_request(server_url=server_url,
                          resource_path='statusnet/groups/list',
                          username=username,
@@ -111,7 +111,7 @@ def is_member(server_url: str,
               username: str='',
               password: str='',
               **kwargs) -> bool:
-    _check_user_id_and_screen_name(**kwargs)
+    _check_user_target(**kwargs)
     _check_group_id_and_name(**kwargs)
     return _post_request(server_url=server_url,
                          resource_path='statusnet/groups/is_member',

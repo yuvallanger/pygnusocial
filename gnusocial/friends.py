@@ -5,21 +5,7 @@ gnusocial.friends
 Module with friends resources.
 """
 from typing import List
-from .utils import _post_request
-
-
-def _check_args(username: str='', **kwargs) -> None:
-    both_targets = 'user_id' in kwargs and 'screen_name' in kwargs
-    no_targets = 'user_id' not in kwargs and 'screen_name' not in kwargs
-    if both_targets:
-        raise Exception(
-            "You must either specify the user_id or screen_name."
-        )
-    if no_targets and not username:
-        raise Exception(
-            "You must either specify the user_id or screen_name or " +
-            "username."
-        )
+from .utils import _post_request, _check_user_target
 
 
 def friends(server_url: str,
@@ -46,7 +32,7 @@ def friends(server_url: str,
         when set to false.
     :return: a list of user IDs
     """
-    _check_args(username, **kwargs)
+    _check_user_target(username, **kwargs)
     return _post_request(server_url=server_url,
                          resource_path='friends/ids',
                          username=username,
@@ -78,7 +64,7 @@ def followers(server_url: str,
         when set to false.
     :return: a list of user IDs
     """
-    _check_args(username, **kwargs)
+    _check_user_target(username, **kwargs)
     return _post_request(server_url=server_url,
                          resource_path='followers/ids',
                          username=username,
