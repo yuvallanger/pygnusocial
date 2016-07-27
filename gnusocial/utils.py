@@ -6,11 +6,23 @@ Module with various utility functions and exception classes.
 """
 import re
 from typing import Callable
-from functools import partial
+from functools import partial, wraps
 import requests
 from requests.auth import HTTPBasicAuth
+from .docs import SERVER_URL_DOC, CONFIG_DICT
 
 DOMAIN_REGEX = re.compile(r"http(s|)://(www\.|)(.+?)(/.*|)$")
+
+
+def docstring(*args, **kwargs):
+    """Decorator function to fill in docstring templates."""
+    def _wrap(obj):
+        @wraps(obj)
+        def _wrapped_obj(*args, **kwargs):
+            return obj(*args, **kwargs)
+        _wrapped_obj.__doc__ = _wrapped_obj.__doc__.format(*args, **kwargs)
+        return _wrapped_obj
+    return _wrap
 
 
 class ServerURLError(Exception):
@@ -91,7 +103,7 @@ def _request(request_func: Callable,
              username: str='',
              password: str='',
              **kwargs) -> requests.models.Response:
-    extension = kwargs.get('extension') or '.json'
+    extension = kwargs.get('extension', '.json')
     req = partial(request_func,
                   url=_resource_url(server_url, resource_path, extension),
                   data=kwargs.get('data'),
@@ -133,60 +145,13 @@ def _post_request(server_url: str,
                     **kwargs)
 
 
+@docstring(SERVER_URL_DOC, CONFIG_DICT)
 def config(server_url: str) -> dict:
     """Returns server configuration.
 
-    :param server_url: URL of the server
+    :param server_url: {}
     :return: dict with following structure:
-        attachments
-            file_quota - maximum size of attachment in bytes
-            uploads - True if users are allowed to upload files
-        group
-            desclimit
-        integration
-            source
-        license
-            image
-            owner
-            title
-            type
-            url
-        nickname
-            featured
-        notice
-            contentlimit
-        profile
-            biolimit
-        site
-            broughtby
-            broughtbyurl
-            closed
-            email
-            fancy
-            inviteonly
-            language
-            logo
-            name
-            path
-            private
-            server
-            ssl
-            sslserver
-            textlimit
-            theme
-            timezone
-        throttle
-            count
-            enabled
-            timespan
-        url
-            maxnoticelength
-            maxurllength
-        xmpp
-            enabled
-            port
-            server
-            user
+        {}
     """
     return _get_request(server_url, 'statusnet/config').json()
 

@@ -4,9 +4,18 @@ gnusocial.favorites
 
 Module with favorite resources.
 """
-from .utils import _post_request, _check_user_target
+from .utils import _post_request, _check_user_target, docstring
+from .docs import (SERVER_URL_DOC, USERNAME_DOC, PASSWORD_DOC, SINCE_ID_DOC,
+                   MAX_ID_DOC, STATUSES_COUNT, STATUS_DICT, STATUS_ID_DOC)
 
 
+@docstring(server_url=SERVER_URL_DOC,
+           username=USERNAME_DOC,
+           password=PASSWORD_DOC,
+           since_id=SINCE_ID_DOC,
+           max_id=MAX_ID_DOC,
+           count=STATUSES_COUNT,
+           status_dict=STATUS_DICT)
 def favorites(server_url: str,
               username: str,
               password: str,
@@ -14,63 +23,14 @@ def favorites(server_url: str,
     """Returns the 20 most recent notices favorited by the authenticating or
     specified user.
 
-    :param server_url: URL of the server
-    :param username: name of the authenticating user
-    :param password: password of the authenticating user
-    :param user_id: (optional) The ID of the user for whom to return results
-        for.
-    :param screen_name: (optional) The screen name of the user for whom to
-        return results for.
-    :param count: (optional) Specifies the number of direct messages to try
-        and retrieve, up to a maximum of 200.
-    :param since_id: (optional) Returns results with an ID greater than
-        (that is, more recent than) the specified ID.
-    :param max_id: (optional) Returns results with an ID less than
-        (that is, older than) or equal to the specified ID.
-    :param include_entities: (optional) The entities node will not be included
-        when set to false.
+    :param server_url: {server_url}
+    :param username: {username}
+    :param password: {password}
+    :param since_id: (optional) {since_id}
+    :param max_id: (optional) {max_id}
+    :param count: (optional) {count}
     :return: list of dicts with following structure:
-        attachment - list of dicts with following structure:
-            height
-            id
-            large_thumb_url
-            mimetype
-            oembed
-            size - size of attacment in kilobytes
-            thumb_url
-            url
-            version
-            width
-        attentions - list dicts with following structure:
-            fullname
-            id
-            ostatus_uri
-            profileurl
-            screen_name
-        created_at
-        external_url
-        fave_num - number of users favorited the notice
-        favorited -  True if favorited by authenticated user
-        geo
-        id
-        in_reply_to_ostatus_uri
-        in_reply_to_profileurl
-        in_reply_to_screen_name
-        in_reply_to_status_id
-        in_reply_to_user_id
-        is_local
-        is_post_verb
-        repeat_num
-        repeated - True if repeated by authenticated user
-        repeated_id
-        source
-        statusnet_conversation_id
-        statusnet_html - HTML contents of the notice
-        statusnet_in_groups
-        text - plain text contents of the notice
-        truncated
-        uri
-        user - user info dict
+        {status_dict}
     """
     _check_user_target(**kwargs)
     return _post_request(server_url=server_url,
@@ -80,6 +40,11 @@ def favorites(server_url: str,
                          data=kwargs).json()
 
 
+@docstring(server_url=SERVER_URL_DOC,
+           username=USERNAME_DOC,
+           password=PASSWORD_DOC,
+           status_id=STATUS_ID_DOC,
+           status_dict=STATUS_DICT)
 def create(server_url: str,
            username: str,
            password: str,
@@ -87,54 +52,12 @@ def create(server_url: str,
     """Favorites the status specified in the ID parameter as the
     authenticating user. Returns the liked status when successful.
 
-    :param server_url: URL of the server
-    :param username: name of the authenticating user
-    :param password: password of the authenticating user
-    :param status_id: The numerical ID of the desired status.
-    :param include_entities: (optional) The entities node will not be included
-        when set to false.
+    :param server_url: {server_url}
+    :param username: {username}
+    :param password: {password}
+    :param status_id: {status_id}
     :return: dict with following structure:
-        attachment - list of dicts with following structure:
-            height
-            id
-            large_thumb_url
-            mimetype
-            oembed
-            size - size of attacment in kilobytes
-            thumb_url
-            url
-            version
-            width
-        attentions - list dicts with following structure:
-            fullname
-            id
-            ostatus_uri
-            profileurl
-            screen_name
-        created_at
-        external_url
-        fave_num - number of users favorited the notice
-        favorited -  True if favorited by authenticated user
-        geo
-        id
-        in_reply_to_ostatus_uri
-        in_reply_to_profileurl
-        in_reply_to_screen_name
-        in_reply_to_status_id
-        in_reply_to_user_id
-        is_local
-        is_post_verb
-        repeat_num
-        repeated - True if repeated by authenticated user
-        repeated_id
-        source
-        statusnet_conversation_id
-        statusnet_html - HTML contents of the notice
-        statusnet_in_groups
-        text - plain text contents of the notice
-        truncated
-        uri
-        user - user info dict
+        {status_dict}
     """
     return _post_request(server_url=server_url,
                          resource_path='favorites/create/%d' % status_id,
@@ -142,6 +65,11 @@ def create(server_url: str,
                          password=password).json()
 
 
+@docstring(server_url=SERVER_URL_DOC,
+           username=USERNAME_DOC,
+           password=PASSWORD_DOC,
+           status_id=STATUS_ID_DOC,
+           status_dict=STATUS_DICT)
 def destroy(server_url: str,
             username: str,
             password: str,
@@ -149,54 +77,12 @@ def destroy(server_url: str,
     """Unfavorites the status specified in the ID parameter as the
     authenticating user. Returns the unliked status when successful.
 
-    :param server_url: URL of the server
-    :param username: name of the authenticating user
-    :param password: password of the authenticating user
-    :param status_id: The numerical ID of the desired status.
-    :param include_entities: (optional) The entities node will not be included
-        when set to false.
+    :param server_url: {server_url}
+    :param username: {username}
+    :param password: {password}
+    :param status_id: {status_id}
     :return: dict with following structure:
-        attachment - list of dicts with following structure:
-            height
-            id
-            large_thumb_url
-            mimetype
-            oembed
-            size - size of attacment in kilobytes
-            thumb_url
-            url
-            version
-            width
-        attentions - list dicts with following structure:
-            fullname
-            id
-            ostatus_uri
-            profileurl
-            screen_name
-        created_at
-        external_url
-        fave_num - number of users favorited the notice
-        favorited -  True if favorited by authenticated user
-        geo
-        id
-        in_reply_to_ostatus_uri
-        in_reply_to_profileurl
-        in_reply_to_screen_name
-        in_reply_to_status_id
-        in_reply_to_user_id
-        is_local
-        is_post_verb
-        repeat_num
-        repeated - True if repeated by authenticated user
-        repeated_id
-        source
-        statusnet_conversation_id
-        statusnet_html - HTML contents of the notice
-        statusnet_in_groups
-        text - plain text contents of the notice
-        truncated
-        uri
-        user - user info dict
+        {status_dict}
     """
     return _post_request(server_url=server_url,
                          resource_path='favorites/destroy/%d' % status_id,
