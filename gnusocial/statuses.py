@@ -126,28 +126,3 @@ def repeat(server_url: str,
                          resource_path='statuses/retweet/%d' % status_id,
                          username=username,
                          password=password).json()
-
-
-@docstring(server_url=SERVER_URL_DOC,
-           username=USERNAME_DOC,
-           password=PASSWORD_DOC,
-           status_id=STATUS_ID_DOC,
-           status_dict=STATUS_DICT)
-def unrepeat(server_url: str,
-             username: str,
-             password: str,
-             status_id: int) -> dict:
-    """Unrepeats a status. Returns the original status with repeat details
-        embedded.
-
-    :param server_url: {server_url}
-    :param username: {username}
-    :param password: {password}
-    :param status_id: {status_id}
-    :return: dict with following structure:
-        {status_dict}
-    """
-    return _post_request(server_url=server_url,
-                         resource_path='statuses/unretweet/%d' % status_id,
-                         username=username,
-                         password=password).json()
