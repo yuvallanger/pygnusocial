@@ -178,6 +178,7 @@ STATUS_DICT = '''attachment - list of dicts with following structure:
         repeat_num
         repeated - True if repeated by authenticated user
         repeated_id
+        retweeted_status - repeated status dict
         source
         statusnet_conversation_id
         statusnet_html - HTML contents of the notice
