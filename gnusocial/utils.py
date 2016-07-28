@@ -115,7 +115,6 @@ def _request(request_func: Callable,
         _check_auth_error(response, server_url, username, password)
     else:
         response = req()
-    response.raise_for_status()
     return response
 
 
