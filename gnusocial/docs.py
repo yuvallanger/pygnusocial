@@ -12,10 +12,20 @@ PROFILE_IMAGE_FILENAME_DOC = 'filename of the new profile picture'
 NAME_DOC = 'full name associated with the profile'
 URL_DOC = '''URL associated with the profile.
         Will be prepended with "http://" if not present'''
-LOCATION_DOC = '''The city or country describing
-        where the user of the account is located.
+FULLNAME_DOC = 'full name associated with the group'
+HOMEPAGE_DOC = 'home page URL associated with the group'
+ALIASES_DOC = 'aliases that group has'
+
+_LOCATION_DOC = '''The city or country describing
+        where the %s is located.
         The contents are not normalized or geocoded in any way'''
-DESCRIPTION_DOC = 'A description of the user owning the account'
+USER_LOCATION = _LOCATION_DOC % 'user of the account'
+GROUP_LOCATION = _LOCATION_DOC % 'group'
+
+_DESCRIPTION_DOC = 'A description of the %s'
+USER_DESCRIPTION = _DESCRIPTION_DOC % 'user owning the account'
+GROUP_DESCRIPTION = _DESCRIPTION_DOC % 'group'
+
 PROFILE_LINK_COLOR_DOC = '''Sets a hex value that controls the
         color scheme of links used on the authenticating user’s profile page.
         This must be a valid hexadecimal value,
@@ -24,16 +34,20 @@ SCREEN_NAME_DOC = '''The screen name of the user for whom to
         return results for.'''
 USER_ID_DOC = '''The ID of the user for whom to return results
         for. '''
-COUNT_DOC = '''Specifies the number of %s to try
-        and retrieve.'''
-USERS_COUNT = COUNT_DOC % 'users'
-DM_COUNT = COUNT_DOC % 'direct messages'
+
+_COUNT_DOC = '''Specifies the number of %s to try
+        and retrieve. If not provided, defaults
+        to 20.'''
+USERS_COUNT = _COUNT_DOC % 'users'
+DM_COUNT = _COUNT_DOC % 'direct messages'
+STATUSES_COUNT = _COUNT_DOC % 'statuses'
+GROUP_COUNT = _COUNT_DOC % 'groups'
+
 MAX_ID_DOC = '''Returns results with an ID less than
         (that is, older than) or equal to the specified ID.'''
 SINCE_ID_DOC = '''Returns results with an ID greater than
         (that is, more recent than) the specified ID.'''
 TEXT_DOC = 'The text of your direct message.'
-STATUSES_COUNT = COUNT_DOC % 'statuses'
 STATUS_ID_DOC = 'The numerical ID of the desired status.'
 TARGET_USER_DOC = 'User that is followed. Can be an ID or screen name.'
 SOURCE_USER_DOC = 'User that is following. Can be an ID or screen name.'
@@ -42,56 +56,60 @@ SOURCE_SCREEN_NAME_DOC = 'The screen_name of the subject user.'
 TARGET_ID_DOC = 'The user_id of the target user.'
 TARGET_SCREEN_NAME_DOC = 'The screen_name of the target user.'
 UPLOAD_FILENAME_DOC = 'name of the file to upload'
+GROUP_ID_DOC = '''The ID of the group for which to return
+        results for.'''
+GROUP_NAME_DOC = '''The name of the group for which to return
+        results for.'''
 
 CONFIG_DICT = """attachments
-        file_quota - maximum size of attachment in bytes
-        uploads - True if users are allowed to upload files
-    group
-        desclimit
-    integration
-        source
-    license
-        image
-        owner
-        title
-        type
+            file_quota - maximum size of attachment in bytes
+            uploads - True if users are allowed to upload files
+        group
+            desclimit
+        integration
+            source
+        license
+            image
+            owner
+            title
+            type
+            url
+        nickname
+            featured
+        notice
+            contentlimit
+        profile
+            biolimit
+        site
+            broughtby
+            broughtbyurl
+            closed
+            email
+            fancy
+            inviteonly
+            language
+            logo
+            name
+            path
+            private
+            server
+            ssl
+            sslserver
+            textlimit
+            theme
+            timezone
+        throttle
+            count
+            enabled
+            timespan
         url
-    nickname
-        featured
-    notice
-        contentlimit
-    profile
-        biolimit
-    site
-        broughtby
-        broughtbyurl
-        closed
-        email
-        fancy
-        inviteonly
-        language
-        logo
-        name
-        path
-        private
-        server
-        ssl
-        sslserver
-        textlimit
-        theme
-        timezone
-    throttle
-        count
-        enabled
-        timespan
-    url
-        maxnoticelength
-        maxurllength
-    xmpp
-        enabled
-        port
-        server
-        user"""
+            maxnoticelength
+            maxurllength
+        xmpp
+            enabled
+            port
+            server
+            user"""
 
 USER_DICT = """background_image - URL to background image or False if none
         backgroundcolor - background color in hex or False if default
@@ -198,3 +216,22 @@ RELATIONSHIP_DICT = '''relationship - dict with following structure:
                     are enabled for source user
                 screen_name
             target - same as source'''
+
+GROUP_DICT = '''admin_count
+        blocked
+        created
+        description
+        fullname
+        homepage
+        homepage_logo
+        id
+        location
+        member
+        member_count
+        mini_logo
+        modified
+        nickname
+        original_logo
+        stream_logo
+        url
+'''

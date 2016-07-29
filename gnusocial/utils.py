@@ -170,14 +170,15 @@ def _check_user_target(username: str='', **kwargs) -> None:
 
 
 def _check_id_and_nickname(**kwargs) -> None:
-    both_targets = 'id' in kwargs and 'nickname' in kwargs
-    if both_targets:
+    has_group_id = 'id' in kwargs
+    has_group_name = 'nickname' in kwargs
+    if has_group_id == has_group_name:
         raise Exception(
             "You must either specify the id or nickname."
         )
 
 
-def _check_group_id_and_name(**kwargs):
+def _check_group_id_and_name(**kwargs) -> None:
     has_group_id = 'group_id' in kwargs
     has_group_name = 'group_name' in kwargs
     if has_group_id == has_group_name:
