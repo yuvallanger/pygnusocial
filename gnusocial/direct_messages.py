@@ -23,12 +23,13 @@ def received(server_url: str, username: str, password: str, **kwargs) -> list:
     You can request up to 200 direct messages per call, and only the most
     recent 200 DMs will be available using this endpoint.
 
-:param server_url: {server_url}
-:param username: {username}
-:param password: {password}
-:param since_id: (optional) {since_id}
-:param max_id: (optional) {max_id}
-:param count: (optional) {count}
+:param str server_url: {server_url}
+:param str username: {username}
+:param str password: {password}
+:param int since_id: (optional) {since_id}
+:param int max_id: (optional) {max_id}
+:param int count: (optional) {count}
+:rtype: list
 :return: list of dicts with following structure:
 
 ::
@@ -55,12 +56,13 @@ def sent(server_url: str, username: str, password: str, **kwargs) -> list:
     You can request up to 200 direct messages per call, and only the most
     recent 200 DMs will be available using this endpoint.
 
-:param server_url: {server_url}
-:param username: {username}
-:param password: {password}
-:param since_id: (optional) {since_id}
-:param max_id: (optional) {max_id}
-:param count: (optional) {count}
+:param str server_url: {server_url}
+:param str username: {username}
+:param str password: {password}
+:param int since_id: (optional) {since_id}
+:param int max_id: (optional) {max_id}
+:param int count: (optional) {count}
+:rtype: list
 :return: list of dicts with following structure:
 
 ::
@@ -89,12 +91,13 @@ def new(server_url: str,
     """ Sends a new direct message to the specified user from
     the authenticating user.
 
-:param server_url: {server_url}
-:param username: {username}
-:param password: {password}
-:param text: {text}
-:param user_id: (optional) {user_id}
-:param screen_name: (optional) {screen_name}
+:param str server_url: {server_url}
+:param str username: {username}
+:param str password: {password}
+:param str text: {text}
+:param int user_id: (optional) {user_id}
+:param str screen_name: (optional) {screen_name}
+:rtype: dict
 :return: dict with following structure:
 
 ::

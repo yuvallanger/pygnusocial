@@ -18,10 +18,11 @@ def search(server_url: str,
            password: str='') -> list:
     """Returns a collection of statuses matching a specified query.
 
-:param server_url: {server_url}
-:param query: UTF-8 encoded query
-:param username: (optional) {username}
-:param password: (optional) {password}
+:param str server_url: {server_url}
+:param str query: UTF-8 encoded query
+:param str username: (optional) {username}
+:param str password: (optional) {password}
+:rtype: list
 :return: list of dicts with following structure:
 
 ::

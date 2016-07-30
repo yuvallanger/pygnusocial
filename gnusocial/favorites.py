@@ -24,12 +24,13 @@ def favorites(server_url: str,
     """Returns the 20 most recent notices favorited by the authenticating or
     specified user.
 
-:param server_url: {server_url}
-:param username: {username}
-:param password: {password}
-:param since_id: (optional) {since_id}
-:param max_id: (optional) {max_id}
-:param count: (optional) {count}
+:param str server_url: {server_url}
+:param str username: {username}
+:param str password: {password}
+:param int since_id: (optional) {since_id}
+:param int max_id: (optional) {max_id}
+:param int count: (optional) {count}
+:rtype: list
 :return: list of dicts with following structure:
 
 ::
@@ -56,10 +57,11 @@ def create(server_url: str,
     """Favorites the status specified in the ID parameter as the
     authenticating user. Returns the liked status when successful.
 
-:param server_url: {server_url}
-:param username: {username}
-:param password: {password}
-:param status_id: {status_id}
+:param str server_url: {server_url}
+:param str username: {username}
+:param str password: {password}
+:param int status_id: {status_id}
+:rtype: dict
 :return: dict with following structure:
 
 ::
@@ -84,10 +86,11 @@ def destroy(server_url: str,
     """Unfavorites the status specified in the ID parameter as the
     authenticating user. Returns the unliked status when successful.
 
-:param server_url: {server_url}
-:param username: {username}
-:param password: {password}
-:param status_id: {status_id}
+:param str server_url: {server_url}
+:param str username: {username}
+:param str password: {password}
+:param int status_id: {status_id}
+:rtype: dict
 :return: dict with following structure:
 
 ::

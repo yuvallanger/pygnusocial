@@ -20,23 +20,24 @@ def update(server_url: str,
            **kwargs) -> dict:
     """Updates the authenticating user's current status.
 
-:param server_url: {server_url}
-:param username: {username}
-:param password: {password}
-:param status: The text of your status update.
-:param source: (optional) The name of application you update the status
+:param str server_url: {server_url}
+:param str username: {username}
+:param str password: {password}
+:param str status: The text of your status update.
+:param str source: (optional) The name of application you update the status
     from.
-:param in_reply_to_status_id: (optional) The ID of an existing status that
+:param int in_reply_to_status_id: (optional) The ID of an existing status that
     the update is in reply to.
-:param lat: (optional) The latitude of the location this status refers to.
+:param int lat: (optional) The latitude of the location this status refers to.
     This parameter will be ignored unless it is inside the range -90.0 to
     +90.0 (North is positive) inclusive. It will also be ignored if there
     isn’t a corresponding long parameter.
-:param long: (optional) The longitude of the location this tweet refers to.
+:param int long: (optional) The longitude of the location this tweet refers to.
     The valid ranges for longitude is -180.0 to +180.0 (East is positive)
     inclusive. This parameter will be ignored if outside that range, if
     it is not a number or if there not a corresponding lat parameter.
-:param media: (optional) the name of the file to upload with the status.
+:param str media: (optional) the name of the file to upload with the status.
+:rtype: dict
 :return: dict with following structure:
 
 ::
@@ -67,10 +68,11 @@ def show(server_url: str,
     """Returns a single status, specified by the id parameter. The status'
         author will also be embedded within the status.
 
-:param server_url: {server_url}
-:param status_id: {status_id}
-:param username: (optional) {username}
-:param password: (optional) {password}
+:param str server_url: {server_url}
+:param int status_id: {status_id}
+:param str username: (optional) {username}
+:param str password: (optional) {password}
+:rtype: dict
 :return: dict with following structure:
 
 ::
@@ -96,10 +98,11 @@ def destroy(server_url: str,
         The authenticating user must be the author of the specified status.
         Returns the destroyed status if successful.
 
-:param server_url: {server_url}
-:param username: {username}
-:param password: {password}
-:param status_id: {status_id}
+:param str server_url: {server_url}
+:param str username: {username}
+:param str password: {password}
+:param int status_id: {status_id}
+:rtype: dict
 :return: dict with following structure:
 
 ::
@@ -124,10 +127,11 @@ def repeat(server_url: str,
     """Repeats a status. Returns the original status with repeat details
         embedded.
 
-:param server_url: {server_url}
-:param username: {username}
-:param password: {password}
-:param status_id: {status_id}
+:param str server_url: {server_url}
+:param str username: {username}
+:param str password: {password}
+:param int status_id: {status_id}
+:rtype: dict
 :return: dict with following structure:
 
 ::

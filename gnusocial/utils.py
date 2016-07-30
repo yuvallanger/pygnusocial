@@ -28,7 +28,7 @@ def docstring(*args, **kwargs):
 class ServerURLError(Exception):
     """Exception class for errors in server URL.
 
-:param server_url: URL of the server
+:param str server_url: URL of the server
     """
     def __init__(self, server_url: str) -> None:
         self.server_url = server_url
@@ -44,9 +44,9 @@ class ServerURLError(Exception):
 class AuthenticationError(Exception):
     """Exception class for authentication errors.
 
-:param server_url: URL of the server
-:param username: name of the authenticating user
-:param password: password of the authenticating user
+:param str server_url: URL of the server
+:param str username: name of the authenticating user
+:param str password: password of the authenticating user
     """
     def __init__(self, server_url: str, username: str, password: str) -> None:
         self.server_url = server_url
@@ -148,7 +148,8 @@ def _post_request(server_url: str,
 def config(server_url: str) -> dict:
     """Returns server configuration.
 
-:param server_url: {server_url}
+:param str server_url: {server_url}
+:rtype: dict
 :return: dict with following structure:
 
 ::

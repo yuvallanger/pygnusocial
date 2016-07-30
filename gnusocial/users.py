@@ -23,12 +23,13 @@ def following(server_url: str,
     """Returns a collection of user objects for users followed by
     the specified user.
 
-:param server_url: {server_url}
-:param username: (optional) {username}
-:param password: (optional) {password}
-:param user_id: (optional) {user_id}
-:param screen_name: (optional) {screen_name}
-:param count: (optional) {count}
+:param str server_url: {server_url}
+:param str username: (optional) {username}
+:param str password: (optional) {password}
+:param int user_id: (optional) {user_id}
+:param str screen_name: (optional) {screen_name}
+:param int count: (optional) {count}
+:rtype: list
 :return: a list of dicts with following sctructure:
 
 ::
@@ -57,12 +58,13 @@ def followers(server_url: str,
     """Returns a collection of user objects for users following
     the specified user.
 
-:param server_url: {server_url}
-:param username: (optional) {username}
-:param password: (optional) {password}
-:param user_id: (optional) {user_id}
-:param screen_name: (optional) {screen_name}
-:param count: (optional) {count}
+:param str server_url: {server_url}
+:param str username: (optional) {username}
+:param str password: (optional) {password}
+:param int user_id: (optional) {user_id}
+:param str screen_name: (optional) {screen_name}
+:param int count: (optional) {count}
+:rtype: list
 :return: a list of dicts with following sctructure:
 
 ::
@@ -91,11 +93,12 @@ def show(server_url: str,
     required user_id or screen_name parameter. The author’s most recent
     status will be returned inline when possible.
 
-:param server_url: {server_url}
-:param username: (optional) {username}
-:param password: (optional) {password}
-:param user_id: (optional) {user_id}
-:param screen_name: (optional) {screen_name}
+:param str server_url: {server_url}
+:param str username: (optional) {username}
+:param str password: (optional) {password}
+:param int user_id: (optional) {user_id}
+:param str screen_name: (optional) {screen_name}
+:rtype: dict
 :return: dict with following sctructure:
 
 ::

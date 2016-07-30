@@ -24,11 +24,12 @@ def create(server_url: str,
     mentions or timeline (unless repeated by another user). If a follow or
     friend relationship exists it is destroyed.
 
-:param server_url: {server_url}
-:param username: {username}
-:param password: {password}
-:param user_id: (optional) {user_id}
-:param screen_name: (optional) {screen_name}
+:param str server_url: {server_url}
+:param str username: {username}
+:param str password: {password}
+:param int user_id: (optional) {user_id}
+:param str screen_name: (optional) {screen_name}
+:rtype: dict
 :return: dict with following structure:
 
 ::
@@ -53,11 +54,12 @@ def destroy(server_url: str,
      If relationships existed before the block was instated,
      they will not be restored.
 
-:param server_url: {server_url}
-:param username: {username}
-:param password: {password}
-:param user_id: (optional) {user_id}
-:param screen_name: (optional) {screen_name}
+:param str server_url: {server_url}
+:param str username: {username}
+:param str password: {password}
+:param int user_id: (optional) {user_id}
+:param str screen_name: (optional) {screen_name}
+:rtype: dict
 :return: dict with following structure:
 
 ::

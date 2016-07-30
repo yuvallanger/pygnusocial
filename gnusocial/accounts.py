@@ -18,9 +18,10 @@ def verify_credentials(server_url: str, username: str, password: str) -> None:
     If the credentials were valid, return None.
     If the credentials were invalid, raise gnusocial.utils.AuthenticationError.
 
-:param server_url: {server_url}
-:param username: {username}
-:param password: {password}
+:param str server_url: {server_url}
+:param str username: {username}
+:param str password: {password}
+:raises gnusocial.utils.AuthenticationError: if credentials are invalid
     """
     _get_request(
         server_url=server_url,
@@ -40,10 +41,11 @@ def update_profile_image(server_url: str,
                          filename: str) -> dict:
     """Updates the authenticating user's profile image.
 
-:param server_url: {server_url}
-:param username: {username}
-:param password: {password}
-:param filename: filename of the new profile picture
+:param str server_url: {server_url}
+:param str username: {username}
+:param str password: {password}
+:param str filename: filename of the new profile picture
+:rtype: dict
 :return: dict with following structure:
 
 ::
@@ -74,14 +76,15 @@ def update_profile(server_url: str,
     """Sets some values that users are able to set under the "Account" tab of
     their settings page. Only the parameters specified will be updated.
 
-:param server_url: {server_url}
-:param username: {username}
-:param password: {password}
-:param name: (optional) {name}
-:param url: (optional) {url}
-:param location: (optional) {location}
-:param description: (optional) {description}
-:param profile_link_color: (optional) {profile_link_color}
+:param str server_url: {server_url}
+:param str username: {username}
+:param str password: {password}
+:param str name: (optional) {name}
+:param str url: (optional) {url}
+:param str location: (optional) {location}
+:param str description: (optional) {description}
+:param str profile_link_color: (optional) {profile_link_color}
+:rtype: dict
 :return: dict with following structure:
 
 ::
@@ -108,15 +111,16 @@ def register(server_url: str,
              **kwargs) -> dict:
     """Registers a new user.
 
-:param server_url: {server_url}
-:param nickname: name of the new user
-:param password: desired password
-:param confirm: password confirmation
-:param email: (optional) email associated with the new user
-:param fullname: (optional) {fullname}
-:param homepage: (optional) {homepage}
-:param location: (optional) {location}
-:param bio: (optional) {bio}
+:param str server_url: {server_url}
+:param str nickname: name of the new user
+:param str password: desired password
+:param str confirm: password confirmation
+:param str email: (optional) email associated with the new user
+:param str fullname: (optional) {fullname}
+:param str homepage: (optional) {homepage}
+:param str location: (optional) {location}
+:param str bio: (optional) {bio}
+:rtype dict:
 :return: dict with following structure:
 
 ::

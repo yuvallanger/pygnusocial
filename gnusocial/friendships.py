@@ -1,6 +1,6 @@
 """
 gnusocial.friendships
-~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
 
 Module with friendship resources.
 """
@@ -26,11 +26,12 @@ def create(server_url: str,
     """Allows the authenticating users to follow the user specified in the
     user_id or screen_name parameter.
 
-:param server_url: {server_url}
-:param username: (optional) {username}
-:param password: (optional) {password}
-:param user_id: (optional) {user_id}
-:param screen_name: (optional) {screen_name}
+:param str server_url: {server_url}
+:param str username: (optional) {username}
+:param str password: (optional) {password}
+:param int user_id: (optional) {user_id}
+:param str screen_name: (optional) {screen_name}
+:rtype: dict
 :return: dict with following structure:
 
 ::
@@ -58,11 +59,12 @@ def destroy(server_url: str,
     """Allows the authenticating users to unfollow the user specified in the
     user_id or screen_name parameter.
 
-:param server_url: {server_url}
-:param username: (optional) {username}
-:param password: (optional) {password}
-:param user_id: (optional) {user_id}
-:param screen_name: (optional) {screen_name}
+:param str server_url: {server_url}
+:param str username: (optional) {username}
+:param str password: (optional) {password}
+:param int user_id: (optional) {user_id}
+:param str screen_name: (optional) {screen_name}
+:rtype: dict
 :return: dict with following structure:
 
 ::
@@ -89,11 +91,14 @@ def exists(server_url: str,
            password: str='') -> bool:
     """Shows if source_user follows target_user.
 
-:param server_url: {server_url}
+:param str server_url: {server_url}
 :param source_user: User that is following. Can be an ID or screen name.
+:type source_user: int or str
 :param target_user: User that is followed. Can be an ID or screen name.
-:param username: (optional) {username}
-:param password: (optional) {password}
+:type target_user: int or str
+:param str username: (optional) {username}
+:param str password: (optional) {password}
+:rtype: bool
 :return: `True` if `source_user` follows `target_user`. `False` otherwise.
     """
     data = {'user_a': source_user, 'user_b': target_user}
@@ -119,13 +124,14 @@ def show(server_url: str,
     """Returns detailed information about the relationship between two
     arbitrary users.
 
-:param server_url: {server_url}
-:param username: (optional) {username}
-:param password: (optional) {password}
-:param source_id: (optional) {source_id}
-:param source_screen_name: (optional) {source_screen_name}
-:param target_id: (optional) {target_id}
-:param target_screen_name: (optional) {target_screen_name}
+:param str server_url: {server_url}
+:param str username: (optional) {username}
+:param str password: (optional) {password}
+:param int source_id: (optional) {source_id}
+:param str source_screen_name: (optional) {source_screen_name}
+:param int target_id: (optional) {target_id}
+:param str target_screen_name: (optional) {target_screen_name}
+:rtype: dict
 :return: dict with following structure:
 
 ::

@@ -19,10 +19,11 @@ def upload(server_url: str,
            filename: str) -> Tuple[str, str]:
     """Uploads media to server and returns attachment URL and file URL.
 
-:param server_url: {server_url}
-:param username: {username}
-:param password: {password}
-:param filename: name of the file to upload
+:param str server_url: {server_url}
+:param str username: {username}
+:param str password: {password}
+:param str filename: name of the file to upload
+:rtype: tuple
 :return: tuple with attachment URL and file URL respectively.
     """
     media = {'media': open(filename, 'rb')}

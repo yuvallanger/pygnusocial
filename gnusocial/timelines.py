@@ -24,12 +24,13 @@ def public(server_url: str,
     """Returns the most recent notices, including repeats if they exist, from
     non-protected users.
 
-:param server_url: {server_url}
-:param username: (optional) {username}
-:param password: (optional) {password}
-:param since_id: (optional) {since_id}
-:param max_id: (optional) {max_id}
-:param count: (optional) {count}
+:param str server_url: {server_url}
+:param str username: (optional) {username}
+:param str password: (optional) {password}
+:param int since_id: (optional) {since_id}
+:param int max_id: (optional) {max_id}
+:param int count: (optional) {count}
+:rtype: list
 :return: list of dicts with following structure:
 
 ::
@@ -55,12 +56,13 @@ def home(server_url: str, username: str, password: str, **kwargs) -> list:
     posted by the authenticating user and the users they follow. This is the
     same timeline seen by a user when they login to their instance.
 
-:param server_url: {server_url}
-:param username: {username}
-:param password: {password}
-:param since_id: (optional) {since_id}
-:param max_id: (optional) {max_id}
-:param count: (optional) {count}
+:param str server_url: {server_url}
+:param str username: (optional) {username}
+:param str password: (optional) {password}
+:param int since_id: (optional) {since_id}
+:param int max_id: (optional) {max_id}
+:param int count: (optional) {count}
+:rtype: list
 :return: list of dicts with following structure:
 
 ::
@@ -89,14 +91,15 @@ def friends(server_url: str,
             **kwargs) -> list:
     """Alias of statuses/home_timeline for the specified user.
 
-:param server_url: {server_url}
-:param username: (optional) {username}
-:param password: (optional) {password}
-:param since_id: (optional) {since_id}
-:param max_id: (optional) {max_id}
-:param count: (optional) {count}
-:param user_id: (optional) {user_id}
-:param screen_name: (optional) {screen_name}
+:param str server_url: {server_url}
+:param str username: (optional) {username}
+:param str password: (optional) {password}
+:param int since_id: (optional) {since_id}
+:param int max_id: (optional) {max_id}
+:param int count: (optional) {count}
+:param int user_id: (optional) {user_id}
+:param str screen_name: (optional) {screen_name}
+:rtype: list
 :return: list of dicts with following structure:
 
 ::
@@ -130,14 +133,15 @@ def user(server_url: str,
     visible if they are not protected, or if the authenticating user's follow
     request was accepted by the protected user.
 
-:param server_url: {server_url}
-:param username: (optional) {username}
-:param password: (optional) {password}
-:param since_id: (optional) {since_id}
-:param max_id: (optional) {max_id}
-:param count: (optional) {count}
-:param user_id: (optional) {user_id}
-:param screen_name: (optional) {screen_name}
+:param str server_url: {server_url}
+:param str username: (optional) {username}
+:param str password: (optional) {password}
+:param int since_id: (optional) {since_id}
+:param int max_id: (optional) {max_id}
+:param int count: (optional) {count}
+:param int user_id: (optional) {user_id}
+:param str screen_name: (optional) {screen_name}
+:rtype: list
 :return: list of dicts with following structure:
 
 ::
@@ -168,14 +172,15 @@ def mentions(server_url: str,
     """Returns the most recent mentions (notices containing @username) for
     the authenticating user or specified user.
 
-:param server_url: {server_url}
-:param username: (optional) {username}
-:param password: (optional) {password}
-:param since_id: (optional) {since_id}
-:param max_id: (optional) {max_id}
-:param count: (optional) {count}
-:param user_id: (optional) {user_id}
-:param screen_name: (optional) {screen_name}
+:param str server_url: {server_url}
+:param str username: (optional) {username}
+:param str password: (optional) {password}
+:param int since_id: (optional) {since_id}
+:param int max_id: (optional) {max_id}
+:param int count: (optional) {count}
+:param int user_id: (optional) {user_id}
+:param str screen_name: (optional) {screen_name}
+:rtype: list
 :return: list of dicts with following structure:
 
 ::
@@ -205,14 +210,15 @@ def replies(server_url: str,
             **kwargs) -> list:
     """Alias of statuses/mentions
 
-:param server_url: {server_url}
-:param username: (optional) {username}
-:param password: (optional) {password}
-:param since_id: (optional) {since_id}
-:param max_id: (optional) {max_id}
-:param count: (optional) {count}
-:param user_id: (optional) {user_id}
-:param screen_name: (optional) {screen_name}
+:param str server_url: {server_url}
+:param str username: (optional) {username}
+:param str password: (optional) {password}
+:param int since_id: (optional) {since_id}
+:param int max_id: (optional) {max_id}
+:param int count: (optional) {count}
+:param int user_id: (optional) {user_id}
+:param str screen_name: (optional) {screen_name}
+:rtype: list
 :return: list of dicts with following structure:
 
 ::

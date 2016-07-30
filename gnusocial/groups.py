@@ -40,14 +40,15 @@ def timeline(server_url: str,
              **kwargs) -> list:
     """Shows a group's timeline. Similar to other timeline resources.
 
-:param server_url: {server_url}
-:param username: (optional) {username}
-:param password: (optional) {password}
-:param id: (optional) {id}
-:param nickname: (optional) {nickname}
-:param since_id: (optional) {since_id}
-:param max_id: (optional) {max_id}
-:param count: (optional) {count}
+:param str server_url: {server_url}
+:param str username: (optional) {username}
+:param str password: (optional) {password}
+:param int id: (optional) {id}
+:param str nickname: (optional) {nickname}
+:param int since_id: (optional) {since_id}
+:param int max_id: (optional) {max_id}
+:param int count: (optional) {count}
+:rtype: list
 :return: list of dicts with following sctructure:
 
 ::
@@ -74,11 +75,12 @@ def show(server_url: str,
          **kwargs) -> dict:
     """Show a group's profile.
 
-:param server_url: {server_url}
-:param username: (optional) {username}
-:param password: (optional) {password}
-:param id: (optional) {id}
-:param nickname: (optional) {nickname}
+:param str server_url: {server_url}
+:param str username: (optional) {username}
+:param str password: (optional) {password}
+:param int id: (optional) {id}
+:param str nickname: (optional) {nickname}
+:rtype: dict
 :return: dict with following sctructure:
 
 ::
@@ -108,15 +110,17 @@ def create(server_url: str,
            **kwargs) -> dict:
     """Create a new group.
 
-:param server_url: {server_url}
-:param username: {username}
-:param password: {password}
-:param nickname: the name of the new group
-:param full_name: (optional) {full_name}
-:param homepage: (optional) {homepage}
-:param description: (optional) {description}
-:param location: (optional) {location}
+:param str server_url: {server_url}
+:param str username: {username}
+:param str password: {password}
+:param str nickname: the name of the new group
+:param str full_name: (optional) {full_name}
+:param str homepage: (optional) {homepage}
+:param str description: (optional) {description}
+:param str location: (optional) {location}
 :param aliases: (optional) {aliases}
+:type aliases: list of strs
+:rtype: dict
 :return: dict with following sctructure:
 
 ::
@@ -146,11 +150,12 @@ def join(server_url: str,
          **kwargs) -> dict:
     """Join a group.
 
-:param server_url: {server_url}
-:param username: {username}
-:param password: {password}
-:param id: (optional) {id}
-:param nickname: (optional) {nickname}
+:param str server_url: {server_url}
+:param str username: {username}
+:param str password: {password}
+:param int id: (optional) {id}
+:param str nickname: (optional) {nickname}
+:rtype: dict
 :return: dict with following sctructure:
 
 ::
@@ -177,11 +182,12 @@ def leave(server_url: str,
           **kwargs) -> dict:
     """Leave a group.
 
-:param server_url: {server_url}
-:param username: {username}
-:param password: {password}
-:param id: (optional) {id}
-:param nickname: (optional) {nickname}
+:param str server_url: {server_url}
+:param str username: {username}
+:param str password: {password}
+:param int id: (optional) {id}
+:param str nickname: (optional) {nickname}
+:rtype: dict
 :return: dict with following sctructure:
 
 ::
@@ -207,10 +213,11 @@ def list_all(server_url: str,
              **kwargs) -> list:
     """List all local groups.
 
-:param server_url: {server_url}
-:param username: (optional) {username}
-:param password: (optional) {password}
-:param count: (optional) {count}
+:param str server_url: {server_url}
+:param str username: (optional) {username}
+:param str password: (optional) {password}
+:param int count: (optional) {count}
+:rtype: list
 :return: list of dicts with following sctructure:
 
 ::
@@ -237,12 +244,13 @@ def user_groups(server_url: str,
                 **kwargs) -> list:
     """Show the groups a given user is a member of.
 
-:param server_url: {server_url}
-:param username: (optional) {username}
-:param password: (optional) {password}
-:param user_id: (optional) {user_id}
-:param screen_name: (optional) {screen_name}
-:param count: (optional) {count}
+:param str server_url: {server_url}
+:param str username: (optional) {username}
+:param str password: (optional) {password}
+:param int user_id: (optional) {user_id}
+:param str screen_name: (optional) {screen_name}
+:param int count: (optional) {count}
+:rtype: list
 :return: list of dicts with following sctructure:
 
 ::
@@ -270,12 +278,13 @@ def members(server_url: str,
             **kwargs) -> list:
     """List the members of a given group.
 
-:param server_url: {server_url}
-:param username: (optional) {username}
-:param password: (optional) {password}
-:param id: (optional) {id}
-:param nickname: (optional) {nickname}
-:param count: (optional) {count}
+:param str server_url: {server_url}
+:param str username: (optional) {username}
+:param str password: (optional) {password}
+:param int id: (optional) {id}
+:param str nickname: (optional) {nickname}
+:param int count: (optional) {count}
+:rtype: list
 :return: list of dicts with following sctructure:
 
 ::
@@ -303,13 +312,14 @@ def is_member(server_url: str,
               **kwargs) -> dict:
     """Determine whether a given user is a member of a given group.
 
-:param server_url: {server_url}
-:param username: (optional) {username}
-:param password: (optional) {password}
-:param user_id: (optional) {user_id}
-:param screen_name: (optional) {screen_name}
-:param group_id: (optional) {group_id}
-:param group_name: (optional) {group_name}
+:param str server_url: {server_url}
+:param str username: (optional) {username}
+:param str password: (optional) {password}
+:param int user_id: (optional) {user_id}
+:param str screen_name: (optional) {screen_name}
+:param int group_id: (optional) {group_id}
+:param str group_name: (optional) {group_name}
+:rtype: dict
 :return: a dict with following structure:
 
 ::
@@ -340,12 +350,13 @@ def admins(server_url: str,
            **kwargs) -> list:
     """List the admins of a given group.
 
-:param server_url: {server_url}
-:param username: (optional) {username}
-:param password: (optional) {password}
-:param id: (optional) {id}
-:param nickname: (optional) {nickname}
-:param count: (optional) {count}
+:param str server_url: {server_url}
+:param str username: (optional) {username}
+:param str password: (optional) {password}
+:param int id: (optional) {id}
+:param str nickname: (optional) {nickname}
+:param int count: (optional) {count}
+:rtype: list
 :return: list of dicts with following sctructure:
 
 ::

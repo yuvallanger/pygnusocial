@@ -25,14 +25,15 @@ def friends(server_url: str,
     """Returns IDs of users the auntenticated or
     specified user is following (otherwise known as their "friends").
 
-:param server_url: {server_url}
-:param username: (optional) {username}
-:param password: (optional) {password}
-:param user_id: (optional) {user_id}
-:param screen_name: (optional) {screen_name}
-:param count: (optional) {count}
-:param since_id: (optional) {since_id}
-:param max_id: (optional) {max_id}
+:param str server_url: {server_url}
+:param str username: (optional) {username}
+:param str password: (optional) {password}
+:param int user_id: (optional) {user_id}
+:param str screen_name: (optional) {screen_name}
+:param int count: (optional) {count}
+:param int since_id: (optional) {since_id}
+:param int max_id: (optional) {max_id}
+:rtype: list
 :return: a list of user IDs
     """
     _check_user_target(username, **kwargs)
@@ -58,14 +59,15 @@ def followers(server_url: str,
     """Returns IDs of users the auntenticated or
     specified user is followed by (otherwise known as their "friends").
 
-:param server_url: {server_url}
-:param username: (optional) {username}
-:param password: (optional) {password}
-:param user_id: (optional) {user_id}
-:param screen_name: (optional) {screen_name}
-:param count: (optional) {count}
-:param since_id: (optional) {since_id}
-:param max_id: (optional) {max_id}
+:param str server_url: {server_url}
+:param str username: (optional) {username}
+:param str password: (optional) {password}
+:param int user_id: (optional) {user_id}
+:param str screen_name: (optional) {screen_name}
+:param int count: (optional) {count}
+:param int since_id: (optional) {since_id}
+:param int max_id: (optional) {max_id}
+:rtype: list
 :return: a list of user IDs
     """
     _check_user_target(username, **kwargs)
