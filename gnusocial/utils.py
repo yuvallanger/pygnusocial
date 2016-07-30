@@ -6,7 +6,7 @@ Module with various utility functions and exception classes.
 """
 import re
 from typing import Callable
-from functools import partial, wraps
+from functools import partial
 import requests
 from requests.auth import HTTPBasicAuth
 from .docs import _SERVER_URL_DOC, _CONFIG_DICT
@@ -17,11 +17,8 @@ DOMAIN_REGEX = re.compile(r"http(s|)://(www\.|)(.+?)(/.*|)$")
 def docstring(*args, **kwargs):
     """Decorator function to fill in docstring templates."""
     def _wrap(obj):
-        @wraps(obj)
-        def _wrapped_obj(*args, **kwargs):
-            return obj(*args, **kwargs)
-        _wrapped_obj.__doc__ = _wrapped_obj.__doc__.format(*args, **kwargs)
-        return _wrapped_obj
+        obj.__doc__ = obj.__doc__.format(*args, **kwargs)
+        return obj
     return _wrap
 
 
