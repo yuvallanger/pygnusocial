@@ -6,19 +6,19 @@ Module with friendship resources.
 """
 from typing import Union
 from .utils import _post_request, _check_user_target, docstring
-from .docs import (SERVER_URL_DOC, USERNAME_DOC, PASSWORD_DOC, USER_DICT,
-                   USER_ID_DOC, SCREEN_NAME_DOC, SOURCE_USER_DOC,
-                   TARGET_USER_DOC, SOURCE_ID_DOC, TARGET_ID_DOC,
-                   SOURCE_SCREEN_NAME_DOC, TARGET_SCREEN_NAME_DOC,
-                   RELATIONSHIP_DICT)
+from .docs import (_SERVER_URL_DOC, _USERNAME_DOC, _PASSWORD_DOC, _USER_DICT,
+                   _USER_ID_DOC, _SCREEN_NAME_DOC, _SOURCE_USER_DOC,
+                   _TARGET_USER_DOC, _SOURCE_ID_DOC, _TARGET_ID_DOC,
+                   _SOURCE_SCREEN_NAME_DOC, _TARGET_SCREEN_NAME_DOC,
+                   _RELATIONSHIP_DICT)
 
 
-@docstring(server_url=SERVER_URL_DOC,
-           username=USERNAME_DOC,
-           password=PASSWORD_DOC,
-           user_id=USER_ID_DOC,
-           screen_name=SCREEN_NAME_DOC,
-           user_dict=USER_DICT)
+@docstring(server_url=_SERVER_URL_DOC,
+           username=_USERNAME_DOC,
+           password=_PASSWORD_DOC,
+           user_id=_USER_ID_DOC,
+           screen_name=_SCREEN_NAME_DOC,
+           user_dict=_USER_DICT)
 def create(server_url: str,
            username: str,
            password: str,
@@ -26,13 +26,16 @@ def create(server_url: str,
     """Allows the authenticating users to follow the user specified in the
     user_id or screen_name parameter.
 
-    :param server_url: {server_url}
-    :param username: (optional) {username}
-    :param password: (optional) {password}
-    :param user_id: (optional) {user_id}
-    :param screen_name: (optional) {screen_name}
-    :return: dict with following structure:
-        {user_dict}
+:param server_url: {server_url}
+:param username: (optional) {username}
+:param password: (optional) {password}
+:param user_id: (optional) {user_id}
+:param screen_name: (optional) {screen_name}
+:return: dict with following structure:
+
+::
+
+    {user_dict}
     """
     _check_user_target(**kwargs)
     return _post_request(server_url=server_url,
@@ -42,12 +45,12 @@ def create(server_url: str,
                          data=kwargs).json()
 
 
-@docstring(server_url=SERVER_URL_DOC,
-           username=USERNAME_DOC,
-           password=PASSWORD_DOC,
-           user_id=USER_ID_DOC,
-           screen_name=SCREEN_NAME_DOC,
-           user_dict=USER_DICT)
+@docstring(server_url=_SERVER_URL_DOC,
+           username=_USERNAME_DOC,
+           password=_PASSWORD_DOC,
+           user_id=_USER_ID_DOC,
+           screen_name=_SCREEN_NAME_DOC,
+           user_dict=_USER_DICT)
 def destroy(server_url: str,
             username: str,
             password: str,
@@ -55,13 +58,16 @@ def destroy(server_url: str,
     """Allows the authenticating users to unfollow the user specified in the
     user_id or screen_name parameter.
 
-    :param server_url: {server_url}
-    :param username: (optional) {username}
-    :param password: (optional) {password}
-    :param user_id: (optional) {user_id}
-    :param screen_name: (optional) {screen_name}
-    :return: dict with following structure:
-        {user_dict}
+:param server_url: {server_url}
+:param username: (optional) {username}
+:param password: (optional) {password}
+:param user_id: (optional) {user_id}
+:param screen_name: (optional) {screen_name}
+:return: dict with following structure:
+
+::
+
+    {user_dict}
     """
     _check_user_target(**kwargs)
     return _post_request(server_url=server_url,
@@ -71,11 +77,11 @@ def destroy(server_url: str,
                          data=kwargs).json()
 
 
-@docstring(server_url=SERVER_URL_DOC,
-           username=USERNAME_DOC,
-           password=PASSWORD_DOC,
-           source_user=SOURCE_USER_DOC,
-           target_user=TARGET_USER_DOC)
+@docstring(server_url=_SERVER_URL_DOC,
+           username=_USERNAME_DOC,
+           password=_PASSWORD_DOC,
+           source_user=_SOURCE_USER_DOC,
+           target_user=_TARGET_USER_DOC)
 def exists(server_url: str,
            source_user: Union[str, int],
            target_user: Union[str, int],
@@ -83,12 +89,12 @@ def exists(server_url: str,
            password: str='') -> bool:
     """Shows if source_user follows target_user.
 
-    :param server_url: {server_url}
-    :param source_user: User that is following. Can be an ID or screen name.
-    :param target_user: User that is followed. Can be an ID or screen name.
-    :param username: (optional) {username}
-    :param password: (optional) {password}
-    :return: True if source_user follows target_user. False otherwise.
+:param server_url: {server_url}
+:param source_user: User that is following. Can be an ID or screen name.
+:param target_user: User that is followed. Can be an ID or screen name.
+:param username: (optional) {username}
+:param password: (optional) {password}
+:return: `True` if `source_user` follows `target_user`. `False` otherwise.
     """
     data = {'user_a': source_user, 'user_b': target_user}
     return _post_request(server_url=server_url,
@@ -98,14 +104,14 @@ def exists(server_url: str,
                          data=data).json()
 
 
-@docstring(server_url=SERVER_URL_DOC,
-           username=USERNAME_DOC,
-           password=PASSWORD_DOC,
-           source_id=SOURCE_ID_DOC,
-           source_screen_name=SOURCE_SCREEN_NAME_DOC,
-           target_id=TARGET_ID_DOC,
-           target_screen_name=TARGET_SCREEN_NAME_DOC,
-           relationship_dict=RELATIONSHIP_DICT)
+@docstring(server_url=_SERVER_URL_DOC,
+           username=_USERNAME_DOC,
+           password=_PASSWORD_DOC,
+           source_id=_SOURCE_ID_DOC,
+           source_screen_name=_SOURCE_SCREEN_NAME_DOC,
+           target_id=_TARGET_ID_DOC,
+           target_screen_name=_TARGET_SCREEN_NAME_DOC,
+           relationship_dict=_RELATIONSHIP_DICT)
 def show(server_url: str,
          username: str='',
          password: str='',
@@ -113,15 +119,18 @@ def show(server_url: str,
     """Returns detailed information about the relationship between two
     arbitrary users.
 
-    :param server_url: {server_url}
-    :param username: (optional) {username}
-    :param password: (optional) {password}
-    :param source_id: (optional) {source_id}
-    :param source_screen_name: (optional) {source_screen_name}
-    :param target_id: (optional) {target_id}
-    :param target_screen_name: (optional) {target_screen_name}
-    :return: dict with following structure:
-        {relationship_dict}
+:param server_url: {server_url}
+:param username: (optional) {username}
+:param password: (optional) {password}
+:param source_id: (optional) {source_id}
+:param source_screen_name: (optional) {source_screen_name}
+:param target_id: (optional) {target_id}
+:param target_screen_name: (optional) {target_screen_name}
+:return: dict with following structure:
+
+::
+
+    {relationship_dict}
     """
     has_target_id = 'target_id' in kwargs
     has_target_screen_name = 'target_screen_name' in kwargs

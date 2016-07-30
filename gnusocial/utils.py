@@ -9,7 +9,7 @@ from typing import Callable
 from functools import partial, wraps
 import requests
 from requests.auth import HTTPBasicAuth
-from .docs import SERVER_URL_DOC, CONFIG_DICT
+from .docs import _SERVER_URL_DOC, _CONFIG_DICT
 
 DOMAIN_REGEX = re.compile(r"http(s|)://(www\.|)(.+?)(/.*|)$")
 
@@ -28,7 +28,7 @@ def docstring(*args, **kwargs):
 class ServerURLError(Exception):
     """Exception class for errors in server URL.
 
-    :param server_url: URL of the server
+:param server_url: URL of the server
     """
     def __init__(self, server_url: str) -> None:
         self.server_url = server_url
@@ -44,9 +44,9 @@ class ServerURLError(Exception):
 class AuthenticationError(Exception):
     """Exception class for authentication errors.
 
-    :param server_url: URL of the server
-    :param username: name of the authenticating user
-    :param password: password of the authenticating user
+:param server_url: URL of the server
+:param username: name of the authenticating user
+:param password: password of the authenticating user
     """
     def __init__(self, server_url: str, username: str, password: str) -> None:
         self.server_url = server_url
@@ -144,13 +144,17 @@ def _post_request(server_url: str,
                     **kwargs)
 
 
-@docstring(SERVER_URL_DOC, CONFIG_DICT)
+@docstring(server_url=_SERVER_URL_DOC, config_dict=_CONFIG_DICT)
 def config(server_url: str) -> dict:
     """Returns server configuration.
 
-    :param server_url: {}
-    :return: dict with following structure:
-        {}
+:param server_url: {server_url}
+:return: dict with following structure:
+
+::
+
+    {config_dict}
+
     """
     return _get_request(server_url, 'statusnet/config').json()
 

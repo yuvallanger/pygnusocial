@@ -5,18 +5,18 @@ gnusocial.timelines
 Module with timeline resources
 """
 from .utils import _get_request, _check_user_target, docstring
-from .docs import (SERVER_URL_DOC, USERNAME_DOC, PASSWORD_DOC, SINCE_ID_DOC,
-                   MAX_ID_DOC, STATUSES_COUNT, STATUS_DICT, SCREEN_NAME_DOC,
-                   USER_ID_DOC)
+from .docs import (_SERVER_URL_DOC, _USERNAME_DOC, _PASSWORD_DOC, _MAX_ID_DOC,
+                   _SINCE_ID_DOC, _STATUSES_COUNT, _STATUS_DICT, _USER_ID_DOC,
+                   _SCREEN_NAME_DOC)
 
 
-@docstring(server_url=SERVER_URL_DOC,
-           username=USERNAME_DOC,
-           password=PASSWORD_DOC,
-           since_id=SINCE_ID_DOC,
-           max_id=MAX_ID_DOC,
-           count=STATUSES_COUNT,
-           status_dict=STATUS_DICT)
+@docstring(server_url=_SERVER_URL_DOC,
+           username=_USERNAME_DOC,
+           password=_PASSWORD_DOC,
+           since_id=_SINCE_ID_DOC,
+           max_id=_MAX_ID_DOC,
+           count=_STATUSES_COUNT,
+           status_dict=_STATUS_DICT)
 def public(server_url: str,
            username: str='',
            password: str='',
@@ -24,14 +24,17 @@ def public(server_url: str,
     """Returns the most recent notices, including repeats if they exist, from
     non-protected users.
 
-    :param server_url: {server_url}
-    :param username: (optional) {username}
-    :param password: (optional) {password}
-    :param since_id: (optional) {since_id}
-    :param max_id: (optional) {max_id}
-    :param count: (optional) {count}
-    :return: list of dicts with following structure:
-        {status_dict}
+:param server_url: {server_url}
+:param username: (optional) {username}
+:param password: (optional) {password}
+:param since_id: (optional) {since_id}
+:param max_id: (optional) {max_id}
+:param count: (optional) {count}
+:return: list of dicts with following structure:
+
+::
+
+    {status_dict}
     """
     return _get_request(server_url=server_url,
                         resource_path='statuses/public_timeline',
@@ -40,26 +43,29 @@ def public(server_url: str,
                         params=kwargs).json()
 
 
-@docstring(server_url=SERVER_URL_DOC,
-           username=USERNAME_DOC,
-           password=PASSWORD_DOC,
-           since_id=SINCE_ID_DOC,
-           max_id=MAX_ID_DOC,
-           count=STATUSES_COUNT,
-           status_dict=STATUS_DICT)
+@docstring(server_url=_SERVER_URL_DOC,
+           username=_USERNAME_DOC,
+           password=_PASSWORD_DOC,
+           since_id=_SINCE_ID_DOC,
+           max_id=_MAX_ID_DOC,
+           count=_STATUSES_COUNT,
+           status_dict=_STATUS_DICT)
 def home(server_url: str, username: str, password: str, **kwargs) -> list:
     """Returns the most recent notices, including repeats if they exist,
     posted by the authenticating user and the users they follow. This is the
     same timeline seen by a user when they login to their instance.
 
-    :param server_url: {server_url}
-    :param username: {username}
-    :param password: {password}
-    :param since_id: (optional) {since_id}
-    :param max_id: (optional) {max_id}
-    :param count: (optional) {count}
-    :return: list of dicts with following structure:
-        {status_dict}
+:param server_url: {server_url}
+:param username: {username}
+:param password: {password}
+:param since_id: (optional) {since_id}
+:param max_id: (optional) {max_id}
+:param count: (optional) {count}
+:return: list of dicts with following structure:
+
+::
+
+    {status_dict}
     """
     return _get_request(server_url=server_url,
                         resource_path='statuses/home_timeline',
@@ -68,31 +74,34 @@ def home(server_url: str, username: str, password: str, **kwargs) -> list:
                         params=kwargs).json()
 
 
-@docstring(server_url=SERVER_URL_DOC,
-           username=USERNAME_DOC,
-           password=PASSWORD_DOC,
-           since_id=SINCE_ID_DOC,
-           max_id=MAX_ID_DOC,
-           count=STATUSES_COUNT,
-           status_dict=STATUS_DICT,
-           user_id=USER_ID_DOC,
-           screen_name=SCREEN_NAME_DOC)
+@docstring(server_url=_SERVER_URL_DOC,
+           username=_USERNAME_DOC,
+           password=_PASSWORD_DOC,
+           since_id=_SINCE_ID_DOC,
+           max_id=_MAX_ID_DOC,
+           count=_STATUSES_COUNT,
+           status_dict=_STATUS_DICT,
+           user_id=_USER_ID_DOC,
+           screen_name=_SCREEN_NAME_DOC)
 def friends(server_url: str,
             username: str='',
             password: str='',
             **kwargs) -> list:
     """Alias of statuses/home_timeline for the specified user.
 
-    :param server_url: {server_url}
-    :param username: (optional) {username}
-    :param password: (optional) {password}
-    :param since_id: (optional) {since_id}
-    :param max_id: (optional) {max_id}
-    :param count: (optional) {count}
-    :param user_id: (optional) {user_id}
-    :param screen_name: (optional) {screen_name}
-    :return: list of dicts with following structure:
-        {status_dict}
+:param server_url: {server_url}
+:param username: (optional) {username}
+:param password: (optional) {password}
+:param since_id: (optional) {since_id}
+:param max_id: (optional) {max_id}
+:param count: (optional) {count}
+:param user_id: (optional) {user_id}
+:param screen_name: (optional) {screen_name}
+:return: list of dicts with following structure:
+
+::
+
+    {status_dict}
     """
     _check_user_target(username, **kwargs)
     return _get_request(server_url=server_url,
@@ -102,15 +111,15 @@ def friends(server_url: str,
                         params=kwargs).json()
 
 
-@docstring(server_url=SERVER_URL_DOC,
-           username=USERNAME_DOC,
-           password=PASSWORD_DOC,
-           since_id=SINCE_ID_DOC,
-           max_id=MAX_ID_DOC,
-           count=STATUSES_COUNT,
-           status_dict=STATUS_DICT,
-           user_id=USER_ID_DOC,
-           screen_name=SCREEN_NAME_DOC)
+@docstring(server_url=_SERVER_URL_DOC,
+           username=_USERNAME_DOC,
+           password=_PASSWORD_DOC,
+           since_id=_SINCE_ID_DOC,
+           max_id=_MAX_ID_DOC,
+           count=_STATUSES_COUNT,
+           status_dict=_STATUS_DICT,
+           user_id=_USER_ID_DOC,
+           screen_name=_SCREEN_NAME_DOC)
 def user(server_url: str,
          username: str='',
          password: str='',
@@ -121,16 +130,19 @@ def user(server_url: str,
     visible if they are not protected, or if the authenticating user's follow
     request was accepted by the protected user.
 
-    :param server_url: {server_url}
-    :param username: (optional) {username}
-    :param password: (optional) {password}
-    :param since_id: (optional) {since_id}
-    :param max_id: (optional) {max_id}
-    :param count: (optional) {count}
-    :param user_id: (optional) {user_id}
-    :param screen_name: (optional) {screen_name}
-    :return: list of dicts with following structure:
-        {status_dict}
+:param server_url: {server_url}
+:param username: (optional) {username}
+:param password: (optional) {password}
+:param since_id: (optional) {since_id}
+:param max_id: (optional) {max_id}
+:param count: (optional) {count}
+:param user_id: (optional) {user_id}
+:param screen_name: (optional) {screen_name}
+:return: list of dicts with following structure:
+
+::
+
+    {status_dict}
     """
     _check_user_target(username, **kwargs)
     return _get_request(server_url=server_url,
@@ -140,15 +152,15 @@ def user(server_url: str,
                         params=kwargs).json()
 
 
-@docstring(server_url=SERVER_URL_DOC,
-           username=USERNAME_DOC,
-           password=PASSWORD_DOC,
-           since_id=SINCE_ID_DOC,
-           max_id=MAX_ID_DOC,
-           count=STATUSES_COUNT,
-           status_dict=STATUS_DICT,
-           user_id=USER_ID_DOC,
-           screen_name=SCREEN_NAME_DOC)
+@docstring(server_url=_SERVER_URL_DOC,
+           username=_USERNAME_DOC,
+           password=_PASSWORD_DOC,
+           since_id=_SINCE_ID_DOC,
+           max_id=_MAX_ID_DOC,
+           count=_STATUSES_COUNT,
+           status_dict=_STATUS_DICT,
+           user_id=_USER_ID_DOC,
+           screen_name=_SCREEN_NAME_DOC)
 def mentions(server_url: str,
              username: str='',
              password: str='',
@@ -156,16 +168,19 @@ def mentions(server_url: str,
     """Returns the most recent mentions (notices containing @username) for
     the authenticating user or specified user.
 
-    :param server_url: {server_url}
-    :param username: (optional) {username}
-    :param password: (optional) {password}
-    :param since_id: (optional) {since_id}
-    :param max_id: (optional) {max_id}
-    :param count: (optional) {count}
-    :param user_id: (optional) {user_id}
-    :param screen_name: (optional) {screen_name}
-    :return: list of dicts with following structure:
-        {status_dict}
+:param server_url: {server_url}
+:param username: (optional) {username}
+:param password: (optional) {password}
+:param since_id: (optional) {since_id}
+:param max_id: (optional) {max_id}
+:param count: (optional) {count}
+:param user_id: (optional) {user_id}
+:param screen_name: (optional) {screen_name}
+:return: list of dicts with following structure:
+
+::
+
+    {status_dict}
     """
     _check_user_target(username, **kwargs)
     return _get_request(server_url=server_url,
@@ -175,31 +190,34 @@ def mentions(server_url: str,
                         params=kwargs).json()
 
 
-@docstring(server_url=SERVER_URL_DOC,
-           username=USERNAME_DOC,
-           password=PASSWORD_DOC,
-           since_id=SINCE_ID_DOC,
-           max_id=MAX_ID_DOC,
-           count=STATUSES_COUNT,
-           status_dict=STATUS_DICT,
-           user_id=USER_ID_DOC,
-           screen_name=SCREEN_NAME_DOC)
+@docstring(server_url=_SERVER_URL_DOC,
+           username=_USERNAME_DOC,
+           password=_PASSWORD_DOC,
+           since_id=_SINCE_ID_DOC,
+           max_id=_MAX_ID_DOC,
+           count=_STATUSES_COUNT,
+           status_dict=_STATUS_DICT,
+           user_id=_USER_ID_DOC,
+           screen_name=_SCREEN_NAME_DOC)
 def replies(server_url: str,
             username: str='',
             password: str='',
             **kwargs) -> list:
     """Alias of statuses/mentions
 
-    :param server_url: {server_url}
-    :param username: (optional) {username}
-    :param password: (optional) {password}
-    :param since_id: (optional) {since_id}
-    :param max_id: (optional) {max_id}
-    :param count: (optional) {count}
-    :param user_id: (optional) {user_id}
-    :param screen_name: (optional) {screen_name}
-    :return: list of dicts with following structure:
-        {status_dict}
+:param server_url: {server_url}
+:param username: (optional) {username}
+:param password: (optional) {password}
+:param since_id: (optional) {since_id}
+:param max_id: (optional) {max_id}
+:param count: (optional) {count}
+:param user_id: (optional) {user_id}
+:param screen_name: (optional) {screen_name}
+:return: list of dicts with following structure:
+
+::
+
+    {status_dict}
     """
     _check_user_target(username, **kwargs)
     return _get_request(server_url=server_url,
