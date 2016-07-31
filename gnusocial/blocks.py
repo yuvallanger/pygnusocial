@@ -44,8 +44,12 @@ def create(server_url: str,
                          data=kwargs).json()
 
 
-@docstring(_SERVER_URL_DOC, _USERNAME_DOC, _PASSWORD_DOC, _USER_ID_DOC,
-           _SCREEN_NAME_DOC, _USER_DICT)
+@docstring(server_url=_SERVER_URL_DOC,
+           username=_USERNAME_DOC,
+           password=_PASSWORD_DOC,
+           user_id=_USER_ID_DOC,
+           screen_name=_SCREEN_NAME_DOC,
+           user_dict=_USER_DICT)
 def destroy(server_url: str,
             username: str,
             password: str,

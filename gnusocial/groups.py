@@ -324,9 +324,9 @@ def is_member(server_url: str,
 
 ::
 
-    {
+    {{
         'is_member': bool
-    }
+    }}
     """
     _check_user_target(username, **kwargs)
     _check_group_id_and_name(**kwargs)
