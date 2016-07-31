@@ -9,7 +9,7 @@ from typing import Callable
 from functools import partial
 import requests
 from requests.auth import HTTPBasicAuth
-from .docs import _SERVER_URL_DOC, _CONFIG_DICT
+from .docs import _SERVER_URL_DOC, _CONFIG_DICT, _USERNAME_DOC, _PASSWORD_DOC
 
 DOMAIN_REGEX = re.compile(r"http(s|)://(www\.|)(.+?)(/.*|)$")
 
@@ -22,10 +22,11 @@ def docstring(*args, **kwargs):
     return _wrap
 
 
+@docstring(server_url=_SERVER_URL_DOC)
 class ServerURLError(Exception):
     """Exception class for errors in server URL.
 
-:param str server_url: URL of the server
+:param str server_url: {server_url}
     """
     def __init__(self, server_url: str) -> None:
         self.server_url = server_url
@@ -38,12 +39,15 @@ class ServerURLError(Exception):
         return 'Invalid server URL %s' % self.server_url
 
 
+@docstring(server_url=_SERVER_URL_DOC,
+           username=_USERNAME_DOC,
+           password=_PASSWORD_DOC)
 class AuthenticationError(Exception):
     """Exception class for authentication errors.
 
-:param str server_url: URL of the server
-:param str username: name of the authenticating user
-:param str password: password of the authenticating user
+:param str server_url: {server_url}
+:param str username: {username}
+:param str password: {password}
     """
     def __init__(self, server_url: str, username: str, password: str) -> None:
         self.server_url = server_url
