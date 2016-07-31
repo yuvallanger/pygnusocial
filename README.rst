@@ -10,6 +10,13 @@ or
 
 ``python3 setup.py install``
 
+
+Documentation
+=============
+
+Documentation is hosted at https://pythonhosted.org/gnusocial/
+
+
 Basic usage
 -----------
 
