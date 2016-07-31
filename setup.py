@@ -4,15 +4,13 @@ from setuptools import setup
 try:
     codecs.lookup('mbcs')
 except LookupError:
-    ascii = codecs.lookup('ascii')
-
-    def func(name, enc=ascii):
+    def func(name, enc=codecs.lookup('ascii')):
         return {True: enc}.get(name == 'mbcs')
     codecs.register(func)
 
 
 setup(name='gnusocial',
-      version='1.0',
+      version='1.0.0',
       description='GNU Social API for Python 3',
       author='dtluna',
       author_email='dtluna@openmailbox.org',
