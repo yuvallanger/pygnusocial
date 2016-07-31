@@ -12,7 +12,7 @@ or
 
 
 Documentation
-=============
+-------------
 
 Documentation is hosted at https://pythonhosted.org/gnusocial/
 
