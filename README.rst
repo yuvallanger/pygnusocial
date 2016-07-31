@@ -4,6 +4,10 @@ pygnusocial
 Installation
 ------------
 
+``pip install gnusocial``
+
+or
+
 ``python3 setup.py install``
 
 Basic usage
