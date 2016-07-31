@@ -1,0 +1,2 @@
+.. automodule:: gnusocial.friends
+   :members:

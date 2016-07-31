@@ -1,0 +1,2 @@
+.. automodule:: gnusocial.favorites
+   :members:
