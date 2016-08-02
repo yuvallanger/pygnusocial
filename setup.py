@@ -10,7 +10,7 @@ except LookupError:
 
 
 setup(name='gnusocial',
-      version='1.0.0',
+      version='1.0.1',
       description='GNU Social API for Python 3',
       long_description=open('README.rst').read(),
       author='dtluna',
@@ -20,7 +20,6 @@ setup(name='gnusocial',
       license='GPLv3',
       classifiers=[
           'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
-          'Natural Language :: English',
           'Operating System :: OS Independent',
           'Programming Language :: Python :: 3',
       ],
