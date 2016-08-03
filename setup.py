@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# pylint: disable=missing-docstring
 import codecs
 from setuptools import setup
 try:
