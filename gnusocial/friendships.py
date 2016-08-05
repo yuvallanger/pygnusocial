@@ -5,7 +5,8 @@ gnusocial.friendships
 Module with friendship resources.
 """
 from typing import Union
-from .utils import _post_request, _check_user_target, docstring
+from dtd import docstring
+from .utils import _post_request, _check_user_target
 from .docs import (_SERVER_URL_DOC, _USERNAME_DOC, _PASSWORD_DOC, _USER_DICT,
                    _USER_ID_DOC, _SCREEN_NAME_DOC, _SOURCE_USER_DOC,
                    _TARGET_USER_DOC, _SOURCE_ID_DOC, _TARGET_ID_DOC,

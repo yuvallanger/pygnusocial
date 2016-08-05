@@ -6,7 +6,8 @@ Module with media resources.
 """
 from typing import Tuple
 from xml.etree import ElementTree as ET
-from .utils import _post_request, docstring
+from dtd import docstring
+from .utils import _post_request
 from .docs import _SERVER_URL_DOC, _USERNAME_DOC, _PASSWORD_DOC
 
 

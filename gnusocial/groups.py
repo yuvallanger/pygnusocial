@@ -4,9 +4,9 @@ gnusocial.groups
 
 Module with group resources.
 """
-from .utils import (_post_request, _get_request, docstring,
-                    _check_user_target, _check_group_id_and_name,
-                    _check_id_and_nickname)
+from dtd import docstring
+from .utils import (_post_request, _get_request, _check_id_and_nickname,
+                    _check_user_target, _check_group_id_and_name)
 from .docs import (_SERVER_URL_DOC, _USERNAME_DOC, _PASSWORD_DOC, _USER_DICT,
                    _USER_ID_DOC, _SCREEN_NAME_DOC, _GROUP_COUNT, _STATUS_DICT,
                    _GROUP_ID_DOC, _GROUP_NAME_DOC, _MAX_ID_DOC, _SINCE_ID_DOC,

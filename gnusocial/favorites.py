@@ -4,7 +4,8 @@ gnusocial.favorites
 
 Module with favorite resources.
 """
-from .utils import _post_request, _check_user_target, docstring
+from dtd import docstring
+from .utils import _post_request, _check_user_target
 from .docs import (_SERVER_URL_DOC, _USERNAME_DOC, _PASSWORD_DOC,
                    _SINCE_ID_DOC, _MAX_ID_DOC, _STATUSES_COUNT, _STATUS_DICT,
                    _STATUS_ID_DOC)

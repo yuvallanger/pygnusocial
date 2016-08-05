@@ -4,7 +4,8 @@ gnusocial.direct_messages
 
 Module with direct messages resources.
 """
-from .utils import _post_request, _check_user_target, docstring
+from dtd import docstring
+from .utils import _post_request, _check_user_target
 from .docs import (_SERVER_URL_DOC, _USERNAME_DOC, _PASSWORD_DOC,
                    _SINCE_ID_DOC, _MAX_ID_DOC, _DM_COUNT, _DM_DICT,
                    _USER_ID_DOC, _SCREEN_NAME_DOC, _TEXT_DOC)

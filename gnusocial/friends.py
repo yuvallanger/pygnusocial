@@ -5,7 +5,8 @@ gnusocial.friends
 Module with friends resources.
 """
 from typing import List
-from .utils import _post_request, _check_user_target, docstring
+from dtd import docstring
+from .utils import _post_request, _check_user_target
 from .docs import (_SERVER_URL_DOC, _USERNAME_DOC, _PASSWORD_DOC, _MAX_ID_DOC,
                    _USER_ID_DOC, _SCREEN_NAME_DOC, _USERS_COUNT, _SINCE_ID_DOC)
 

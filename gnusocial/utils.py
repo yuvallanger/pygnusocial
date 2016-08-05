@@ -9,17 +9,10 @@ from typing import Callable
 from functools import partial
 import requests
 from requests.auth import HTTPBasicAuth
+from dtd import docstring
 from .docs import _SERVER_URL_DOC, _CONFIG_DICT, _USERNAME_DOC, _PASSWORD_DOC
 
 DOMAIN_REGEX = re.compile(r"http(s|)://(www\.|)(.+?)(/.*|)$")
-
-
-def docstring(*args, **kwargs):
-    """Decorator function to fill in docstring templates."""
-    def _wrap(obj):
-        obj.__doc__ = obj.__doc__.format(*args, **kwargs)
-        return obj
-    return _wrap
 
 
 @docstring(server_url=_SERVER_URL_DOC)

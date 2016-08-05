@@ -4,7 +4,8 @@ gnusocial.statuses
 
 Module with status resources.
 """
-from .utils import _post_request, _get_request, docstring
+from dtd import docstring
+from .utils import _post_request, _get_request
 from .docs import (_SERVER_URL_DOC, _USERNAME_DOC, _PASSWORD_DOC, _STATUS_DICT,
                    _STATUS_ID_DOC)
 

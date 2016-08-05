@@ -4,7 +4,8 @@ gnusocial.accounts
 
 Module with account resources.
 """
-from .utils import _get_request, _post_request, docstring
+from dtd import docstring
+from .utils import _get_request, _post_request
 from .docs import (_SERVER_URL_DOC, _USERNAME_DOC, _PASSWORD_DOC,
                    _USER_LOCATION, _USER_DICT, _NAME_DOC, _URL_DOC,
                    _USER_DESCRIPTION, _PROFILE_LINK_COLOR_DOC)
