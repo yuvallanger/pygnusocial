@@ -67,7 +67,7 @@ def show(server_url: str,
          username: str='',
          password: str='') -> dict:
     """Returns a single status, specified by the id parameter. The status'
-        author will also be embedded within the status.
+author will also be embedded within the status.
 
 :param str server_url: {server_url}
 :param int status_id: {status_id}
@@ -96,8 +96,8 @@ def destroy(server_url: str,
             password: str,
             status_id: int) -> dict:
     """Destroys the status specified by the required ID parameter.
-        The authenticating user must be the author of the specified status.
-        Returns the destroyed status if successful.
+The authenticating user must be the author of the specified status.
+Returns the destroyed status if successful.
 
 :param str server_url: {server_url}
 :param str username: {username}
@@ -126,7 +126,7 @@ def repeat(server_url: str,
            password: str,
            status_id: int) -> dict:
     """Repeats a status. Returns the original status with repeat details
-        embedded.
+embedded.
 
 :param str server_url: {server_url}
 :param str username: {username}

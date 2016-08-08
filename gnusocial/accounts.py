@@ -16,8 +16,8 @@ from .docs import (_SERVER_URL_DOC, _USERNAME_DOC, _PASSWORD_DOC,
            password=_PASSWORD_DOC)
 def verify_credentials(server_url: str, username: str, password: str) -> None:
     """Tests if supplied user credentials are valid.
-    If the credentials were valid, return None.
-    If the credentials were invalid, raise gnusocial.utils.AuthenticationError.
+If the credentials were valid, return None.
+If the credentials were invalid, raise gnusocial.utils.AuthenticationError.
 
 :param str server_url: {server_url}
 :param str username: {username}
@@ -75,7 +75,7 @@ def update_profile(server_url: str,
                    password: str,
                    **kwargs) -> dict:
     """Sets some values that users are able to set under the "Account" tab of
-    their settings page. Only the parameters specified will be updated.
+their settings page. Only the parameters specified will be updated.
 
 :param str server_url: {server_url}
 :param str username: {username}

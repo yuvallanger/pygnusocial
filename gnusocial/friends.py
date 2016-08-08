@@ -24,7 +24,7 @@ def friends(server_url: str,
             password: str='',
             **kwargs) -> List[int]:
     """Returns IDs of users the auntenticated or
-    specified user is following (otherwise known as their "friends").
+specified user is following (otherwise known as their "friends").
 
 :param str server_url: {server_url}
 :param str username: (optional) {username}
@@ -58,7 +58,7 @@ def followers(server_url: str,
               password: str='',
               **kwargs) -> List[int]:
     """Returns IDs of users the auntenticated or
-    specified user is followed by (otherwise known as their "friends").
+specified user is followed by (otherwise known as their "friends").
 
 :param str server_url: {server_url}
 :param str username: (optional) {username}

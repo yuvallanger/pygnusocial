@@ -21,9 +21,9 @@ def create(server_url: str,
            password: str,
            **kwargs) -> dict:
     """Blocks the specified user from following the authenticating user.
-    In addition the blocked user will not show in the authenticating users
-    mentions or timeline (unless repeated by another user). If a follow or
-    friend relationship exists it is destroyed.
+In addition the blocked user will not show in the authenticating users
+mentions or timeline (unless repeated by another user). If a follow or
+friend relationship exists it is destroyed.
 
 :param str server_url: {server_url}
 :param str username: {username}
@@ -56,8 +56,8 @@ def destroy(server_url: str,
             password: str,
             **kwargs) -> dict:
     """Un-blocks the specified user from following the authenticating user.
-     If relationships existed before the block was instated,
-     they will not be restored.
+If relationships existed before the block was instated,
+they will not be restored.
 
 :param str server_url: {server_url}
 :param str username: {username}

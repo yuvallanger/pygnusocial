@@ -20,9 +20,9 @@ from .docs import (_SERVER_URL_DOC, _USERNAME_DOC, _PASSWORD_DOC,
            dm_dict=_DM_DICT)
 def received(server_url: str, username: str, password: str, **kwargs) -> list:
     """Returns the 20 most recent direct messages sent to the authenticating
-    user. Includes detailed information about the sender and recipient user.
-    You can request up to 200 direct messages per call, and only the most
-    recent 200 DMs will be available using this endpoint.
+user. Includes detailed information about the sender and recipient user.
+You can request up to 200 direct messages per call, and only the most
+recent 200 DMs will be available using this endpoint.
 
 :param str server_url: {server_url}
 :param str username: {username}
@@ -53,9 +53,9 @@ def received(server_url: str, username: str, password: str, **kwargs) -> list:
            dm_dict=_DM_DICT)
 def sent(server_url: str, username: str, password: str, **kwargs) -> list:
     """Returns the 20 most recent direct messages sent by the authenticating
-    user. Includes detailed information about the sender and recipient user.
-    You can request up to 200 direct messages per call, and only the most
-    recent 200 DMs will be available using this endpoint.
+user. Includes detailed information about the sender and recipient user.
+You can request up to 200 direct messages per call, and only the most
+recent 200 DMs will be available using this endpoint.
 
 :param str server_url: {server_url}
 :param str username: {username}
@@ -90,7 +90,7 @@ def new(server_url: str,
         text: str,
         **kwargs) -> dict:
     """ Sends a new direct message to the specified user from
-    the authenticating user.
+the authenticating user.
 
 :param str server_url: {server_url}
 :param str username: {username}

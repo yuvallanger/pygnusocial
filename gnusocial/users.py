@@ -22,7 +22,7 @@ def following(server_url: str,
               password: str='',
               **kwargs) -> list:
     """Returns a collection of user objects for users followed by
-    the specified user.
+the specified user.
 
 :param str server_url: {server_url}
 :param str username: (optional) {username}
@@ -57,7 +57,7 @@ def followers(server_url: str,
               password: str='',
               **kwargs) -> list:
     """Returns a collection of user objects for users following
-    the specified user.
+the specified user.
 
 :param str server_url: {server_url}
 :param str username: (optional) {username}
@@ -91,8 +91,8 @@ def show(server_url: str,
          password: str='',
          **kwargs):
     """Returns a variety of information about the user specified by the
-    required user_id or screen_name parameter. The author’s most recent
-    status will be returned inline when possible.
+required user_id or screen_name parameter. The author’s most recent
+status will be returned inline when possible.
 
 :param str server_url: {server_url}
 :param str username: (optional) {username}

@@ -23,7 +23,7 @@ def public(server_url: str,
            password: str='',
            **kwargs) -> list:
     """Returns the most recent notices, including repeats if they exist, from
-    non-protected users.
+non-protected users.
 
 :param str server_url: {server_url}
 :param str username: (optional) {username}
@@ -54,8 +54,8 @@ def public(server_url: str,
            status_dict=_STATUS_DICT)
 def home(server_url: str, username: str, password: str, **kwargs) -> list:
     """Returns the most recent notices, including repeats if they exist,
-    posted by the authenticating user and the users they follow. This is the
-    same timeline seen by a user when they login to their instance.
+posted by the authenticating user and the users they follow. This is the
+same timeline seen by a user when they login to their instance.
 
 :param str server_url: {server_url}
 :param str username: (optional) {username}
@@ -129,10 +129,10 @@ def user(server_url: str,
          password: str='',
          **kwargs) -> list:
     """Returns the most recent notices posted by the authenticating user. It
-    is also possible to request another user's timeline by using the
-    screen_name or user_id parameter. The other users timeline will only be
-    visible if they are not protected, or if the authenticating user's follow
-    request was accepted by the protected user.
+is also possible to request another user's timeline by using the
+screen_name or user_id parameter. The other users timeline will only be
+visible if they are not protected, or if the authenticating user's follow
+request was accepted by the protected user.
 
 :param str server_url: {server_url}
 :param str username: (optional) {username}
@@ -171,7 +171,7 @@ def mentions(server_url: str,
              password: str='',
              **kwargs) -> list:
     """Returns the most recent mentions (notices containing @username) for
-    the authenticating user or specified user.
+the authenticating user or specified user.
 
 :param str server_url: {server_url}
 :param str username: (optional) {username}

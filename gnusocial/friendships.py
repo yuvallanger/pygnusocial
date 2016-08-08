@@ -25,7 +25,7 @@ def create(server_url: str,
            password: str,
            **kwargs) -> dict:
     """Allows the authenticating users to follow the user specified in the
-    user_id or screen_name parameter.
+user_id or screen_name parameter.
 
 :param str server_url: {server_url}
 :param str username: (optional) {username}
@@ -58,7 +58,7 @@ def destroy(server_url: str,
             password: str,
             **kwargs) -> dict:
     """Allows the authenticating users to unfollow the user specified in the
-    user_id or screen_name parameter.
+user_id or screen_name parameter.
 
 :param str server_url: {server_url}
 :param str username: (optional) {username}
@@ -123,7 +123,7 @@ def show(server_url: str,
          password: str='',
          **kwargs) -> dict:
     """Returns detailed information about the relationship between two
-    arbitrary users.
+arbitrary users.
 
 :param str server_url: {server_url}
 :param str username: (optional) {username}

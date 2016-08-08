@@ -23,7 +23,7 @@ def favorites(server_url: str,
               password: str,
               **kwargs) -> list:
     """Returns the 20 most recent notices favorited by the authenticating or
-    specified user.
+specified user.
 
 :param str server_url: {server_url}
 :param str username: {username}
@@ -56,7 +56,7 @@ def create(server_url: str,
            password: str,
            status_id: int) -> dict:
     """Favorites the status specified in the ID parameter as the
-    authenticating user. Returns the liked status when successful.
+authenticating user. Returns the liked status when successful.
 
 :param str server_url: {server_url}
 :param str username: {username}
@@ -85,7 +85,7 @@ def destroy(server_url: str,
             password: str,
             status_id: int) -> dict:
     """Unfavorites the status specified in the ID parameter as the
-    authenticating user. Returns the unliked status when successful.
+authenticating user. Returns the unliked status when successful.
 
 :param str server_url: {server_url}
 :param str username: {username}
