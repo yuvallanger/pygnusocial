@@ -10,6 +10,7 @@ or
 
 ``python3 setup.py install``
 
+You can also install ``python-gnusocial`` package from AUR.
 
 Documentation
 -------------
