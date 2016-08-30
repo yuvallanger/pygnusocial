@@ -11,7 +11,7 @@ except LookupError:
 
 
 setup(name='gnusocial',
-      version='1.1.0',
+      version='1.1.1',
       description='GNU Social API for Python 3',
       long_description=open('README.rst').read(),
       author='dtluna',
