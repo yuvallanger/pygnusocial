@@ -1,2 +1,2 @@
 .. automodule:: gnusocial.search
-  :members:
+   :members:

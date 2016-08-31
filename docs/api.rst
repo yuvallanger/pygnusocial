@@ -13,7 +13,7 @@ Contents:
    friendships
    groups
    media
-   search
+   gssearch
    statuses
    timelines
    utils
