@@ -13,6 +13,7 @@ Contents:
    friendships
    groups
    media
+   oauth
    gssearch
    statuses
    timelines

@@ -1,0 +1,2 @@
+.. automodule:: gnusocial.oauth
+   :members:

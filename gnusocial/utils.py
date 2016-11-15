@@ -54,8 +54,7 @@ class AuthenticationError(Exception):
                                                     self.password)
 
     def __str__(self) -> str:
-        return 'Invalid credentials %s:%s for %s' % (self.username,
-                                                     self.password,
+        return 'Invalid credentials for (%s, %s)' % (self.username,
                                                      self.server_url)
 
 
@@ -94,8 +93,6 @@ def _resource_url(server_url: str,
 def _request(request_func: Callable,
              server_url: str,
              resource_path: str,
-             username: str='',
-             password: str='',
              **kwargs) -> requests.models.Response:
     extension = kwargs.get('extension', '.json')
     req = partial(request_func,
@@ -104,9 +101,17 @@ def _request(request_func: Callable,
                   files=kwargs.get('media'),
                   params=kwargs.get('params'))
     response = None
+    username = kwargs.get('username')
+    oauth = kwargs.get('oauth')
+    if username and oauth:
+        raise Exception("You can't use HTTP Basic Auth and OAuth at the same" +
+                        "time.")
     if username:
+        password = kwargs.get('password')
         response = req(auth=HTTPBasicAuth(username, password))
         _check_auth_error(response, server_url, username, password)
+    elif oauth:
+        response = req(auth=oauth)
     else:
         response = req()
     return response
@@ -114,27 +119,19 @@ def _request(request_func: Callable,
 
 def _get_request(server_url: str,
                  resource_path: str,
-                 username: str='',
-                 password: str='',
                  **kwargs) -> requests.models.Response:
     return _request(request_func=requests.get,
                     server_url=server_url,
                     resource_path=resource_path,
-                    username=username,
-                    password=password,
                     **kwargs)
 
 
 def _post_request(server_url: str,
                   resource_path: str,
-                  username: str='',
-                  password: str='',
                   **kwargs) -> requests.models.Response:
     return _request(request_func=requests.post,
                     server_url=server_url,
                     resource_path=resource_path,
-                    username=username,
-                    password=password,
                     **kwargs)
 
 
