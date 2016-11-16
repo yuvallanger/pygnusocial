@@ -2,5 +2,6 @@
 from subprocess import Popen, run
 
 server = Popen('./tests/mock_server.py')
-run('py.test tests', shell=True)
+return_code = run('py.test tests', shell=True).returncode
 server.kill()
+quit(code=return_code)
