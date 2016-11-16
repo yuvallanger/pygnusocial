@@ -3,6 +3,7 @@ test:
   - virtualenv -p /usr/bin/python3.5 gnusocial
   - source gnusocial/bin/activate
   - pip install -r requirements.txt
+  - ./setup.py install
   - ./tests/mock_server.py &
   - py.test tests
   - deactivate
