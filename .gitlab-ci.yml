@@ -1,7 +1,7 @@
 test:
   script:
-  - mkvirtualenv gnusocial
+  - virtualenv -p /usr/bin/python3.5 gnusocial
+  - source gnusocial/bin/activate
   - ./setup.py install
   - ./runtests.py
   - deactivate
-  - rmvirtualenv gnusocial
