@@ -1,3 +1,7 @@
 test:
   script:
+  - mkvirtualenv gnusocial
+  - ./setup.py install
   - ./runtests.py
+  - deactivate
+  - rmvirtualenv gnusocial
