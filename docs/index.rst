@@ -7,6 +7,7 @@ Welcome to pygnusocial's documentation!
 =======================================
 
 Contents:
+---------
 
 .. toctree::
    :maxdepth: 2

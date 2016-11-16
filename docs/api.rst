@@ -1,8 +1,6 @@
 API Documentation
 =================
 
-Contents:
-
 .. toctree::
 
    accounts
@@ -17,5 +15,6 @@ Contents:
    gssearch
    statuses
    timelines
+   activity_streams
    utils
    users
