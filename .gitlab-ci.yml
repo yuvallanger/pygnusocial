@@ -2,6 +2,6 @@ test:
   script:
   - virtualenv -p /usr/bin/python3.5 gnusocial
   - source gnusocial/bin/activate
-  - ./setup.py install
+  - pip install -r requirements.txt
   - ./runtests.py
   - deactivate
