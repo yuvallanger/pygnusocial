@@ -87,7 +87,7 @@ def test_post_request():
     """Test function for gnusocial.utils._post_request function.
     Any request to '/post' resource path should return 'Hello world!'
     """
-    post = partial(_post_request, SERVER_URL, 'post', USERNAME, data={})
+    post = partial(_post_request, SERVER_URL, 'post', username=USERNAME, data={})
     assert post(password=PASSWORD).json() == RESPONSE_STRING
     with pytest.raises(AuthenticationError):
         post(password=PASSWORD[:-1])
