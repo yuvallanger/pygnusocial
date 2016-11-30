@@ -5,10 +5,10 @@ gnusocial.timelines
 Module with timeline resources
 """
 from dtd import docstring
-from ..utils import _get_request, _check_user_target
-from ..docs import (_SERVER_URL_DOC, _USERNAME_DOC, _PASSWORD_DOC, _MAX_ID_DOC,
-                    _SINCE_ID_DOC, _STATUSES_COUNT, _STATUS_DICT, _USER_ID_DOC,
-                    _SCREEN_NAME_DOC)
+from .utils import _get_request, _check_user_target
+from .docs import (_SERVER_URL_DOC, _USERNAME_DOC, _PASSWORD_DOC, _MAX_ID_DOC,
+                   _SINCE_ID_DOC, _STATUSES_COUNT, _STATUS_DICT, _USER_ID_DOC,
+                   _SCREEN_NAME_DOC)
 
 
 @docstring(server_url=_SERVER_URL_DOC,

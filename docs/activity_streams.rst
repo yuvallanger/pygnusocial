@@ -1,2 +1,2 @@
-.. automodule:: gnusocial.timelines.activity_streams
+.. automodule:: gnusocial.activity_streams
    :members:

@@ -4,6 +4,7 @@ API Documentation
 .. toctree::
 
    accounts
+   activity_streams
    blocks
    direct_messages
    favorites
@@ -15,6 +16,5 @@ API Documentation
    gssearch
    statuses
    timelines
-   activity_streams
    utils
    users
