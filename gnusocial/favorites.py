@@ -8,7 +8,7 @@ from dtd import docstring
 from .utils import _post_request, _check_user_target
 from .docs import (_SERVER_URL_DOC, _USERNAME_DOC, _PASSWORD_DOC,
                    _SINCE_ID_DOC, _MAX_ID_DOC, _STATUSES_COUNT, _STATUS_DICT,
-                   _STATUS_ID_DOC)
+                   _STATUS_ID_DOC, _USER_ID_DOC, _SCREEN_NAME_DOC)
 
 
 @docstring(server_url=_SERVER_URL_DOC,
@@ -17,7 +17,9 @@ from .docs import (_SERVER_URL_DOC, _USERNAME_DOC, _PASSWORD_DOC,
            since_id=_SINCE_ID_DOC,
            max_id=_MAX_ID_DOC,
            count=_STATUSES_COUNT,
-           status_dict=_STATUS_DICT)
+           status_dict=_STATUS_DICT,
+           user_id=_USER_ID_DOC,
+           screen_name=_SCREEN_NAME_DOC)
 def favorites(server_url: str,
               username: str,
               password: str,
@@ -31,6 +33,8 @@ specified user.
 :param int since_id: (optional) {since_id}
 :param int max_id: (optional) {max_id}
 :param int count: (optional) {count}
+:param int user_id: (optional) {user_id}
+:param str screen_name: (optional) {screen_name}
 :rtype: list
 :return: list of dicts with following structure:
 
@@ -38,7 +42,7 @@ specified user.
 
     {status_dict}
     """
-    _check_user_target(**kwargs)
+    _check_user_target(username, **kwargs)
     return _post_request(server_url=server_url,
                          resource_path='favorites',
                          username=username,
