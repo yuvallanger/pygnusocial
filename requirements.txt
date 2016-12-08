@@ -12,6 +12,7 @@ imagesize==0.7.1
 itsdangerous==0.24
 Jinja2==2.8
 MarkupSafe==0.23
+oauthlib==2.0.1
 pep8==1.7.0
 py==1.4.31
 pyflakes==1.2.3
@@ -22,7 +23,8 @@ pytest-cov==2.2.1
 pytest-flakes==1.0.1
 pytest-pep8==1.0.6
 pytz==2016.6.1
-requests==2.10.0
+requests==2.12.3
+requests-oauthlib==0.7.0
 shellpy==0.5.0
 six==1.10.0
 snowballstemmer==1.2.1
