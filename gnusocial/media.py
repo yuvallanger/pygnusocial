@@ -7,7 +7,7 @@ Module with media resources.
 from typing import Tuple
 from xml.etree import ElementTree as ET
 from dtd import docstring
-from .utils import _post_request
+from .utils import _post_request, GNUSocialAPIError
 from .docs import _SERVER_URL_DOC, _USERNAME_DOC, _PASSWORD_DOC
 
 
@@ -35,6 +35,10 @@ def upload(server_url: str,
                                  password=password,
                                  media=media).text
     tree = ET.fromstring(response_xml)
-    file_url = tree.find('{http://www.w3.org/2005/Atom}link').get('href', '')
-    attachment_url = tree.findtext('mediaurl')
-    return (attachment_url, file_url)
+    file_url_element = tree.find('{http://www.w3.org/2005/Atom}link')
+    if file_url_element:
+        file_url = file_url_element.get('href', '')
+        attachment_url = tree.findtext('mediaurl')
+        return (attachment_url, file_url)
+    else:
+        raise GNUSocialAPIError(tree.find('err').get('msg'))

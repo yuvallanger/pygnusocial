@@ -15,6 +15,22 @@ from .docs import _SERVER_URL_DOC, _CONFIG_DICT, _USERNAME_DOC, _PASSWORD_DOC
 DOMAIN_REGEX = re.compile(r"http(s|)://(www\.|)(.+?)(/.*|)$")
 
 
+class GNUSocialAPIError(Exception):
+    """Exception class for API errors.
+
+:param str error_message: API error message.
+    """
+    def __init__(self, error_message: str) -> None:
+        self.error_message = error_message
+        super().__init__(Exception)
+
+    def __repr__(self) -> str:
+        return 'GNUSocialAPIError(%r)' % self.error_message
+
+    def __str__(self) -> str:
+        return 'API error: %s' % self.error_message
+
+
 @docstring(server_url=_SERVER_URL_DOC)
 class ServerURLError(Exception):
     """Exception class for errors in server URL.
@@ -114,6 +130,10 @@ def _request(request_func: Callable,
         response = req(auth=oauth)
     else:
         response = req()
+    if extension == '.json':
+        response_json = response.json()
+        if 'error' in response_json:
+            raise GNUSocialAPIError(response_json['error'])
     return response
 
 
