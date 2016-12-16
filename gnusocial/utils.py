@@ -8,7 +8,6 @@ import re
 from typing import Callable
 from functools import partial
 import requests
-from requests.auth import HTTPBasicAuth
 from dtd import docstring
 from .docs import _SERVER_URL_DOC, _CONFIG_DICT, _USERNAME_DOC, _PASSWORD_DOC
 
@@ -124,7 +123,7 @@ def _request(request_func: Callable,
                         "time.")
     if username:
         password = kwargs.get('password')
-        response = req(auth=HTTPBasicAuth(username, password))
+        response = req(auth=(username, password))
         _check_auth_error(response, server_url, username, password)
     elif oauth:
         response = req(auth=oauth)

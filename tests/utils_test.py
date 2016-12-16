@@ -1,4 +1,5 @@
 "Unit tests for gnusocial.utils module."
+from os.path import join
 from functools import partial
 import json
 import pytest
@@ -114,5 +115,5 @@ def test_config():
     """Test function for gnusocial.utils.config function.
     It should return a dict with the same contents as in config.json file.
     """
-    conf = json.load(open(CURDIR + 'config.json'))
+    conf = json.load(open(join(CURDIR, 'responses', 'statusnet', 'config.json')))
     assert conf == config(SERVER_URL)

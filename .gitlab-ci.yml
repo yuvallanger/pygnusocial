@@ -4,5 +4,5 @@ test:
   - source gnusocial/bin/activate
   - pip install -r requirements.txt
   - ./setup.py install
-  - ./runtests.py
+  - py.test tests
   - deactivate
