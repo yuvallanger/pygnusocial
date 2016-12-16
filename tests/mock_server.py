@@ -3,7 +3,7 @@
 from functools import wraps
 from flask import Flask, jsonify
 from flask import request, Response
-from conftest import RESPONSE_STRING, USERNAME, PASSWORD, CURDIR
+from conftest import RESPONSE_STRING, USERNAME, PASSWORD, CURDIR, ERROR_DICT
 APP = Flask(__name__)
 
 
@@ -42,6 +42,11 @@ def get(ext: str):
     return jsonify(RESPONSE_STRING)
 
 
+@APP.route('/api/get_error.json')
+def get_error():
+    return jsonify(ERROR_DICT)
+
+
 @APP.route('/api/get_auth<ext>')
 @requires_auth
 def get_auth(ext: str):
@@ -58,6 +63,11 @@ def verify_credentials():
 @requires_auth
 def post():
     return jsonify(RESPONSE_STRING)
+
+
+@APP.route('/api/post_error.json', methods=['POST'])
+def post_error():
+    return jsonify(ERROR_DICT)
 
 
 @APP.route('/api/statusnet/config.json')
