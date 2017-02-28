@@ -142,17 +142,17 @@ arbitrary users.
     has_target_id = 'target_id' in kwargs
     has_target_screen_name = 'target_screen_name' in kwargs
     if has_target_id == has_target_screen_name:
-        raise Exception(
+        raise ValueError(
             "You must either specify target_id or target_screen_name."
         )
     has_source_id = 'source_id' in kwargs
     has_source_screen_name = 'source_screen_name' in kwargs
     if has_source_id and has_source_screen_name:
-        raise Exception(
+        raise ValueError(
             "You must either specify source_id or source_screen_name."
         )
     if (not has_source_id and not has_target_screen_name) and not username:
-        raise Exception(
+        raise ValueError(
             "You must either specify source_id or " +
             "source_screen_name or username")
     return _post_request(server_url=server_url,

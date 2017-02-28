@@ -244,7 +244,7 @@ def friends(server_url: str,
 
     {as_dict}
     """
-    _check_user_target(username, **kwargs)
+    _check_user_target(username, use_username=True, **kwargs)
     return _get_request(server_url=server_url,
                         resource_path='statuses/friends_timeline',
                         extension='.as',
@@ -287,7 +287,7 @@ request was accepted by the protected user.
 
     {as_dict}
     """
-    _check_user_target(username, **kwargs)
+    _check_user_target(username, use_username=True, **kwargs)
     return _get_request(server_url=server_url,
                         resource_path='statuses/user_timeline',
                         extension='.as',
@@ -327,7 +327,7 @@ the authenticating user or specified user.
 
     {as_dict}
     """
-    _check_user_target(username, **kwargs)
+    _check_user_target(username, use_username=True, **kwargs)
     return _get_request(server_url=server_url,
                         resource_path='statuses/mentions',
                         extension='.as',
@@ -366,7 +366,7 @@ def replies(server_url: str,
 
     {as_dict}
     """
-    _check_user_target(username, **kwargs)
+    _check_user_target(username, use_username=True, **kwargs)
     return _get_request(server_url=server_url,
                         resource_path='statuses/replies',
                         extension='.as',

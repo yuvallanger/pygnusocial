@@ -37,7 +37,7 @@ specified user is following (otherwise known as their "friends").
 :rtype: list
 :return: a list of user IDs
     """
-    _check_user_target(username, **kwargs)
+    _check_user_target(username, use_username=True, **kwargs)
     return _post_request(server_url=server_url,
                          resource_path='friends/ids',
                          username=username,
@@ -71,7 +71,7 @@ specified user is followed by (otherwise known as their "friends").
 :rtype: list
 :return: a list of user IDs
     """
-    _check_user_target(username, **kwargs)
+    _check_user_target(username, use_username=True, **kwargs)
     return _post_request(server_url=server_url,
                          resource_path='followers/ids',
                          username=username,

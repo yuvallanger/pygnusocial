@@ -107,7 +107,7 @@ def friends(server_url: str,
 
     {status_dict}
     """
-    _check_user_target(username, **kwargs)
+    _check_user_target(username, use_username=True, **kwargs)
     return _get_request(server_url=server_url,
                         resource_path='statuses/friends_timeline',
                         username=username,
@@ -149,7 +149,7 @@ request was accepted by the protected user.
 
     {status_dict}
     """
-    _check_user_target(username, **kwargs)
+    _check_user_target(username, use_username=True, **kwargs)
     return _get_request(server_url=server_url,
                         resource_path='statuses/user_timeline',
                         username=username,
@@ -188,7 +188,7 @@ the authenticating user or specified user.
 
     {status_dict}
     """
-    _check_user_target(username, **kwargs)
+    _check_user_target(username, use_username=True, **kwargs)
     return _get_request(server_url=server_url,
                         resource_path='statuses/mentions',
                         username=username,
@@ -226,7 +226,7 @@ def replies(server_url: str,
 
     {status_dict}
     """
-    _check_user_target(username, **kwargs)
+    _check_user_target(username, use_username=True, **kwargs)
     return _get_request(server_url=server_url,
                         resource_path='statuses/replies',
                         username=username,
