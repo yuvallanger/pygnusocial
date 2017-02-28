@@ -37,7 +37,7 @@ the specified user.
 
     {user_dict}
     """
-    _check_user_target(username, **kwargs)
+    _check_user_target(username, use_username=True, **kwargs)
     return _get_request(server_url=server_url,
                         resource_path='statuses/friends',
                         username=username,
@@ -72,7 +72,7 @@ the specified user.
 
     {user_dict}
     """
-    _check_user_target(username, **kwargs)
+    _check_user_target(username, use_username=True, **kwargs)
     return _get_request(server_url=server_url,
                         resource_path='statuses/followers',
                         username=username,

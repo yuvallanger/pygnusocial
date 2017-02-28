@@ -8,7 +8,6 @@ import re
 from typing import Callable
 from functools import partial
 import requests
-from requests.auth import HTTPBasicAuth
 from dtd import docstring
 from .docs import _SERVER_URL_DOC, _CONFIG_DICT, _USERNAME_DOC, _PASSWORD_DOC
 
@@ -120,11 +119,11 @@ def _request(request_func: Callable,
     username = kwargs.get('username')
     oauth = kwargs.get('oauth')
     if username and oauth:
-        raise Exception("You can't use HTTP Basic Auth and OAuth at the same" +
+        raise ValueError("You can't use HTTP Basic Auth and OAuth at the same" +
                         "time.")
     if username:
         password = kwargs.get('password')
-        response = req(auth=HTTPBasicAuth(username, password))
+        response = req(auth=(username, password))
         _check_auth_error(response, server_url, username, password)
     elif oauth:
         response = req(auth=oauth)
@@ -171,15 +170,19 @@ def config(server_url: str) -> dict:
     return _get_request(server_url, 'statusnet/config').json()
 
 
-def _check_user_target(username: str='', **kwargs) -> None:
+def _check_user_target(username: str='', use_username=False, **kwargs) -> None:
     both_targets = 'user_id' in kwargs and 'screen_name' in kwargs
     no_targets = 'user_id' not in kwargs and 'screen_name' not in kwargs
     if both_targets:
-        raise Exception(
+        raise ValueError(
             "You must either specify the user_id or screen_name."
         )
-    if no_targets and not username:
-        raise Exception(
+    if no_targets and not use_username:
+        raise ValueError(
+            "You must either specify the user_id or screen_name."
+        )
+    elif no_targets and use_username and not username:
+        raise ValueError(
             "You must either specify the user_id or screen_name or " +
             "username."
         )
@@ -189,7 +192,7 @@ def _check_id_and_nickname(**kwargs) -> None:
     has_group_id = 'id' in kwargs
     has_group_name = 'nickname' in kwargs
     if has_group_id == has_group_name:
-        raise Exception(
+        raise ValueError(
             "You must either specify the id or nickname."
         )
 
@@ -198,6 +201,6 @@ def _check_group_id_and_name(**kwargs) -> None:
     has_group_id = 'group_id' in kwargs
     has_group_name = 'group_name' in kwargs
     if has_group_id == has_group_name:
-        raise Exception(
+        raise ValueError(
             "You must either specify the group_id or group_name."
         )

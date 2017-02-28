@@ -42,7 +42,7 @@ specified user.
 
     {status_dict}
     """
-    _check_user_target(username, **kwargs)
+    _check_user_target(username, use_username=True, **kwargs)
     return _post_request(server_url=server_url,
                          resource_path='favorites',
                          username=username,
