@@ -25,7 +25,7 @@ Basic usage
 ::
 
 >>> from gnusocial import statuses
->>> r = statuses.update('https://gnusocial.server.com', 'username', 'password', "I've just installed #pygnusocial!", source='python3')
+>>> r = statuses.update('https://gnusocial.server.com', "I've just installed #pygnusocial!", source='python3', username='username', password='password',)
 
 
 If you want to help with the development of pygnusocial, check out the `contribution guide <https://gitgud.io/dtluna/pygnusocial/blob/master/CONTRIBUTING.rst>`_.
