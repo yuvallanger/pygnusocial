@@ -10,9 +10,7 @@ def test_verify_credentials():
     """Test function for gnusocial.accounts.verify_credentials function.
     It should raise gnusocial.utils.AuthenticationError if
     credentials are invalid.
-    It should return None if everything is fine.
     """
-    verify = partial(verify_credentials, SERVER_URL, USERNAME)
-    assert verify(PASSWORD) is None
+    verify = partial(verify_credentials, SERVER_URL, username=USERNAME)
     with pytest.raises(AuthenticationError):
-        verify(PASSWORD[:-1])
+        verify(password=PASSWORD[:-1])

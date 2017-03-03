@@ -1,17 +1,15 @@
 "Unit tests for gnusocial.utils module."
-from os.path import join
 from functools import partial
-import json
 import pytest
 import requests
 from requests.models import Response
 from gnusocial.utils import (
     _api_path, _validate_server_url, ServerURLError, _resource_url,
     _check_connection, _get_request, AuthenticationError, _post_request,
-    _check_auth_error, config, GNUSocialAPIError
+    _check_auth_error, GNUSocialAPIError
 )
 from conftest import (
-    SERVER_URL, RESPONSE_STRING, USERNAME, PASSWORD, CURDIR, ERROR_STRING
+    SERVER_URL, RESPONSE_STRING, USERNAME, PASSWORD, ERROR_STRING
 )
 
 
@@ -65,14 +63,14 @@ def test_get_request():
     get_auth = partial(_get_request,
                        server_url=SERVER_URL,
                        resource_path='get_auth')
-    assert get().json() == RESPONSE_STRING
-    assert get(extension='.json').json() == RESPONSE_STRING
-    assert get_auth(**credentials).json() == RESPONSE_STRING
-    assert get_auth(extension='.json', **credentials).json() == \
+    assert get() == RESPONSE_STRING
+    assert get(extension='.json') == RESPONSE_STRING
+    assert get_auth(**credentials) == RESPONSE_STRING
+    assert get_auth(extension='.json', **credentials) == \
         RESPONSE_STRING
     with pytest.raises(AuthenticationError):
-        get_auth(**invalid_credentials).json()
-        get_auth(extension='.json', **invalid_credentials).json()
+        get_auth(**invalid_credentials)
+        get_auth(extension='.json', **invalid_credentials)
     with pytest.raises(GNUSocialAPIError) as excinfo:
         _get_request(server_url=SERVER_URL, resource_path='get_error')
     assert ERROR_STRING == excinfo.value.error_message
@@ -94,7 +92,7 @@ def test_post_request():
     Any request to '/post' resource path should return 'Hello world!'
     """
     post = partial(_post_request, SERVER_URL, 'post', username=USERNAME, data={})
-    assert post(password=PASSWORD).json() == RESPONSE_STRING
+    assert post(password=PASSWORD) == RESPONSE_STRING
     with pytest.raises(AuthenticationError):
         post(password=PASSWORD[:-1])
     with pytest.raises(GNUSocialAPIError) as excinfo:
@@ -108,8 +106,7 @@ def test_check_auth_error():
     """
     check_auth = partial(_check_auth_error,
                          server_url=SERVER_URL,
-                         username=USERNAME,
-                         password=PASSWORD)
+                         username=USERNAME)
     ok_response = Response()
     ok_response.status_code = 200
     auth_error = Response()
@@ -117,11 +114,3 @@ def test_check_auth_error():
     assert check_auth(ok_response) is None
     with pytest.raises(AuthenticationError):
         check_auth(auth_error)
-
-
-def test_config():
-    """Test function for gnusocial.utils.config function.
-    It should return a dict with the same contents as in config.json file.
-    """
-    conf = json.load(open(join(CURDIR, 'responses', 'statusnet', 'config.json')))
-    assert conf == config(SERVER_URL)

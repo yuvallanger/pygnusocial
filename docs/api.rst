@@ -1,12 +1,15 @@
-API Documentation
-=================
+API Reference
+=============
 
 .. toctree::
 
    accounts
    activity_streams
    blocks
+   config
+   data_structures
    direct_messages
+   exceptions
    favorites
    friends
    friendships
@@ -16,5 +19,4 @@ API Documentation
    gssearch
    statuses
    timelines
-   utils
    users
