@@ -27,4 +27,5 @@ setup(name='gnusocial',
       url='https://gitgud.io/dtluna/pygnusocial',
       platforms=['any'],
       packages=['gnusocial'],
-      install_requires=['requests', 'dtd', 'requests-oauthlib'])
+      python_requires='>=3.3',
+      install_requires=['requests', 'requests-oauthlib'])
