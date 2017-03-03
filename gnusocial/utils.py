@@ -34,7 +34,7 @@ def _validate_server_url(server_url):
 
 
 def _check_connection(server_url):
-    response = _get_request(server_url, 'help/test').json()
+    response = _get_request(server_url, 'help/test')
     if response != 'ok':
         raise requests.ConnectionError(server_url)
 
