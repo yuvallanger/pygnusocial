@@ -1,2 +1,0 @@
-.. automodule:: gnusocial.utils
-   :members:
