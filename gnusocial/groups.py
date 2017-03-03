@@ -67,9 +67,13 @@ def members(**kwargs):
     return {'resource_path': resource_path, 'data': kwargs}
 
 
+def _get_is_member(response_json):
+    return bool(response_json.get('is_member'))
+
 @get
 def is_member(**kwargs):
-    return {'resource_path': 'statusnet/groups/is_member', 'params': kwargs}
+    return {'resource_path': 'statusnet/groups/is_member', 'params': kwargs,
+            'postprocessor': _get_is_member}
 
 
 @get

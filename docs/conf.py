@@ -31,11 +31,8 @@ sys.path.insert(0, os.path.abspath('..'))
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    'sphinx.ext.autodoc',
     'sphinx.ext.doctest',
     'sphinx.ext.intersphinx',
-    'sphinx.ext.coverage',
-    'sphinx.ext.viewcode',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -56,7 +53,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'pygnusocial'
-copyright = '2016, dtluna'
+copyright = '2017, dtluna'
 author = 'dtluna'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -210,7 +207,8 @@ html_show_sourcelink = True
 
 # If true, "(C) Copyright ..." is shown in the HTML footer. Default is True.
 #
-# html_show_copyright = True
+#html_show_copyright = True
+copyright = 'Creative Commons CC0 - http://creativecommons.org/publicdomain/zero/1.0/. To the extent possible under law, dtluna has waived all copyright and related or neighboring rights to this work'
 
 # If true, an OpenSearch description file will be output, and all pages will
 # contain a <link> tag referring to it.  The value of this option must be the

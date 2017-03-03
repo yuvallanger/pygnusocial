@@ -1,10 +1,5 @@
 from .decorators import get, post
 
-@get
-def received(**kwargs):
-    return {'resource_path': 'direct_messages', 'params': kwargs}
-
-
 @post
 def create(**kwargs):
     return {'resource_path': 'friendships/create', 'data': kwargs}

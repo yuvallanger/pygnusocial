@@ -1,6 +1,5 @@
 from functools import partial
 from urllib.parse import parse_qs
-from requests_oauthlib import OAuth1
 
 from .decorators import post
 from .utils import _resource_url
@@ -13,16 +12,25 @@ def _parse_response(response):
     return res
 
 
-def _make_oauth_object(consumer_key, consumer_secret, response):
-    return OAuth1(client_key=consumer_key, client_secret=consumer_secret,
-                  **_parse_response(response))
+def _make_oauth_dict(consumer_key, consumer_secret, response):
+    creds = _parse_response(response)
+    creds.update({
+        'consumer_key': consumer_key,
+        'consumer_secret': consumer_secret
+    })
+    return creds
 
 
 @post
 def request_token(consumer_key, consumer_secret):
-    oauth = OAuth1(client_key=consumer_key, client_secret=consumer_secret)
-    return {'resource_path': 'oauth/request_token', 'extension': '', 'oauth': oauth,
-            'data': {'oauth_callback': 'oob'}, 'postprocessor': _parse_response}
+    return {'resource_path': 'oauth/request_token', 'extension': '',
+            'oauth': {
+                'consumer_key': consumer_key,
+                'consumer_secret': consumer_secret,
+            },
+            'data': {'oauth_callback': 'oob'},
+            'postprocessor': partial(_make_oauth_dict, consumer_key,
+                                     consumer_secret)}
 
 
 def authorize_url(server_url, resource_owner_key):
@@ -33,10 +41,12 @@ def authorize_url(server_url, resource_owner_key):
 @post
 def access_token(consumer_key, consumer_secret, resource_owner_key,
                  resource_owner_secret, secret_key):
-    oauth = OAuth1(client_key=consumer_key,
-                   client_secret=consumer_secret,
-                   resource_owner_key=resource_owner_key,
-                   resource_owner_secret=resource_owner_secret,
-                   verifier=secret_key)
-    return {'resource_path': 'oauth/access_token', 'extension': '', 'oauth': oauth,
-            'postprocessor': partial(_make_oauth_object, consumer_key, consumer_secret)}
+    oauth = {'consumer_key': consumer_key,
+             'consumer_secret': consumer_secret,
+             'resource_owner_key':resource_owner_key,
+             'resource_owner_secret': resource_owner_secret,
+             'secret_key': secret_key}
+    return {'resource_path': 'oauth/access_token', 'extension': '',
+            'oauth': oauth,
+            'postprocessor': partial(_make_oauth_dict, consumer_key,
+                                     consumer_secret)}

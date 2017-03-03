@@ -5,7 +5,7 @@ from .utils import _post_request, _get_request
 def post(func):
     @wraps(func)
     def _wrapper(server_url, *args, username='', password='',
-                 oauth=(), **kwargs):
+                 oauth={}, **kwargs):
         request_args = func(*args, **kwargs)
         if 'oauth' in request_args:
             oauth = request_args.pop('oauth')
@@ -27,7 +27,7 @@ def post(func):
 def get(func):
     @wraps(func)
     def _wrapper(server_url, *args, username='', password='',
-                 oauth=(), **kwargs):
+                 oauth={}, **kwargs):
         request_args = func(*args, **kwargs)
         postprocessor = request_args.get('postprocessor')
         response = _get_request(
