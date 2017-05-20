@@ -4,9 +4,9 @@ from .utils import GNUSocialAPIError
 
 
 @post
-def upload(media):
+def upload(media_path):
     return {'resource_path': 'statusnet/media/upload', 'extension':'',
-            'files': {'media': media.read()},
+            'files': {media_path.name: media_path.open('rb').read()},
             'postprocessor': _extract_urls}
 
 def _extract_urls(response):
