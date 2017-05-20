@@ -2,11 +2,22 @@ from .decorators import post, get
 
 @post
 def update(status, **kwargs):
-    media = kwargs.get('media')
-    if media:
-        media = {'media': kwargs.pop('media').read()}
+    request_dict = dict()
+
+    if kwargs.get('media')
+        request_dict['files'] = {'media': kwargs.pop('media').read()}
+
+    if kwargs.get('media_ids')
+        media_ids = kwargs.pop('media_ids')
+        request_dict['media_ids'] = media_ids
+
     kwargs['status'] = status
-    return {'data': kwargs, 'files': media, 'resource_path': 'statuses/update'}
+
+    request_dict['data'] = kwargs
+
+    request_dict['resource_path'] = 'statuses/update'
+
+    return request_dict
 
 
 @get

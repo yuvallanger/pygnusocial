@@ -16,6 +16,7 @@ def _extract_urls(response):
     if file_url_element is None:
         raise GNUSocialAPIError(tree.find('err').get('msg'))
     else:
-        file_url = file_url_element.get('href', '')
-        attachment_url = tree.findtext('mediaurl')
-        return (attachment_url, file_url)
+        return dict(
+            media_id=tree.findtext('mediaid'),
+            attachment_url=tree.findtext('mediaurl'),
+            file_url=file_url_element.get('href', ''))
