@@ -4,10 +4,10 @@ from .decorators import post, get
 def update(status, **kwargs):
     request_dict = dict()
 
-    if kwargs.get('media')
+    if kwargs.get('media'):
         request_dict['files'] = {'media': kwargs.pop('media').read()}
 
-    if kwargs.get('media_ids')
+    if kwargs.get('media_ids'):
         media_ids = kwargs.pop('media_ids')
         request_dict['media_ids'] = media_ids
 
