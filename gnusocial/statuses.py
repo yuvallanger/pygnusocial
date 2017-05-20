@@ -7,9 +7,8 @@ def update(status, **kwargs):
     if kwargs.get('media'):
         request_dict['files'] = {'media': kwargs.pop('media').read()}
 
-    if kwargs.get('media_ids'):
-        media_ids = kwargs.pop('media_ids')
-        request_dict['media_ids'] = media_ids
+    # if kwargs.get('media_ids'):
+    #     request_dict['media_ids'] = kwargs.pop('media_ids')
 
     kwargs['status'] = status
 
